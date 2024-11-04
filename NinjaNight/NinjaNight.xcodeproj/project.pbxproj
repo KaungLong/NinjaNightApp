@@ -1,0 +1,650 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DC0042AE2CD8B526005D0336 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC0042A82CD8B526005D0336 /* Preview Assets.xcassets */; };
+		DC0042AF2CD8B526005D0336 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC0042AA2CD8B526005D0336 /* Assets.xcassets */; };
+		DC0042B02CD8B526005D0336 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0042AB2CD8B526005D0336 /* ContentView.swift */; };
+		DC0042B12CD8B526005D0336 /* NinjaNightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0042AC2CD8B526005D0336 /* NinjaNightApp.swift */; };
+		DC0042B42CD8C01C005D0336 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0042B32CD8C00C005D0336 /* LoginView.swift */; };
+		DC0042B62CD8C2A0005D0336 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC0042B52CD8C2A0005D0336 /* GoogleService-Info.plist */; };
+		DC0042B72CD8C2A0005D0336 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC0042B52CD8C2A0005D0336 /* GoogleService-Info.plist */; };
+		DC0042B82CD8C2A0005D0336 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC0042B52CD8C2A0005D0336 /* GoogleService-Info.plist */; };
+		DC0042C22CD8C9BF005D0336 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = DC0042C12CD8C9BF005D0336 /* FirebaseCore */; };
+		DC0042C42CD8C9C2005D0336 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = DC0042C32CD8C9C2005D0336 /* FirebaseAuth */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DC00428C2CD8AC1F005D0336 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC0042732CD8AC1C005D0336 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC00427A2CD8AC1C005D0336;
+			remoteInfo = NinjaNight;
+		};
+		DC0042962CD8AC1F005D0336 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC0042732CD8AC1C005D0336 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC00427A2CD8AC1C005D0336;
+			remoteInfo = NinjaNight;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DC00427B2CD8AC1C005D0336 /* NinjaNight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NinjaNight.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC00428B2CD8AC1F005D0336 /* NinjaNightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NinjaNightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC0042952CD8AC1F005D0336 /* NinjaNightUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NinjaNightUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC0042A82CD8B526005D0336 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DC0042AA2CD8B526005D0336 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DC0042AB2CD8B526005D0336 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DC0042AC2CD8B526005D0336 /* NinjaNightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NinjaNightApp.swift; sourceTree = "<group>"; };
+		DC0042B32CD8C00C005D0336 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		DC0042B52CD8C2A0005D0336 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		DC00428E2CD8AC1F005D0336 /* NinjaNightTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = NinjaNightTests;
+			sourceTree = "<group>";
+		};
+		DC0042982CD8AC1F005D0336 /* NinjaNightUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = NinjaNightUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DC0042782CD8AC1C005D0336 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC0042C22CD8C9BF005D0336 /* FirebaseCore in Frameworks */,
+				DC0042C42CD8C9C2005D0336 /* FirebaseAuth in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC0042882CD8AC1F005D0336 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC0042922CD8AC1F005D0336 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DC0042722CD8AC1C005D0336 = {
+			isa = PBXGroup;
+			children = (
+				DC0042AD2CD8B526005D0336 /* NinjaNight */,
+				DC00428E2CD8AC1F005D0336 /* NinjaNightTests */,
+				DC0042982CD8AC1F005D0336 /* NinjaNightUITests */,
+				DC0042C02CD8C9BF005D0336 /* Frameworks */,
+				DC00427C2CD8AC1C005D0336 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DC00427C2CD8AC1C005D0336 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DC00427B2CD8AC1C005D0336 /* NinjaNight.app */,
+				DC00428B2CD8AC1F005D0336 /* NinjaNightTests.xctest */,
+				DC0042952CD8AC1F005D0336 /* NinjaNightUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DC0042A92CD8B526005D0336 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				DC0042A82CD8B526005D0336 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DC0042AD2CD8B526005D0336 /* NinjaNight */ = {
+			isa = PBXGroup;
+			children = (
+				DC0042B52CD8C2A0005D0336 /* GoogleService-Info.plist */,
+				DC0042B22CD8BE76005D0336 /* Landing */,
+				DC0042A92CD8B526005D0336 /* Preview Content */,
+				DC0042AA2CD8B526005D0336 /* Assets.xcassets */,
+				DC0042AB2CD8B526005D0336 /* ContentView.swift */,
+				DC0042AC2CD8B526005D0336 /* NinjaNightApp.swift */,
+			);
+			path = NinjaNight;
+			sourceTree = "<group>";
+		};
+		DC0042B22CD8BE76005D0336 /* Landing */ = {
+			isa = PBXGroup;
+			children = (
+				DC0042B32CD8C00C005D0336 /* LoginView.swift */,
+			);
+			path = Landing;
+			sourceTree = "<group>";
+		};
+		DC0042C02CD8C9BF005D0336 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DC00427A2CD8AC1C005D0336 /* NinjaNight */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC00429F2CD8AC1F005D0336 /* Build configuration list for PBXNativeTarget "NinjaNight" */;
+			buildPhases = (
+				DC0042772CD8AC1C005D0336 /* Sources */,
+				DC0042782CD8AC1C005D0336 /* Frameworks */,
+				DC0042792CD8AC1C005D0336 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NinjaNight;
+			packageProductDependencies = (
+				DC0042C12CD8C9BF005D0336 /* FirebaseCore */,
+				DC0042C32CD8C9C2005D0336 /* FirebaseAuth */,
+			);
+			productName = NinjaNight;
+			productReference = DC00427B2CD8AC1C005D0336 /* NinjaNight.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DC00428A2CD8AC1F005D0336 /* NinjaNightTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC0042A22CD8AC1F005D0336 /* Build configuration list for PBXNativeTarget "NinjaNightTests" */;
+			buildPhases = (
+				DC0042872CD8AC1F005D0336 /* Sources */,
+				DC0042882CD8AC1F005D0336 /* Frameworks */,
+				DC0042892CD8AC1F005D0336 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DC00428D2CD8AC1F005D0336 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				DC00428E2CD8AC1F005D0336 /* NinjaNightTests */,
+			);
+			name = NinjaNightTests;
+			packageProductDependencies = (
+			);
+			productName = NinjaNightTests;
+			productReference = DC00428B2CD8AC1F005D0336 /* NinjaNightTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DC0042942CD8AC1F005D0336 /* NinjaNightUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC0042A52CD8AC1F005D0336 /* Build configuration list for PBXNativeTarget "NinjaNightUITests" */;
+			buildPhases = (
+				DC0042912CD8AC1F005D0336 /* Sources */,
+				DC0042922CD8AC1F005D0336 /* Frameworks */,
+				DC0042932CD8AC1F005D0336 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DC0042972CD8AC1F005D0336 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				DC0042982CD8AC1F005D0336 /* NinjaNightUITests */,
+			);
+			name = NinjaNightUITests;
+			packageProductDependencies = (
+			);
+			productName = NinjaNightUITests;
+			productReference = DC0042952CD8AC1F005D0336 /* NinjaNightUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DC0042732CD8AC1C005D0336 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1610;
+				LastUpgradeCheck = 1610;
+				TargetAttributes = {
+					DC00427A2CD8AC1C005D0336 = {
+						CreatedOnToolsVersion = 16.1;
+					};
+					DC00428A2CD8AC1F005D0336 = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = DC00427A2CD8AC1C005D0336;
+					};
+					DC0042942CD8AC1F005D0336 = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = DC00427A2CD8AC1C005D0336;
+					};
+				};
+			};
+			buildConfigurationList = DC0042762CD8AC1C005D0336 /* Build configuration list for PBXProject "NinjaNight" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DC0042722CD8AC1C005D0336;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				DC0042B92CD8C31F005D0336 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = DC00427C2CD8AC1C005D0336 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DC00427A2CD8AC1C005D0336 /* NinjaNight */,
+				DC00428A2CD8AC1F005D0336 /* NinjaNightTests */,
+				DC0042942CD8AC1F005D0336 /* NinjaNightUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DC0042792CD8AC1C005D0336 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC0042AE2CD8B526005D0336 /* Preview Assets.xcassets in Resources */,
+				DC0042AF2CD8B526005D0336 /* Assets.xcassets in Resources */,
+				DC0042B62CD8C2A0005D0336 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC0042892CD8AC1F005D0336 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC0042B82CD8C2A0005D0336 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC0042932CD8AC1F005D0336 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC0042B72CD8C2A0005D0336 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DC0042772CD8AC1C005D0336 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC0042B42CD8C01C005D0336 /* LoginView.swift in Sources */,
+				DC0042B02CD8B526005D0336 /* ContentView.swift in Sources */,
+				DC0042B12CD8B526005D0336 /* NinjaNightApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC0042872CD8AC1F005D0336 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC0042912CD8AC1F005D0336 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DC00428D2CD8AC1F005D0336 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC00427A2CD8AC1C005D0336 /* NinjaNight */;
+			targetProxy = DC00428C2CD8AC1F005D0336 /* PBXContainerItemProxy */;
+		};
+		DC0042972CD8AC1F005D0336 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC00427A2CD8AC1C005D0336 /* NinjaNight */;
+			targetProxy = DC0042962CD8AC1F005D0336 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		DC00429D2CD8AC1F005D0336 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DC00429E2CD8AC1F005D0336 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DC0042A02CD8AC1F005D0336 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"NinjaNight/Preview Content\"";
+				DEVELOPMENT_TEAM = 8L4LV9LH2B;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = NinjaNight.NinjaNight;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DC0042A12CD8AC1F005D0336 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"NinjaNight/Preview Content\"";
+				DEVELOPMENT_TEAM = 8L4LV9LH2B;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = NinjaNight.NinjaNight;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		DC0042A32CD8AC1F005D0336 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8L4LV9LH2B;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = NinjaNight.NinjaNightTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NinjaNight.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NinjaNight";
+			};
+			name = Debug;
+		};
+		DC0042A42CD8AC1F005D0336 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8L4LV9LH2B;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = NinjaNight.NinjaNightTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NinjaNight.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NinjaNight";
+			};
+			name = Release;
+		};
+		DC0042A62CD8AC1F005D0336 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8L4LV9LH2B;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = NinjaNight.NinjaNightUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = NinjaNight;
+			};
+			name = Debug;
+		};
+		DC0042A72CD8AC1F005D0336 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8L4LV9LH2B;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = NinjaNight.NinjaNightUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = NinjaNight;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DC0042762CD8AC1C005D0336 /* Build configuration list for PBXProject "NinjaNight" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC00429D2CD8AC1F005D0336 /* Debug */,
+				DC00429E2CD8AC1F005D0336 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC00429F2CD8AC1F005D0336 /* Build configuration list for PBXNativeTarget "NinjaNight" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC0042A02CD8AC1F005D0336 /* Debug */,
+				DC0042A12CD8AC1F005D0336 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC0042A22CD8AC1F005D0336 /* Build configuration list for PBXNativeTarget "NinjaNightTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC0042A32CD8AC1F005D0336 /* Debug */,
+				DC0042A42CD8AC1F005D0336 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC0042A52CD8AC1F005D0336 /* Build configuration list for PBXNativeTarget "NinjaNightUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC0042A62CD8AC1F005D0336 /* Debug */,
+				DC0042A72CD8AC1F005D0336 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DC0042B92CD8C31F005D0336 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DC0042C12CD8C9BF005D0336 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC0042B92CD8C31F005D0336 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		DC0042C32CD8C9C2005D0336 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC0042B92CD8C31F005D0336 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = DC0042732CD8AC1C005D0336 /* Project object */;
+}
