@@ -12,11 +12,14 @@
 		DC0042B02CD8B526005D0336 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0042AB2CD8B526005D0336 /* ContentView.swift */; };
 		DC0042B12CD8B526005D0336 /* NinjaNightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0042AC2CD8B526005D0336 /* NinjaNightApp.swift */; };
 		DC0042B42CD8C01C005D0336 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0042B32CD8C00C005D0336 /* LoginView.swift */; };
-		DC0042B62CD8C2A0005D0336 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC0042B52CD8C2A0005D0336 /* GoogleService-Info.plist */; };
-		DC0042B72CD8C2A0005D0336 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC0042B52CD8C2A0005D0336 /* GoogleService-Info.plist */; };
-		DC0042B82CD8C2A0005D0336 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC0042B52CD8C2A0005D0336 /* GoogleService-Info.plist */; };
 		DC0042C22CD8C9BF005D0336 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = DC0042C12CD8C9BF005D0336 /* FirebaseCore */; };
 		DC0042C42CD8C9C2005D0336 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = DC0042C32CD8C9C2005D0336 /* FirebaseAuth */; };
+		DCE5E6052CDA03AD00BBB7B0 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = DCE5E6042CDA03AD00BBB7B0 /* FirebaseFirestore */; };
+		DCE5E6082CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
+		DCE5E6092CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
+		DCE5E60A2CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
+		DCE5E60C2CDA129700BBB7B0 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = DCE5E60B2CDA129700BBB7B0 /* GoogleSignIn */; };
+		DCE5E60E2CDA12C500BBB7B0 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DCE5E60D2CDA12C500BBB7B0 /* GoogleSignInSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +48,8 @@
 		DC0042AB2CD8B526005D0336 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DC0042AC2CD8B526005D0336 /* NinjaNightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NinjaNightApp.swift; sourceTree = "<group>"; };
 		DC0042B32CD8C00C005D0336 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		DC0042B52CD8C2A0005D0336 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DCE5E60F2CDA149E00BBB7B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -66,8 +70,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCE5E60E2CDA12C500BBB7B0 /* GoogleSignInSwift in Frameworks */,
 				DC0042C22CD8C9BF005D0336 /* FirebaseCore in Frameworks */,
+				DCE5E60C2CDA129700BBB7B0 /* GoogleSignIn in Frameworks */,
 				DC0042C42CD8C9C2005D0336 /* FirebaseAuth in Frameworks */,
+				DCE5E6052CDA03AD00BBB7B0 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,7 +127,8 @@
 		DC0042AD2CD8B526005D0336 /* NinjaNight */ = {
 			isa = PBXGroup;
 			children = (
-				DC0042B52CD8C2A0005D0336 /* GoogleService-Info.plist */,
+				DCE5E60F2CDA149E00BBB7B0 /* Info.plist */,
+				DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */,
 				DC0042B22CD8BE76005D0336 /* Landing */,
 				DC0042A92CD8B526005D0336 /* Preview Content */,
 				DC0042AA2CD8B526005D0336 /* Assets.xcassets */,
@@ -164,6 +172,9 @@
 			packageProductDependencies = (
 				DC0042C12CD8C9BF005D0336 /* FirebaseCore */,
 				DC0042C32CD8C9C2005D0336 /* FirebaseAuth */,
+				DCE5E6042CDA03AD00BBB7B0 /* FirebaseFirestore */,
+				DCE5E60B2CDA129700BBB7B0 /* GoogleSignIn */,
+				DCE5E60D2CDA12C500BBB7B0 /* GoogleSignInSwift */,
 			);
 			productName = NinjaNight;
 			productReference = DC00427B2CD8AC1C005D0336 /* NinjaNight.app */;
@@ -249,6 +260,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				DC0042B92CD8C31F005D0336 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				DCE5E6062CDA113400BBB7B0 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DC00427C2CD8AC1C005D0336 /* Products */;
@@ -269,7 +281,7 @@
 			files = (
 				DC0042AE2CD8B526005D0336 /* Preview Assets.xcassets in Resources */,
 				DC0042AF2CD8B526005D0336 /* Assets.xcassets in Resources */,
-				DC0042B62CD8C2A0005D0336 /* GoogleService-Info.plist in Resources */,
+				DCE5E60A2CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,7 +289,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC0042B82CD8C2A0005D0336 /* GoogleService-Info.plist in Resources */,
+				DCE5E6092CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,7 +297,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC0042B72CD8C2A0005D0336 /* GoogleService-Info.plist in Resources */,
+				DCE5E6082CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +474,7 @@
 				DEVELOPMENT_TEAM = 8L4LV9LH2B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NinjaNight/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -491,6 +504,7 @@
 				DEVELOPMENT_TEAM = 8L4LV9LH2B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NinjaNight/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -631,6 +645,14 @@
 				minimumVersion = 11.4.0;
 			};
 		};
+		DCE5E6062CDA113400BBB7B0 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -643,6 +665,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DC0042B92CD8C31F005D0336 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		DCE5E6042CDA03AD00BBB7B0 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC0042B92CD8C31F005D0336 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		DCE5E60B2CDA129700BBB7B0 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DCE5E6062CDA113400BBB7B0 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		DCE5E60D2CDA12C500BBB7B0 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DCE5E6062CDA113400BBB7B0 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
