@@ -1,52 +1,33 @@
-//
-//  ContentView.swift
-//  NinjaNight
-//
-//  Created by 陳彥琮 on 2024/11/4.
-//
-
 import FirebaseAuth
 import FirebaseFirestore
 import SwiftUI
+import Swinject
 
-struct ContentView: View {
-    @State private var connectionMessage = "Testing Firestore connection..."
-
-    var body: some View {
-        BaseView(title: "登入頁面") {
-            LoginView(connectionMessage: $connectionMessage)
-        }
-        .padding()
-        .onAppear(perform: testFirestoreConnection)
-    }
-
-    func testFirestoreConnection() {
-        let db = Firestore.firestore()
-        let testCollection = db.collection("testCollection")
-
-        let testData: [String: Any] = ["message": "Hello Firestore!"]
-        testCollection.addDocument(data: testData) { error in
-            if let error = error {
-                connectionMessage =
-                    "Error writing to Firestore: \(error.localizedDescription)"
-                return
-            } else {
-                connectionMessage = "Successfully wrote test data to Firestore."
-
-                testCollection.getDocuments { (snapshot, error) in
-                    if let error = error {
-                        connectionMessage =
-                            "Error connecting to Firestore: \(error.localizedDescription)"
-                    } else {
-                        connectionMessage =
-                            "Successfully connected to Firestore and retrieved data!"
-                    }
-                }
-            }
-        }
-    }
+enum Pages: Hashable {
+    case login
+    case lobby
 }
 
-#Preview {
-    ContentView()
+class NavigationPathManager: ObservableObject {
+    @Published var path = NavigationPath()
+}
+
+struct ContentView: View {
+    @Inject private var authService: AuthServiceProtocol
+    @StateObject private var navigationPathManager = NavigationPathManager()
+
+    var body: some View {
+        NavigationStack(path: $navigationPathManager.path) {
+            LoginView()
+                .navigationDestination(for: Pages.self) { page in
+                    switch page {
+                    case .login:
+                        LoginView()
+                    case .lobby:
+                        LobbyView()
+                    }
+                }
+        }
+        .environmentObject(navigationPathManager)
+    }
 }
