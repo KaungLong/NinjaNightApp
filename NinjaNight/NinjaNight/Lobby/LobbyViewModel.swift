@@ -2,7 +2,6 @@ import Foundation
 import RxSwift
 
 class LobbyViewModel: ObservableObject {
-    
     enum Event {
         case signOutSuccess
         case signOutFailure(String)

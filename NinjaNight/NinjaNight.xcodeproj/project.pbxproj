@@ -12,23 +12,23 @@
 		DC0042B02CD8B526005D0336 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0042AB2CD8B526005D0336 /* ContentView.swift */; };
 		DC0042B12CD8B526005D0336 /* NinjaNightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0042AC2CD8B526005D0336 /* NinjaNightApp.swift */; };
 		DC0042B42CD8C01C005D0336 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0042B32CD8C00C005D0336 /* LoginView.swift */; };
-		DC0042C22CD8C9BF005D0336 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = DC0042C12CD8C9BF005D0336 /* FirebaseCore */; };
-		DC0042C42CD8C9C2005D0336 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = DC0042C32CD8C9C2005D0336 /* FirebaseAuth */; };
-		DCE5E6052CDA03AD00BBB7B0 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = DCE5E6042CDA03AD00BBB7B0 /* FirebaseFirestore */; };
+		DC1DD0652CDE57A700709199 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = DC1DD0642CDE57A700709199 /* RxCocoa */; };
+		DC1DD0672CDE57A700709199 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DC1DD0662CDE57A700709199 /* RxSwift */; };
+		DC1DD0692CDE57A700709199 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = DC1DD0682CDE57A700709199 /* Swinject */; };
+		DC1DD06B2CDE57A700709199 /* SwinjectAutoregistration in Frameworks */ = {isa = PBXBuildFile; productRef = DC1DD06A2CDE57A700709199 /* SwinjectAutoregistration */; };
+		DC1DD06D2CDE57A700709199 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = DC1DD06C2CDE57A700709199 /* GoogleSignIn */; };
+		DC1DD06F2CDE57A700709199 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = DC1DD06E2CDE57A700709199 /* FirebaseAuth */; };
+		DC1DD0712CDE57A700709199 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = DC1DD0702CDE57A700709199 /* FirebaseCore */; };
+		DC1DD0732CDE57A700709199 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = DC1DD0722CDE57A700709199 /* FirebaseFirestore */; };
 		DCE5E6082CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
 		DCE5E6092CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
 		DCE5E60A2CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
-		DCE5E60C2CDA129700BBB7B0 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = DCE5E60B2CDA129700BBB7B0 /* GoogleSignIn */; };
-		DCE5E60E2CDA12C500BBB7B0 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DCE5E60D2CDA12C500BBB7B0 /* GoogleSignInSwift */; };
 		DCE5E6122CDA3ECC00BBB7B0 /* FirestoreDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE5E6112CDA3EBB00BBB7B0 /* FirestoreDatabaseService.swift */; };
-		DCE5E6182CDA41F900BBB7B0 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = DCE5E6172CDA41F900BBB7B0 /* Swinject */; };
-		DCE5E61B2CDA468100BBB7B0 /* SwinjectAutoregistration in Frameworks */ = {isa = PBXBuildFile; productRef = DCE5E61A2CDA468100BBB7B0 /* SwinjectAutoregistration */; };
 		DCE5E61F2CDA490600BBB7B0 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE5E61E2CDA490000BBB7B0 /* Assembly.swift */; };
 		DCE5E6212CDA495100BBB7B0 /* InjectWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE5E6202CDA494900BBB7B0 /* InjectWrapper.swift */; };
 		DCE5E6232CDA49FC00BBB7B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE5E6222CDA49EE00BBB7B0 /* AppDelegate.swift */; };
 		DCE5E6282CDA4DD500BBB7B0 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE5E6272CDA4DCC00BBB7B0 /* BaseView.swift */; };
 		DCE5E62B2CDA52A000BBB7B0 /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE5E62A2CDA528400BBB7B0 /* FirebaseAuthService.swift */; };
-		DCE5E62E2CDA5B6E00BBB7B0 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DCE5E62D2CDA5B6E00BBB7B0 /* RxSwift */; };
 		DCE5E6302CDB5A4000BBB7B0 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE5E62F2CDB5A3A00BBB7B0 /* Login.swift */; };
 		DCE5E6322CDDECB200BBB7B0 /* DefaultRootViewControllerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE5E6312CDDEC9B00BBB7B0 /* DefaultRootViewControllerProvider.swift */; };
 		DCE5E6342CDE00BD00BBB7B0 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE5E6332CDE00BB00BBB7B0 /* UserDefaultsService.swift */; };
@@ -95,14 +95,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCE5E61B2CDA468100BBB7B0 /* SwinjectAutoregistration in Frameworks */,
-				DCE5E60E2CDA12C500BBB7B0 /* GoogleSignInSwift in Frameworks */,
-				DC0042C22CD8C9BF005D0336 /* FirebaseCore in Frameworks */,
-				DCE5E60C2CDA129700BBB7B0 /* GoogleSignIn in Frameworks */,
-				DC0042C42CD8C9C2005D0336 /* FirebaseAuth in Frameworks */,
-				DCE5E6052CDA03AD00BBB7B0 /* FirebaseFirestore in Frameworks */,
-				DCE5E62E2CDA5B6E00BBB7B0 /* RxSwift in Frameworks */,
-				DCE5E6182CDA41F900BBB7B0 /* Swinject in Frameworks */,
+				DC1DD06D2CDE57A700709199 /* GoogleSignIn in Frameworks */,
+				DC1DD06F2CDE57A700709199 /* FirebaseAuth in Frameworks */,
+				DC1DD0672CDE57A700709199 /* RxSwift in Frameworks */,
+				DC1DD0652CDE57A700709199 /* RxCocoa in Frameworks */,
+				DC1DD0712CDE57A700709199 /* FirebaseCore in Frameworks */,
+				DC1DD0732CDE57A700709199 /* FirebaseFirestore in Frameworks */,
+				DC1DD0692CDE57A700709199 /* Swinject in Frameworks */,
+				DC1DD06B2CDE57A700709199 /* SwinjectAutoregistration in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,14 +241,14 @@
 			);
 			name = NinjaNight;
 			packageProductDependencies = (
-				DC0042C12CD8C9BF005D0336 /* FirebaseCore */,
-				DC0042C32CD8C9C2005D0336 /* FirebaseAuth */,
-				DCE5E6042CDA03AD00BBB7B0 /* FirebaseFirestore */,
-				DCE5E60B2CDA129700BBB7B0 /* GoogleSignIn */,
-				DCE5E60D2CDA12C500BBB7B0 /* GoogleSignInSwift */,
-				DCE5E6172CDA41F900BBB7B0 /* Swinject */,
-				DCE5E61A2CDA468100BBB7B0 /* SwinjectAutoregistration */,
-				DCE5E62D2CDA5B6E00BBB7B0 /* RxSwift */,
+				DC1DD0642CDE57A700709199 /* RxCocoa */,
+				DC1DD0662CDE57A700709199 /* RxSwift */,
+				DC1DD0682CDE57A700709199 /* Swinject */,
+				DC1DD06A2CDE57A700709199 /* SwinjectAutoregistration */,
+				DC1DD06C2CDE57A700709199 /* GoogleSignIn */,
+				DC1DD06E2CDE57A700709199 /* FirebaseAuth */,
+				DC1DD0702CDE57A700709199 /* FirebaseCore */,
+				DC1DD0722CDE57A700709199 /* FirebaseFirestore */,
 			);
 			productName = NinjaNight;
 			productReference = DC00427B2CD8AC1C005D0336 /* NinjaNight.app */;
@@ -333,11 +333,11 @@
 			mainGroup = DC0042722CD8AC1C005D0336;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				DC0042B92CD8C31F005D0336 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				DCE5E6062CDA113400BBB7B0 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
-				DCE5E6162CDA41CC00BBB7B0 /* XCRemoteSwiftPackageReference "Swinject" */,
-				DCE5E6192CDA465800BBB7B0 /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */,
-				DCE5E62C2CDA5AEF00BBB7B0 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				DC1DD05F2CDE563E00709199 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				DC1DD0602CDE56D000709199 /* XCRemoteSwiftPackageReference "Swinject" */,
+				DC1DD0612CDE56E000709199 /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */,
+				DC1DD0622CDE570A00709199 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				DC1DD0632CDE573A00709199 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DC00427C2CD8AC1C005D0336 /* Products */;
@@ -725,88 +725,88 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		DC0042B92CD8C31F005D0336 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		DC1DD05F2CDE563E00709199 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 11.4.0;
-			};
-		};
-		DCE5E6062CDA113400BBB7B0 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 8.0.0;
-			};
-		};
-		DCE5E6162CDA41CC00BBB7B0 /* XCRemoteSwiftPackageReference "Swinject" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Swinject/Swinject";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.9.1;
-			};
-		};
-		DCE5E6192CDA465800BBB7B0 /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Swinject/SwinjectAutoregistration";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.9.1;
-			};
-		};
-		DCE5E62C2CDA5AEF00BBB7B0 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 6.8.0;
 			};
 		};
+		DC1DD0602CDE56D000709199 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.9.1;
+			};
+		};
+		DC1DD0612CDE56E000709199 /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/SwinjectAutoregistration.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.9.1;
+			};
+		};
+		DC1DD0622CDE570A00709199 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+		DC1DD0632CDE573A00709199 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.4.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		DC0042C12CD8C9BF005D0336 /* FirebaseCore */ = {
+		DC1DD0642CDE57A700709199 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DC0042B92CD8C31F005D0336 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseCore;
+			package = DC1DD05F2CDE563E00709199 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
 		};
-		DC0042C32CD8C9C2005D0336 /* FirebaseAuth */ = {
+		DC1DD0662CDE57A700709199 /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DC0042B92CD8C31F005D0336 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAuth;
+			package = DC1DD05F2CDE563E00709199 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
-		DCE5E6042CDA03AD00BBB7B0 /* FirebaseFirestore */ = {
+		DC1DD0682CDE57A700709199 /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DC0042B92CD8C31F005D0336 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestore;
-		};
-		DCE5E60B2CDA129700BBB7B0 /* GoogleSignIn */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DCE5E6062CDA113400BBB7B0 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
-			productName = GoogleSignIn;
-		};
-		DCE5E60D2CDA12C500BBB7B0 /* GoogleSignInSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DCE5E6062CDA113400BBB7B0 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
-			productName = GoogleSignInSwift;
-		};
-		DCE5E6172CDA41F900BBB7B0 /* Swinject */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DCE5E6162CDA41CC00BBB7B0 /* XCRemoteSwiftPackageReference "Swinject" */;
+			package = DC1DD0602CDE56D000709199 /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
 		};
-		DCE5E61A2CDA468100BBB7B0 /* SwinjectAutoregistration */ = {
+		DC1DD06A2CDE57A700709199 /* SwinjectAutoregistration */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DCE5E6192CDA465800BBB7B0 /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */;
+			package = DC1DD0612CDE56E000709199 /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */;
 			productName = SwinjectAutoregistration;
 		};
-		DCE5E62D2CDA5B6E00BBB7B0 /* RxSwift */ = {
+		DC1DD06C2CDE57A700709199 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DCE5E62C2CDA5AEF00BBB7B0 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxSwift;
+			package = DC1DD0622CDE570A00709199 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		DC1DD06E2CDE57A700709199 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC1DD0632CDE573A00709199 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		DC1DD0702CDE57A700709199 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC1DD0632CDE573A00709199 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		DC1DD0722CDE57A700709199 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC1DD0632CDE573A00709199 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
