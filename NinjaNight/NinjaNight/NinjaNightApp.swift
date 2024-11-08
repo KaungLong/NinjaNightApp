@@ -1,15 +1,18 @@
-//
-//  NinjaNightApp.swift
-//  NinjaNight
-//
-//  Created by 陳彥琮 on 2024/11/4.
-//
-
-import SwiftUI
 import FirebaseCore
+import SwiftUI
+import GoogleSignIn
+import Swinject
 
 @main
 struct NinjaNightApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+
+    static let container = Container() 
+
+    init() {
+        let assembler = Assembler([ServiceAssembly()], container: NinjaNightApp.container)
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -17,11 +20,5 @@ struct NinjaNightApp: App {
     }
 }
 
-class AppDelegate: NSObject, UIApplicationDelegate {
-  func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-    FirebaseApp.configure()
 
-    return true
-  }
-}
+

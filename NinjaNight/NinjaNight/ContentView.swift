@@ -1,24 +1,33 @@
-//
-//  ContentView.swift
-//  NinjaNight
-//
-//  Created by 陳彥琮 on 2024/11/4.
-//
-
+import FirebaseAuth
+import FirebaseFirestore
 import SwiftUI
+import Swinject
 
-struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding( )
-    }
+enum Pages: Hashable {
+    case login
+    case lobby
 }
 
-#Preview {
-    ContentView()
+class NavigationPathManager: ObservableObject {
+    @Published var path = NavigationPath()
+}
+
+struct ContentView: View {
+    @Inject private var authService: AuthServiceProtocol
+    @StateObject private var navigationPathManager = NavigationPathManager()
+
+    var body: some View {
+        NavigationStack(path: $navigationPathManager.path) {
+            LoginView()
+                .navigationDestination(for: Pages.self) { page in
+                    switch page {
+                    case .login:
+                        LoginView()
+                    case .lobby:
+                        LobbyView()
+                    }
+                }
+        }
+        .environmentObject(navigationPathManager)
+    }
 }
