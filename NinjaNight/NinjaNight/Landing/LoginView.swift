@@ -9,25 +9,27 @@ struct LoginView: View {
     @EnvironmentObject var navigationPathManager: NavigationPathManager
 
     var body: some View {
-        LoginView_ContentView(
-            state: $viewModel.state,
-            autoLogin: viewModel.autoLogin,
-            signInWithGoogle: viewModel.signInWithGoogle,
-            signOut: viewModel.signOut
-        )
-        //TODO: 可以優化成onConsume搭配viewModel
-        .onReceive(viewModel.$event) { event in
-            guard let event = event else { return }
-            switch event {
-            case .signInSuccess:
-                //TODO: 這裡優化成可以限定Pages
-                navigationPathManager.path.append(Pages.lobby)
-            case .signInFailure(let message):
-                print("Sign-in failed: \(message)")
-            case .signOutSuccess:
-                print("Signed out successfully.")
-            case .signOutFailure(let message):
-                print("Sign-out failed: \(message)")
+        BaseView(title: "登入遊戲") {
+            LoginView_ContentView(
+                state: $viewModel.state,
+                autoLogin: viewModel.autoLogin,
+                signInWithGoogle: viewModel.signInWithGoogle,
+                signOut: viewModel.signOut
+            )
+            //TODO: 可以優化成onConsume搭配viewModel
+            .onReceive(viewModel.$event) { event in
+                guard let event = event else { return }
+                switch event {
+                case .signInSuccess:
+                    //TODO: 這裡優化成可以限定Pages
+                    navigationPathManager.path.append(Pages.lobby)
+                case .signInFailure(let message):
+                    print("Sign-in failed: \(message)")
+                case .signOutSuccess:
+                    print("Signed out successfully.")
+                case .signOutFailure(let message):
+                    print("Sign-out failed: \(message)")
+                }
             }
         }
     }
