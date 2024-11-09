@@ -14,7 +14,7 @@ struct BaseView<Content: View>: View {
         self.backgroundColor = backgroundColor
         self.content = content()
     }
-    
+
     init(
         backgroundColor: Color = .white,
         @ViewBuilder content: () -> Content
@@ -39,7 +39,7 @@ struct BaseView<Content: View>: View {
                 .background(Color.blue)
                 .foregroundColor(.white)
             }
-            
+
             content
                 .padding()
                 .background(backgroundColor)
