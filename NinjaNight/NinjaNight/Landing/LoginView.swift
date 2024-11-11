@@ -10,11 +10,10 @@ struct LoginView: View {
 
     var body: some View {
         BaseView(title: "登入遊戲") {
-            LoginView_ContentView(
+            LoginContentView(
                 state: $viewModel.state,
                 autoLogin: viewModel.autoLogin,
-                signInWithGoogle: viewModel.signInWithGoogle,
-                signOut: viewModel.signOut
+                signInWithGoogle: viewModel.signInWithGoogle
             )
             //TODO: 可以優化成onConsume搭配viewModel
             .onReceive(viewModel.$event) { event in
@@ -35,11 +34,10 @@ struct LoginView: View {
     }
 }
 
-struct LoginView_ContentView: View {
+struct LoginContentView: View {
     @Binding var state: Login.State
     var autoLogin: () -> Void
     var signInWithGoogle: () -> Void
-    var signOut: () -> Void
 
     var body: some View {
         VStack {
@@ -56,19 +54,17 @@ struct LoginView_ContentView: View {
     }
 }
 
-struct LoginView_Previews: PreviewProvider {
+struct LoginContentView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView_ContentView(
+        LoginContentView(
             state: .constant(
                 Login.State(
                     userName: "Preview User",
                     userEmail: "preview@example.com",
-                    connectionMessage: "Testing connection...",
-                    isSignedIn: true
+                    connectionMessage: "Testing connection..."
                 )),
             autoLogin: {},
-            signInWithGoogle: {},
-            signOut: {}
+            signInWithGoogle: {}
         )
     }
 }
