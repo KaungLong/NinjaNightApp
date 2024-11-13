@@ -20,6 +20,9 @@
 		DC1DD06F2CDE57A700709199 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = DC1DD06E2CDE57A700709199 /* FirebaseAuth */; };
 		DC1DD0712CDE57A700709199 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = DC1DD0702CDE57A700709199 /* FirebaseCore */; };
 		DC1DD0732CDE57A700709199 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = DC1DD0722CDE57A700709199 /* FirebaseFirestore */; };
+		DC1DD07B2CE21E0700709199 /* CreatedRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1DD07A2CE21DFC00709199 /* CreatedRoomView.swift */; };
+		DC1DD07D2CE2233E00709199 /* CreatedRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1DD07C2CE2233800709199 /* CreatedRoom.swift */; };
+		DC1DD07F2CE226ED00709199 /* LimitSpacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1DD07E2CE226E600709199 /* LimitSpacer.swift */; };
 		DCE5E6082CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
 		DCE5E6092CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
 		DCE5E60A2CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
@@ -62,6 +65,9 @@
 		DC0042AB2CD8B526005D0336 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DC0042AC2CD8B526005D0336 /* NinjaNightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NinjaNightApp.swift; sourceTree = "<group>"; };
 		DC0042B32CD8C00C005D0336 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		DC1DD07A2CE21DFC00709199 /* CreatedRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedRoomView.swift; sourceTree = "<group>"; };
+		DC1DD07C2CE2233800709199 /* CreatedRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedRoom.swift; sourceTree = "<group>"; };
+		DC1DD07E2CE226E600709199 /* LimitSpacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitSpacer.swift; sourceTree = "<group>"; };
 		DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DCE5E60F2CDA149E00BBB7B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCE5E6112CDA3EBB00BBB7B0 /* FirestoreDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreDatabaseService.swift; sourceTree = "<group>"; };
@@ -211,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				DCE5E6272CDA4DCC00BBB7B0 /* BaseView.swift */,
+				DC1DD07E2CE226E600709199 /* LimitSpacer.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -220,6 +227,8 @@
 			children = (
 				DCE5E6362CDE020700BBB7B0 /* LobbyView.swift */,
 				DCE5E6382CDE0BA000BBB7B0 /* LobbyViewModel.swift */,
+				DC1DD07A2CE21DFC00709199 /* CreatedRoomView.swift */,
+				DC1DD07C2CE2233800709199 /* CreatedRoom.swift */,
 			);
 			path = Lobby;
 			sourceTree = "<group>";
@@ -386,11 +395,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCE5E6342CDE00BD00BBB7B0 /* UserDefaultsService.swift in Sources */,
+				DC1DD07D2CE2233E00709199 /* CreatedRoom.swift in Sources */,
+				DC1DD07B2CE21E0700709199 /* CreatedRoomView.swift in Sources */,
 				DC0042B42CD8C01C005D0336 /* LoginView.swift in Sources */,
 				DCE5E6392CDE0BA700BBB7B0 /* LobbyViewModel.swift in Sources */,
 				DCE5E6302CDB5A4000BBB7B0 /* Login.swift in Sources */,
 				DCE5E61F2CDA490600BBB7B0 /* Assembly.swift in Sources */,
 				DCE5E6212CDA495100BBB7B0 /* InjectWrapper.swift in Sources */,
+				DC1DD07F2CE226ED00709199 /* LimitSpacer.swift in Sources */,
 				DCE5E6122CDA3ECC00BBB7B0 /* FirestoreDatabaseService.swift in Sources */,
 				DCE5E62B2CDA52A000BBB7B0 /* FirebaseAuthService.swift in Sources */,
 				DCE5E6232CDA49FC00BBB7B0 /* AppDelegate.swift in Sources */,
