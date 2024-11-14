@@ -1,32 +1,44 @@
 import SwiftUI
 
 struct BaseView<Content: View>: View {
-    var title: String
+    var title: String?
     var backgroundColor: Color
     var content: Content
 
     init(
-        title: String, backgroundColor: Color = .white,
+        title: String,
+        backgroundColor: Color = .white,
         @ViewBuilder content: () -> Content
     ) {
         self.title = title
         self.backgroundColor = backgroundColor
         self.content = content()
     }
+    
+    init(
+        backgroundColor: Color = .white,
+        @ViewBuilder content: () -> Content
+    ) {
+        self.title = nil
+        self.backgroundColor = backgroundColor
+        self.content = content()
+    }
 
     var body: some View {
         VStack {
-            VStack {
-                Text(title)
-                    .font(.largeTitle)
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                Divider()
+            if let title = title {
+                VStack {
+                    Text(title)
+                        .font(.largeTitle)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                    Divider()
+                }
+                .frame(maxWidth: .infinity)
+                .background(Color.blue)
+                .foregroundColor(.white)
             }
-            .frame(maxWidth: .infinity)
-            .background(Color.blue)
-            .foregroundColor(.white)
             
             content
                 .padding()

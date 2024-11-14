@@ -6,6 +6,7 @@ import Swinject
 enum Pages: Hashable {
     case login
     case lobby
+    case createdRoom
 }
 
 class NavigationPathManager: ObservableObject {
@@ -25,6 +26,8 @@ struct ContentView: View {
                         LoginView()
                     case .lobby:
                         LobbyView()
+                    case .createdRoom:
+                        CreatedRoomView()
                     }
                 }
         }

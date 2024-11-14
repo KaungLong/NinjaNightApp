@@ -12,8 +12,6 @@ class Login: ObservableObject {
     enum Event {
         case signInSuccess
         case signInFailure(String)
-        case signOutSuccess
-        case signOutFailure(String)
     }
 
     @Published var state = State()
@@ -49,26 +47,6 @@ class Login: ObservableObject {
                         "Sign-in failed: \(error.localizedDescription)"
                     handleError(error)
                     event = .signInFailure(error.localizedDescription)
-                }
-            )
-            .disposed(by: disposeBag)
-    }
-
-    func signOut() {
-        authService.signOut()
-            .subscribe(
-                onCompleted: { [unowned self] in
-                    state.isSignedIn = false
-                    state.userName = ""
-                    state.userEmail = ""
-                    state.connectionMessage = "Successfully signed out."
-                    event = .signOutSuccess
-                },
-                onError: { [unowned self] error in
-                    state.connectionMessage =
-                        "Sign-out failed: \(error.localizedDescription)"
-                    handleError(error)
-                    event = .signOutFailure(error.localizedDescription)
                 }
             )
             .disposed(by: disposeBag)
