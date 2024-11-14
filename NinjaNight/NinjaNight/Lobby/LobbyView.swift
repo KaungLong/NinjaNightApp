@@ -10,30 +10,34 @@ struct LobbyView: View {
 
     var body: some View {
         BaseView(title: "Lobby") {
-            LobbyContentView(signOut: viewModel.signOut)
-                .navigationBarHidden(true)
-                .onReceive(viewModel.$event) { event in
-                    guard let event = event else { return }
-                    switch event {
-                    case .signOutSuccess:
-                        navigationPathManager.path = NavigationPath()
-                    case .signOutFailure(let message):
-                        print("Sign-out failed: \(message)")
-                    }
+            LobbyContentView(
+                signOut: viewModel.signOut,
+                gotoSettingNewRoom: { navigationPathManager.path.append(Pages.createdRoom) }
+            )
+            .navigationBarHidden(true)
+            .onReceive(viewModel.$event) { event in
+                guard let event = event else { return }
+                switch event {
+                case .signOutSuccess:
+                    navigationPathManager.path = NavigationPath()
+                case .signOutFailure(let message):
+                    print("Sign-out failed: \(message)")
                 }
+            }
         }
     }
 }
 
 struct LobbyContentView: View {
     var signOut: () -> Void
+    var gotoSettingNewRoom: () -> Void
 
     var body: some View {
         VStack {
             Text("Welcome to the Lobby!")
                 .font(.largeTitle)
                 .padding()
-            Button("開始新遊戲", action: {})
+            Button("開始新遊戲", action: gotoSettingNewRoom)
                 .padding()
                 .background(Color.blue)
                 .foregroundColor(.white)
@@ -64,6 +68,6 @@ struct LobbyContentView: View {
 
 struct LobbyContentView_Previews: PreviewProvider {
     static var previews: some View {
-        LobbyContentView(signOut: {})
+        LobbyContentView(signOut: {}, gotoSettingNewRoom: {})
     }
 }

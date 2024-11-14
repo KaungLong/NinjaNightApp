@@ -24,10 +24,6 @@ struct LoginView: View {
                     navigationPathManager.path.append(Pages.lobby)
                 case .signInFailure(let message):
                     print("Sign-in failed: \(message)")
-                case .signOutSuccess:
-                    print("Signed out successfully.")
-                case .signOutFailure(let message):
-                    print("Sign-out failed: \(message)")
                 }
             }
         }
@@ -62,7 +58,8 @@ struct LoginContentView_Previews: PreviewProvider {
                     userName: "Preview User",
                     userEmail: "preview@example.com",
                     connectionMessage: "Testing connection..."
-                )),
+                )
+            ),
             autoLogin: {},
             signInWithGoogle: {}
         )

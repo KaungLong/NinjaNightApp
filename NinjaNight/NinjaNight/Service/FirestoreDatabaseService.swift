@@ -21,6 +21,7 @@ enum DatabaseServiceError: Error {
 protocol DatabaseServiceProtocol {
     func writeData(_ data: [String: Any], to collection: String) -> Single<Void>
     func readData(from collection: String) -> Single<[String: Any]>
+    func createNewRoom(_ room: Room) -> Single<Void>
 }
 
 class FirestoreDatabaseService: DatabaseServiceProtocol {
@@ -56,5 +57,41 @@ class FirestoreDatabaseService: DatabaseServiceProtocol {
             }
             return Disposables.create()
         }
+    }
+
+    func createNewRoom(_ room: Room) -> Single<Void> {
+        let roomData = room.toDictionary()
+        return Single.create { single in
+            self.db.collection("RoomList").addDocument(data: roomData) { error in
+                if let error = error {
+                    single(.failure(DatabaseServiceError.writeFailed(error)))
+                } else {
+                    single(.success(()))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+}
+
+struct Room {
+    var roomInvitationCode: Int
+    var roomCapacity: Int
+    var isRoomPublic: Bool
+    var roomPassword: String
+
+    func toDictionary() -> [String: Any] {
+        return [
+            "roomInvitationCode": roomInvitationCode,
+            "roomCapacity": roomCapacity,
+            "isRoomPublic": isRoomPublic,
+            "roomPassword": roomPassword
+        ]
+    }
+}
+
+extension Room {
+    static func generateRandomInvitationCode() -> Int {
+        return Int.random(in: 10000000...99999999)
     }
 }
