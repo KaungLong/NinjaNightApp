@@ -16,14 +16,18 @@ struct BaseView<Content: View>: View {
 
     var body: some View {
         VStack {
-            Text(title)
-                .font(.largeTitle)
-                .padding()
-                .background(Color.blue)
-                .foregroundColor(.white)
-
-            Divider()
-
+            VStack {
+                Text(title)
+                    .font(.largeTitle)
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                Divider()
+            }
+            .frame(maxWidth: .infinity)
+            .background(Color.blue)
+            .foregroundColor(.white)
+            
             content
                 .padding()
                 .background(backgroundColor)
@@ -34,6 +38,6 @@ struct BaseView<Content: View>: View {
         }
         .padding()
         .background(Color.gray.opacity(0.1))
-        .edgesIgnoringSafeArea(.all)
+        .edgesIgnoringSafeArea(.bottom)
     }
 }
