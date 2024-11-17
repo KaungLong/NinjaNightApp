@@ -38,24 +38,30 @@ protocol AuthServiceProtocol {
     func signInWithGoogle() -> Single<UserProfile>
     func signOut() -> Completable
     func getCurrentUserProfile() -> UserProfile?
+    func getCurrentUserID() -> Single<String>
 }
 
 class FirebaseAuthService: AuthServiceProtocol {
     private let rootViewControllerProvider: RootViewControllerProvider
+    private let userDefaultsService: UserDefaultsServiceProtocol
 
-    init(rootViewControllerProvider: RootViewControllerProvider) {
+    init(
+        rootViewControllerProvider: RootViewControllerProvider,
+        userDefaultsService: UserDefaultsServiceProtocol
+    ) {
         self.rootViewControllerProvider = rootViewControllerProvider
+        self.userDefaultsService = userDefaultsService
     }
-    
+
     var isSignedIn: Bool {
         return Auth.auth().currentUser != nil
     }
-    
+
     func getCurrentUserProfile() -> UserProfile? {
         guard let currentUser = Auth.auth().currentUser else {
             return nil
         }
-        
+
         return UserProfile(
             name: currentUser.displayName ?? "No Name",
             email: currentUser.email ?? "No Email"
@@ -67,6 +73,12 @@ class FirebaseAuthService: AuthServiceProtocol {
             .flatMap { credential in
                 self.signInWithGoogleCredential(credential)
             }
+            .do(onSuccess: { userProfile in
+                let playerLoginData = PlayerLoginData(
+                    userName: userProfile.name, userEmail: userProfile.email)
+                self.userDefaultsService.setLoginState(playerLoginData)
+                self.userDefaultsService.setIsSignedIn(true)
+            })
     }
 
     func signOut() -> Completable {
@@ -74,9 +86,24 @@ class FirebaseAuthService: AuthServiceProtocol {
             do {
                 GIDSignIn.sharedInstance.signOut()
                 try Auth.auth().signOut()
+                
+                self.userDefaultsService.clearLoginState()
+                self.userDefaultsService.setIsSignedIn(false)
+                
                 completable(.completed)
             } catch {
                 completable(.error(AuthServiceError.firebaseAuthFailed(error)))
+            }
+            return Disposables.create()
+        }
+    }
+
+    func getCurrentUserID() -> Single<String> {
+        return Single.create { single in
+            if let uid = Auth.auth().currentUser?.uid {
+                single(.success(uid))
+            } else {
+                single(.failure(AuthServiceError.unknownError))
             }
             return Disposables.create()
         }
@@ -116,7 +143,9 @@ class FirebaseAuthService: AuthServiceProtocol {
     private func performGoogleSignIn(
         completion: @escaping (Result<AuthCredential, AuthServiceError>) -> Void
     ) {
-        GIDSignIn.sharedInstance.signIn(withPresenting: rootViewControllerProvider.getRootViewController()) { result, error in
+        GIDSignIn.sharedInstance.signIn(
+            withPresenting: rootViewControllerProvider.getRootViewController()
+        ) { result, error in
             if let error = error {
                 completion(.failure(.googleSignInFailed(error)))
                 return
@@ -153,14 +182,12 @@ class FirebaseAuthService: AuthServiceProtocol {
                     single(.failure(AuthServiceError.firebaseAuthFailed(error)))
                     return
                 }
-                
+
                 let userProfile = UserProfile(
                     name: authResult?.user.displayName ?? "No Name",
                     email: authResult?.user.email ?? "No Email"
                 )
-                
-//                userDefaultsService.setLoginState(PlayerLoginData(userName: loginstate.name, userEmail: loginstate.email))
-                
+
                 single(.success(userProfile))
             }
 

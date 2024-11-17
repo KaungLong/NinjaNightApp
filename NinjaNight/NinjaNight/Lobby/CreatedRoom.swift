@@ -3,7 +3,7 @@ import RxSwift
 
 class CreatedRoom: ObservableObject {
     enum Event {
-        case succuss
+        case createdRoomsuccuss
         case createdRoomFailure(String)
     }
     
@@ -16,21 +16,26 @@ class CreatedRoom: ObservableObject {
     private let disposeBag = DisposeBag()
     @Published var setting = Setting()
     @Published var event: Event?
+    var roomInvitationCode: String = ""
     @Inject var firestoreDatabaseService: DatabaseServiceProtocol
-    
+    @Inject var userDefaultsService: UserDefaultsServiceProtocol
+
     func createdRoom() {
-        let roomInvitationCode = Room.generateRandomInvitationCode()
+        roomInvitationCode = Room.generateRandomInvitationCode()
         
         firestoreDatabaseService.createNewRoom(
             Room(
                 roomInvitationCode: roomInvitationCode,
                 roomCapacity: setting.roomCapacity,
                 isRoomPublic: setting.isRoomPublic,
-                roomPassword: setting.roomPassword)
+                roomPassword: setting.roomPassword,
+                rommHostID: userDefaultsService.getLoginState()?.userName ?? ""
+                //TODO: 思考這邊有沒有不要是nil的辦法
+            )
         )
         .subscribe(
             onSuccess: { [unowned self] in
-                event = .succuss
+                event = .createdRoomsuccuss
             },
             onFailure: { [unowned self] error in
                 handleError(error)
