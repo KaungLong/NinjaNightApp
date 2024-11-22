@@ -7,6 +7,7 @@ enum Pages: Hashable {
     case login
     case lobby
     case createdRoom
+    case prepareRoom(roomInvitationCode: String)
 }
 
 class NavigationPathManager: ObservableObject {
@@ -15,6 +16,8 @@ class NavigationPathManager: ObservableObject {
 
 struct ContentView: View {
     @Inject private var authService: AuthServiceProtocol
+    @Inject private var loadingManager: LoadingManager
+
     @StateObject private var navigationPathManager = NavigationPathManager()
 
     var body: some View {
@@ -28,9 +31,16 @@ struct ContentView: View {
                         LobbyView()
                     case .createdRoom:
                         CreatedRoomView()
+                    case .prepareRoom(let roomInvitationCode):
+                        RoomPrepareView(roomInvitationCode: roomInvitationCode)
                     }
                 }
         }
         .environmentObject(navigationPathManager)
+        .overlay(
+                LoadingOverlay()
+                    .environmentObject(loadingManager)
+            )
     }
 }
+

@@ -11,6 +11,8 @@ class LobbyViewModel: ObservableObject {
     @Inject var authService: AuthServiceProtocol
     private let disposeBag = DisposeBag()
     
+    @Published var isShowingJoinSheet = false
+    
     func signOut() {
         authService.signOut()
             .subscribe(
@@ -22,5 +24,9 @@ class LobbyViewModel: ObservableObject {
                 }
             )
             .disposed(by: disposeBag)
+    }
+    
+    func codeAddingRoom () {
+        isShowingJoinSheet = true
     }
 }
