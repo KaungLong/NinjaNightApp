@@ -7,6 +7,9 @@ class ServiceAssembly: Assembly {
         container.autoregister(DatabaseServiceProtocol.self, initializer: FirestoreDatabaseService.init)
         container.autoregister(AuthServiceProtocol.self, initializer: FirebaseAuthService.init)
         container.autoregister(UserDefaultsServiceProtocol.self, initializer: UserDefaultsService.init)
+        
+        container.register(LoadingManager.self) { _ in LoadingManager() }
+               .inObjectScope(.container)
     }
 }
 

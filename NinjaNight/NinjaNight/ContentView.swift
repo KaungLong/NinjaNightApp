@@ -16,6 +16,8 @@ class NavigationPathManager: ObservableObject {
 
 struct ContentView: View {
     @Inject private var authService: AuthServiceProtocol
+    @Inject private var loadingManager: LoadingManager
+
     @StateObject private var navigationPathManager = NavigationPathManager()
 
     var body: some View {
@@ -35,5 +37,10 @@ struct ContentView: View {
                 }
         }
         .environmentObject(navigationPathManager)
+        .overlay(
+                LoadingOverlay()
+                    .environmentObject(loadingManager)
+            )
     }
 }
+

@@ -7,12 +7,16 @@ import SwiftUI
 struct LobbyView: View {
     @EnvironmentObject var navigationPathManager: NavigationPathManager
     @StateObject var viewModel = LobbyViewModel()
+    @Inject private var loadingManager: LoadingManager
 
     var body: some View {
         BaseView(title: "Lobby") {
             LobbyContentView(
                 signOut: viewModel.signOut,
-                gotoSettingNewRoom: { navigationPathManager.path.append(Pages.createdRoom) }
+                gotoSettingNewRoom: {
+                    navigationPathManager.path.append(Pages.createdRoom)
+                },
+                codeAddingRomm: viewModel.codeAddingRoom
             )
             .navigationBarHidden(true)
             .onReceive(viewModel.$event) { event in
@@ -24,6 +28,10 @@ struct LobbyView: View {
                     print("Sign-out failed: \(message)")
                 }
             }
+            .sheet(isPresented: $viewModel.isShowingJoinSheet) {
+                CodeAddingView(isPresented: $viewModel.isShowingJoinSheet)
+                    .presentationDetents([.height(200)])
+            }
         }
     }
 }
@@ -31,6 +39,7 @@ struct LobbyView: View {
 struct LobbyContentView: View {
     var signOut: () -> Void
     var gotoSettingNewRoom: () -> Void
+    var codeAddingRomm: () -> Void
 
     var body: some View {
         VStack {
@@ -42,7 +51,7 @@ struct LobbyContentView: View {
                 .background(Color.blue)
                 .foregroundColor(.white)
                 .cornerRadius(8)
-            Button("邀請碼加入", action: {})
+            Button("邀請碼加入", action: codeAddingRomm)
                 .padding()
                 .background(Color.blue)
                 .foregroundColor(.white)
@@ -68,6 +77,10 @@ struct LobbyContentView: View {
 
 struct LobbyContentView_Previews: PreviewProvider {
     static var previews: some View {
-        LobbyContentView(signOut: {}, gotoSettingNewRoom: {})
+        LobbyContentView(
+            signOut: {},
+            gotoSettingNewRoom: {},
+            codeAddingRomm: {}
+        )
     }
 }

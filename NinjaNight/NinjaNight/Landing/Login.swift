@@ -16,7 +16,9 @@ class Login: ObservableObject {
 
     @Published var state = State()
     @Published var event: Event?
-
+    private let loadingTracker = LoadingTracker()
+    
+    @Inject private var loadingManager: LoadingManager
     @Inject var authService: AuthServiceProtocol
     @Inject var userDefaultsService: UserDefaultsServiceProtocol
     private let disposeBag = DisposeBag()
@@ -33,6 +35,7 @@ class Login: ObservableObject {
     }
 
     func signInWithGoogle() {
+        loadingManager.isLoading = true
         authService.signInWithGoogle()
             .subscribe(
                 onSuccess: { [unowned self] userProfile in
@@ -47,6 +50,9 @@ class Login: ObservableObject {
                         "Sign-in failed: \(error.localizedDescription)"
                     handleError(error)
                     event = .signInFailure(error.localizedDescription)
+                },
+                onDisposed: { [unowned self] in
+                    loadingManager.isLoading = false
                 }
             )
             .disposed(by: disposeBag)
