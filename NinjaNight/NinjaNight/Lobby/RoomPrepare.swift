@@ -37,7 +37,7 @@ class RoomPrepare: ObservableObject {
     @Published var canStartGame = false
     @Published var event: Event?
     
-    @Inject var firestoreDatabaseService: DatabaseServiceProtocol
+    @Inject var roomPrepareService: RoomPrepareProtocol
     @Inject var userDefaultsService: UserDefaultsServiceProtocol
     private var playerListDisposable: Disposable?
     private var heartbeatDisposable: Disposable?
@@ -48,7 +48,7 @@ class RoomPrepare: ObservableObject {
     }
 
     func joinRoomFlow() {
-        firestoreDatabaseService.fetchRoom(with: roomInvitationCode)
+        roomPrepareService.fetchRoom(invitationCode: roomInvitationCode)
             .do(
                 onSuccess: { [unowned self] roomSetting in
                     roomID = roomSetting.id
@@ -67,12 +67,12 @@ class RoomPrepare: ObservableObject {
                 }
             )
             .flatMap { [unowned self] room in
-                self.firestoreDatabaseService.joinRoom(
+                self.roomPrepareService.joinRoom(
                     roomID: room.id!, player: myPlayerData
                 )
                 .andThen(
-                    self.firestoreDatabaseService.fetchPlayerList(
-                        forRoomWithID: room.id!)
+                    self.roomPrepareService.fetchPlayerList(
+                        roomID: room.id!)
                 )
             }
             .subscribe(
@@ -109,7 +109,7 @@ class RoomPrepare: ObservableObject {
     }
 
     private func deleteRoom(roomID: String) {
-        firestoreDatabaseService.deleteRoom(withID: roomID)
+        roomPrepareService.deleteRoom(roomID: roomID)
             .subscribe(
                 onCompleted: {
                     print("Room \(roomID) deleted successfully by host.")
@@ -123,7 +123,7 @@ class RoomPrepare: ObservableObject {
     }
 
     private func removePlayer(roomID: String, playerName: String) {
-        firestoreDatabaseService.removePlayer(roomID: roomID, playerName: playerName)
+        roomPrepareService.removePlayer(roomID: roomID, playerName: playerName)
             .subscribe(
                 onCompleted: {
                     print("Player \(playerName) successfully removed from room.")
@@ -139,8 +139,8 @@ class RoomPrepare: ObservableObject {
 
     func startListeningToPlayerList() {
         guard let roomID = self.roomID else { return }
-        playerListDisposable = firestoreDatabaseService.listenToPlayerList(
-            forRoomWithID: roomID
+        playerListDisposable = roomPrepareService.listenToPlayerList(
+            roomID: roomID
         )
         .observe(on: MainScheduler.instance)
         .subscribe(
@@ -175,7 +175,7 @@ class RoomPrepare: ObservableObject {
         isPlayerReady.toggle()
         myPlayerData.isReady = isPlayerReady
 
-        firestoreDatabaseService.updatePlayerReadyStatus(
+        roomPrepareService.updatePlayerReadyStatus(
             roomID: roomID,
             playerName: myPlayerData.name,
             isReady: isPlayerReady
@@ -205,7 +205,7 @@ class RoomPrepare: ObservableObject {
         .flatMap { [unowned self] _ -> Completable in
             var updatedPlayer = self.myPlayerData
             updatedPlayer.lastHeartbeat = Timestamp(date: Date())
-            return self.firestoreDatabaseService.updatePlayerHeartbeat(
+            return self.roomPrepareService.updatePlayerHeartbeat(
                 roomID: roomID,
                 playerName: updatedPlayer.name,
                 lastHeartbeat: updatedPlayer.lastHeartbeat

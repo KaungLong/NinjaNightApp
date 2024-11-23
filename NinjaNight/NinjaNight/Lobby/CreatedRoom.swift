@@ -3,10 +3,10 @@ import RxSwift
 
 class CreatedRoom: ObservableObject {
     enum Event {
-        case createdRoomsuccuss
+        case createdRoomSuccess
         case createdRoomFailure(String)
     }
-    
+
     struct Setting {
         var roomCapacity = 5
         var isRoomPublic = true
@@ -17,34 +17,34 @@ class CreatedRoom: ObservableObject {
     @Published var setting = Setting()
     @Published var event: Event?
     var roomInvitationCode: String = ""
-    @Inject var firestoreDatabaseService: DatabaseServiceProtocol
+
+    @Inject var createRoomService: CreateRoomProtocol
     @Inject var userDefaultsService: UserDefaultsServiceProtocol
 
-    func createdRoom() {
+    func createRoom() {
         roomInvitationCode = Room.generateRandomInvitationCode()
         
-        firestoreDatabaseService.createNewRoom(
-            Room(
-                roomInvitationCode: roomInvitationCode,
-                roomCapacity: setting.roomCapacity,
-                isRoomPublic: setting.isRoomPublic,
-                roomPassword: setting.roomPassword,
-                rommHostID: userDefaultsService.getLoginState()?.userName ?? ""
-                //TODO: 思考這邊有沒有不要是nil的辦法
+        let room = Room(
+            roomInvitationCode: roomInvitationCode,
+            roomCapacity: setting.roomCapacity,
+            isRoomPublic: setting.isRoomPublic,
+            roomPassword: setting.roomPassword,
+            rommHostID: userDefaultsService.getLoginState()?.userName ?? ""
+        )
+
+        createRoomService.createRoom(with: room)
+            .subscribe(
+                onCompleted: { [unowned self] in
+                    event = .createdRoomSuccess
+                },
+                onError: { [unowned self] error in
+                    handleError(error)
+                    event = .createdRoomFailure(error.localizedDescription)
+                }
             )
-        )
-        .subscribe(
-            onSuccess: { [unowned self] in
-                event = .createdRoomsuccuss
-            },
-            onFailure: { [unowned self] error in
-                handleError(error)
-                event = .createdRoomFailure(error.localizedDescription)
-            }
-        )
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
     }
-    
+
     func handleError(_ error: Error) {
         print("An error occurred: \(error.localizedDescription)")
     }
