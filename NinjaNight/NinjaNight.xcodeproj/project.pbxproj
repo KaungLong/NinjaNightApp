@@ -33,6 +33,11 @@
 		DC3B87AF2CEC699B00C8B7F3 /* LoadingTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B87AE2CEC699200C8B7F3 /* LoadingTracker.swift */; };
 		DC3B87B22CEC74D900C8B7F3 /* LoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B87B12CEC74C500C8B7F3 /* LoadingService.swift */; };
 		DC3B87B52CEDCA1400C8B7F3 /* Single+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B87B42CEDCA0700C8B7F3 /* Single+Extension.swift */; };
+		DC5409042CF084A8004C53DC /* FirestoreAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409032CF0849C004C53DC /* FirestoreAdapter.swift */; };
+		DC5409062CF08582004C53DC /* CreateRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409052CF08576004C53DC /* CreateRoomService.swift */; };
+		DC5409142CF0BEE3004C53DC /* CodeAddingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409132CF0BED3004C53DC /* CodeAddingService.swift */; };
+		DC5409162CF0C406004C53DC /* FirebaseAuthAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409152CF0C3F1004C53DC /* FirebaseAuthAdapter.swift */; };
+		DC5409182CF0D022004C53DC /* RoomPrepareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409172CF0D006004C53DC /* RoomPrepareService.swift */; };
 		DCE5E6082CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
 		DCE5E6092CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
 		DCE5E60A2CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
@@ -87,6 +92,11 @@
 		DC3B87AE2CEC699200C8B7F3 /* LoadingTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTracker.swift; sourceTree = "<group>"; };
 		DC3B87B12CEC74C500C8B7F3 /* LoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingService.swift; sourceTree = "<group>"; };
 		DC3B87B42CEDCA0700C8B7F3 /* Single+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Single+Extension.swift"; sourceTree = "<group>"; };
+		DC5409032CF0849C004C53DC /* FirestoreAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreAdapter.swift; sourceTree = "<group>"; };
+		DC5409052CF08576004C53DC /* CreateRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomService.swift; sourceTree = "<group>"; };
+		DC5409132CF0BED3004C53DC /* CodeAddingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeAddingService.swift; sourceTree = "<group>"; };
+		DC5409152CF0C3F1004C53DC /* FirebaseAuthAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthAdapter.swift; sourceTree = "<group>"; };
+		DC5409172CF0D006004C53DC /* RoomPrepareService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomPrepareService.swift; sourceTree = "<group>"; };
 		DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DCE5E60F2CDA149E00BBB7B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCE5E6112CDA3EBB00BBB7B0 /* FirestoreDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreDatabaseService.swift; sourceTree = "<group>"; };
@@ -190,6 +200,7 @@
 				DC0042AB2CD8B526005D0336 /* ContentView.swift */,
 				DCE5E61D2CDA48E800BBB7B0 /* Inject */,
 				DC1DD0CC2CE5D84900709199 /* Models */,
+				DC5409022CF0847E004C53DC /* Adapter */,
 				DCE5E6102CDA3EB100BBB7B0 /* Service */,
 				DCE5E6262CDA4DB200BBB7B0 /* Base */,
 				DCE5E6352CDE01F700BBB7B0 /* Lobby */,
@@ -232,9 +243,21 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		DC5409022CF0847E004C53DC /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				DC5409152CF0C3F1004C53DC /* FirebaseAuthAdapter.swift */,
+				DC5409032CF0849C004C53DC /* FirestoreAdapter.swift */,
+			);
+			path = Adapter;
+			sourceTree = "<group>";
+		};
 		DCE5E6102CDA3EB100BBB7B0 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				DC5409052CF08576004C53DC /* CreateRoomService.swift */,
+				DC5409132CF0BED3004C53DC /* CodeAddingService.swift */,
+				DC5409172CF0D006004C53DC /* RoomPrepareService.swift */,
 				DCE5E6312CDDEC9B00BBB7B0 /* DefaultRootViewControllerProvider.swift */,
 				DCE5E6112CDA3EBB00BBB7B0 /* FirestoreDatabaseService.swift */,
 				DCE5E62A2CDA528400BBB7B0 /* FirebaseAuthService.swift */,
@@ -441,6 +464,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC5409182CF0D022004C53DC /* RoomPrepareService.swift in Sources */,
+				DC5409062CF08582004C53DC /* CreateRoomService.swift in Sources */,
 				DC3B876B2CE9FC6600C8B7F3 /* CodeAddingView.swift in Sources */,
 				DCE5E6342CDE00BD00BBB7B0 /* UserDefaultsService.swift in Sources */,
 				DC1DD07D2CE2233E00709199 /* CreatedRoom.swift in Sources */,
@@ -449,9 +474,12 @@
 				DC1DD0D02CE5F63D00709199 /* Player.swift in Sources */,
 				DCE5E6392CDE0BA700BBB7B0 /* LobbyViewModel.swift in Sources */,
 				DC3B876D2CE9FC9A00C8B7F3 /* CodeAdding.swift in Sources */,
+				DC5409142CF0BEE3004C53DC /* CodeAddingService.swift in Sources */,
+				DC5409042CF084A8004C53DC /* FirestoreAdapter.swift in Sources */,
 				DCE5E6302CDB5A4000BBB7B0 /* Login.swift in Sources */,
 				DC3B87AF2CEC699B00C8B7F3 /* LoadingTracker.swift in Sources */,
 				DCE5E61F2CDA490600BBB7B0 /* Assembly.swift in Sources */,
+				DC5409162CF0C406004C53DC /* FirebaseAuthAdapter.swift in Sources */,
 				DCE5E6212CDA495100BBB7B0 /* InjectWrapper.swift in Sources */,
 				DC1DD07F2CE226ED00709199 /* LimitSpacer.swift in Sources */,
 				DC3B87B22CEC74D900C8B7F3 /* LoadingService.swift in Sources */,

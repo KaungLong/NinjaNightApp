@@ -1,22 +1,7 @@
 import FirebaseFirestore
 import RxSwift
 
-enum DatabaseServiceError: Error {
-    case noDataFound
-    case writeFailed(Error)
-    case readFailed(Error)
 
-    var localizedDescription: String {
-        switch self {
-        case .noDataFound:
-            return "No data found in Firestore."
-        case .writeFailed(let error):
-            return "Failed to write data: \(error.localizedDescription)"
-        case .readFailed(let error):
-            return "Failed to read data: \(error.localizedDescription)"
-        }
-    }
-}
 
 protocol DatabaseServiceProtocol {
     func createNewRoom(_ room: Room) -> Single<Void>

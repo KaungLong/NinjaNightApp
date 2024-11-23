@@ -8,12 +8,12 @@ struct CreatedRoomView: View {
         BaseView {
             CreatedRoomContentView(
                 state: $viewModel.setting,
-                createdRoom: viewModel.createdRoom
+                createdRoom: viewModel.createRoom
             )
             .onReceive(viewModel.$event) { event in
                 guard let event = event else { return }
                 switch event {
-                case .createdRoomsuccuss:
+                case .createdRoomSuccess:
                     print("導頁到等待房間畫面")
                     navigationPathManager.path.append(Pages.prepareRoom(roomInvitationCode: viewModel.roomInvitationCode))
                 case .createdRoomFailure(_):
