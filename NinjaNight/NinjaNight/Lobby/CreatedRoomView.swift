@@ -2,6 +2,7 @@ import SwiftUI
 
 struct CreatedRoomView: View {
     @EnvironmentObject var navigationPathManager: NavigationPathManager
+    @Environment(\.handleError) var handleError
     @StateObject var viewModel = CreatedRoom()
 
     var body: some View {
@@ -10,15 +11,12 @@ struct CreatedRoomView: View {
                 state: $viewModel.setting,
                 createdRoom: viewModel.createRoom
             )
-            .onReceive(viewModel.$event) { event in
-                guard let event = event else { return }
+            .onConsume(handleError, viewModel) { event in
                 switch event {
                 case .createdRoomSuccess:
-                    print("導頁到等待房間畫面")
-                    navigationPathManager.path.append(Pages.prepareRoom(roomInvitationCode: viewModel.roomInvitationCode))
-                case .createdRoomFailure(_):
-                    print("房間創建失敗")
-                    //補上房間建立失敗錯誤
+                    navigationPathManager.path.append(
+                        Pages.prepareRoom(
+                            roomInvitationCode: viewModel.roomInvitationCode))
                 }
             }
         }

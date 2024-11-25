@@ -1,13 +1,11 @@
 import Foundation
 import RxSwift
 
-class CodeAddingViewModel: ObservableObject {
+class CodeAdding: ComposeObservableObject<CodeAdding.Event> {
     enum Event {
         case roomExist
-        case failure(String)
     }
 
-    @Published var event: Event?
     @Published var invitationCodeInput = ""
     @Published var showAlert = false
     @Published var alertMessage = ""
@@ -30,7 +28,7 @@ class CodeAddingViewModel: ObservableObject {
             .subscribe(
                 onSuccess: { [unowned self] exists in
                     if exists {
-                        event = .roomExist
+                        publish(.event(.roomExist))
                     } else {
                         alertMessage = "該房間不存在！"
                         showAlert = true
@@ -49,4 +47,30 @@ class CodeAddingViewModel: ObservableObject {
             )
             .disposed(by: disposeBag)
     }
+    
+    private func handleError(_ error: Error) {
+           let appError: AppError
+
+           if let codeAddingError = error as? CodeAddingError {
+               switch codeAddingError {
+               case .roomNotFound:
+                   let message = codeAddingError.errorDescription ?? "Room not found."
+                   appError = AppError(message: message, underlyingError: error, navigateTo: nil)
+               case .readFailed(let firebaseError):
+                   let message = "Failed to read room data: \(firebaseError.localizedDescription)"
+                   appError = AppError(message: message, underlyingError: error, navigateTo: nil)
+               case .firebaseError(let firebaseError):
+                   let message = "Firebase error: \(firebaseError.localizedDescription)"
+                   appError = AppError(message: message, underlyingError: error, navigateTo: nil)
+               default:
+                   let message = "An unknown error occurred."
+                   appError = AppError(message: message, underlyingError: error, navigateTo: nil)
+               }
+           } else {
+               let message = "An unexpected error occurred: \(error.localizedDescription)"
+               appError = AppError(message: message, underlyingError: error, navigateTo: nil)
+           }
+
+           publish(.error(appError))
+       }
 }

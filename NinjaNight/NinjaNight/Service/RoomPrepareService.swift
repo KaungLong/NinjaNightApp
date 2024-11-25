@@ -2,6 +2,44 @@ import Foundation
 import FirebaseFirestore
 import RxSwift
 
+enum RoomPrepareError: LocalizedError {
+    case unknownError
+    case firebaseError(Error)
+    case readFailed(Error)
+    case writeFailed(Error)
+    case deleteFailed(Error)
+    case updateFailed(Error)
+    case dataDecodingError(Error)
+    case roomNotFound
+    case playerNotFound
+    case invalidData(Error)
+
+    var errorDescription: String? {
+        switch self {
+        case .unknownError:
+            return "An unknown error occurred while preparing the room."
+        case .firebaseError(let error):
+            return "Firebase error: \(error.localizedDescription)"
+        case .readFailed(let error):
+            return "Failed to read data: \(error.localizedDescription)"
+        case .writeFailed(let error):
+            return "Failed to write data: \(error.localizedDescription)"
+        case .deleteFailed(let error):
+            return "Failed to delete data: \(error.localizedDescription)"
+        case .updateFailed(let error):
+            return "Failed to update data: \(error.localizedDescription)"
+        case .dataDecodingError(let error):
+            return "Failed to decode data: \(error.localizedDescription)"
+        case .roomNotFound:
+            return "The room was not found."
+        case .playerNotFound:
+            return "The player was not found."
+        case .invalidData(let error):
+            return "Invalid data: \(error.localizedDescription)"
+        }
+    }
+}
+
 protocol RoomPrepareProtocol {
     func fetchRoom(invitationCode: String) -> Single<Room>
     func joinRoom(roomID: String, player: Player) -> Completable
@@ -26,12 +64,16 @@ class RoomPrepareService: RoomPrepareProtocol {
             collection: "RoomList",
             field: "roomInvitationCode",
             value: invitationCode
-        ).flatMap { (rooms: [Room]) in
+        )
+        .flatMap { (rooms: [Room]) in
             if let room = rooms.first {
                 return Single.just(room)
             } else {
-                return Single.error(DatabaseServiceError.noDataFound)
+                return Single.error(RoomPrepareError.roomNotFound)
             }
+        }
+        .catch { error in
+            return Single.error(self.mapDatabaseErrorToRoomPrepareError(error))
         }
     }
 
@@ -43,21 +85,33 @@ class RoomPrepareService: RoomPrepareProtocol {
                 documentID: player.name,
                 data: data
             )
+            .catch { error in
+                return Completable.error(self.mapDatabaseErrorToRoomPrepareError(error))
+            }
         } catch {
-            return Completable.error(DatabaseServiceError.writeFailed(error))
+            return Completable.error(RoomPrepareError.invalidData(error))
         }
     }
 
     func fetchPlayerList(roomID: String) -> Single<[Player]> {
         return adapter.queryCollection(collection: "RoomList/\(roomID)/RoomPlayerList")
+            .catch { error in
+                return Single.error(self.mapDatabaseErrorToRoomPrepareError(error))
+            }
     }
 
     func listenToPlayerList(roomID: String) -> Observable<[Player]> {
         return adapter.listenToCollection(collection: "RoomList/\(roomID)/RoomPlayerList")
+            .catch { error in
+                return Observable.error(self.mapDatabaseErrorToRoomPrepareError(error))
+            }
     }
 
     func listenToRoomUpdates(roomID: String) -> Observable<Room> {
         return adapter.listenToDocument(collection: "RoomList", documentID: roomID)
+            .catch { error in
+                return Observable.error(self.mapDatabaseErrorToRoomPrepareError(error))
+            }
     }
 
     func updatePlayerReadyStatus(roomID: String, playerName: String, isReady: Bool) -> Completable {
@@ -66,6 +120,9 @@ class RoomPrepareService: RoomPrepareProtocol {
             documentID: playerName,
             data: ["isReady": isReady]
         )
+        .catch { error in
+            return Completable.error(self.mapDatabaseErrorToRoomPrepareError(error))
+        }
     }
 
     func updatePlayerHeartbeat(roomID: String, playerName: String, lastHeartbeat: Timestamp) -> Completable {
@@ -74,6 +131,9 @@ class RoomPrepareService: RoomPrepareProtocol {
             documentID: playerName,
             data: ["lastHeartbeat": lastHeartbeat]
         )
+        .catch { error in
+            return Completable.error(self.mapDatabaseErrorToRoomPrepareError(error))
+        }
     }
 
     func removePlayer(roomID: String, playerName: String) -> Completable {
@@ -81,6 +141,9 @@ class RoomPrepareService: RoomPrepareProtocol {
             collection: "RoomList/\(roomID)/RoomPlayerList",
             documentID: playerName
         )
+        .catch { error in
+            return Completable.error(self.mapDatabaseErrorToRoomPrepareError(error))
+        }
     }
 
     func deleteRoom(roomID: String) -> Completable {
@@ -88,5 +151,34 @@ class RoomPrepareService: RoomPrepareProtocol {
             collection: "RoomList",
             documentID: roomID
         )
+        .catch { error in
+            return Completable.error(self.mapDatabaseErrorToRoomPrepareError(error))
+        }
+    }
+    
+    private func mapDatabaseErrorToRoomPrepareError(_ error: Error) -> Error {
+        if let dbError = error as? DatabaseServiceError {
+            switch dbError {
+            case .readFailed(let firebaseError):
+                return RoomPrepareError.readFailed(firebaseError)
+            case .writeFailed(let firebaseError):
+                return RoomPrepareError.writeFailed(firebaseError)
+            case .deleteFailed(let firebaseError):
+                return RoomPrepareError.deleteFailed(firebaseError)
+            case .updateFailed(let firebaseError):
+                return RoomPrepareError.updateFailed(firebaseError)
+            case .dataDecodingError(let decodingError):
+                return RoomPrepareError.dataDecodingError(decodingError)
+            case .documentNotFound:
+                return RoomPrepareError.roomNotFound
+            case .listenerFailed(let firebaseError):
+                return RoomPrepareError.unknownError
+            default:
+                return RoomPrepareError.unknownError
+            }
+        } else {
+            return RoomPrepareError.unknownError
+        }
     }
 }
+

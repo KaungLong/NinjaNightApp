@@ -1,10 +1,9 @@
 import Foundation
 import RxSwift
 
-class CreatedRoom: ObservableObject {
+class CreatedRoom: ComposeObservableObject<CreatedRoom.Event>  {
     enum Event {
-        case createdRoomSuccess
-        case createdRoomFailure(String)
+        case createdRoomSuccess(roomInvitationCode: String)
     }
 
     struct Setting {
@@ -15,7 +14,6 @@ class CreatedRoom: ObservableObject {
 
     private let disposeBag = DisposeBag()
     @Published var setting = Setting()
-    @Published var event: Event?
     var roomInvitationCode: String = ""
 
     @Inject var createRoomService: CreateRoomProtocol
@@ -35,17 +33,38 @@ class CreatedRoom: ObservableObject {
         createRoomService.createRoom(with: room)
             .subscribe(
                 onCompleted: { [unowned self] in
-                    event = .createdRoomSuccess
+                    publish(.event(.createdRoomSuccess(roomInvitationCode: roomInvitationCode)))
                 },
                 onError: { [unowned self] error in
                     handleError(error)
-                    event = .createdRoomFailure(error.localizedDescription)
                 }
             )
             .disposed(by: disposeBag)
     }
 
     func handleError(_ error: Error) {
-        print("An error occurred: \(error.localizedDescription)")
+        let appError: AppError
+
+        if let createRoomError = error as? CreateRoomError {
+            switch createRoomError {
+            case .invalidRoomData:
+                let message = "Invalid room data provided."
+                appError = AppError(message: message, underlyingError: error, navigateTo: nil)
+            case .writeFailed(let firebaseError):
+                let message = "Failed to create the room: \(firebaseError.localizedDescription)"
+                appError = AppError(message: message, underlyingError: error, navigateTo: nil)
+            case .firebaseError(let firebaseError):
+                let message = "Firebase error: \(firebaseError.localizedDescription)"
+                appError = AppError(message: message, underlyingError: error, navigateTo: nil)
+            default:
+                let message = "An unknown error occurred while creating the room."
+                appError = AppError(message: message, underlyingError: error, navigateTo: nil)
+            }
+        } else {
+            let message = "An unexpected error occurred: \(error.localizedDescription)"
+            appError = AppError(message: message, underlyingError: error, navigateTo: nil)
+        }
+
+        publish(.error(appError))
     }
 }

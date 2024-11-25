@@ -3,7 +3,7 @@ import FirebaseFirestore
 import RxSwift
 import SwiftUI
 
-class RoomPrepare: ObservableObject {
+class RoomPrepare: ComposeObservableObject<RoomPrepare.Event> {
     enum Event {
         case leaveRoom
         case gameStart
@@ -35,8 +35,7 @@ class RoomPrepare: ObservableObject {
     @Published var isPlayerReady = false
     @Published var isHost = false
     @Published var canStartGame = false
-    @Published var event: Event?
-    
+
     @Inject var roomPrepareService: RoomPrepareProtocol
     @Inject var userDefaultsService: UserDefaultsServiceProtocol
     private var playerListDisposable: Disposable?
@@ -57,13 +56,8 @@ class RoomPrepare: ObservableObject {
                     roomInfo.isPublic = roomSetting.isRoomPublic
                     roomInfo.maxPlayers = roomSetting.roomCapacity
 
-                    let currentUserName =
-                        userDefaultsService.getLoginState()?.userName ?? ""
-                    if roomInfo.hostName == currentUserName {
-                        isHost = true
-                    } else {
-                        isHost = false
-                    }
+                    let currentUserName = userDefaultsService.getLoginState()?.userName ?? ""
+                    isHost = (roomInfo.hostName == currentUserName)
                 }
             )
             .flatMap { [unowned self] room in
@@ -72,26 +66,28 @@ class RoomPrepare: ObservableObject {
                 )
                 .andThen(
                     self.roomPrepareService.fetchPlayerList(
-                        roomID: room.id!)
+                        roomID: room.id!
+                    )
                 )
             }
             .subscribe(
                 onSuccess: { [unowned self] players in
                     print("Successfully joined room and fetched player list")
-                    startListeningToPlayerList()
-                    startHeartbeat()
+                    self.players = players
+                    self.startListeningToPlayerList()
+                    self.startHeartbeat()
                 },
-                onFailure: { error in
+                onFailure: { [unowned self] error in
                     self.handleError(error)
                 }
             )
             .disposed(by: disposeBag)
     }
-    
+
     func startGame() {
-        event = .gameStart
+        publish(.event(.gameStart))
     }
-    
+
     func leaveRoom() {
         guard let roomID = self.roomID else {
             print("Room ID not found.")
@@ -111,11 +107,10 @@ class RoomPrepare: ObservableObject {
     private func deleteRoom(roomID: String) {
         roomPrepareService.deleteRoom(roomID: roomID)
             .subscribe(
-                onCompleted: {
-                    print("Room \(roomID) deleted successfully by host.")
-                    self.event = .leaveRoom
+                onCompleted: { [unowned self] in
+                    self.publish(.event(.leaveRoom))
                 },
-                onError: { error in
+                onError: { [unowned self] error in
                     self.handleError(error)
                 }
             )
@@ -125,17 +120,15 @@ class RoomPrepare: ObservableObject {
     private func removePlayer(roomID: String, playerName: String) {
         roomPrepareService.removePlayer(roomID: roomID, playerName: playerName)
             .subscribe(
-                onCompleted: {
-                    print("Player \(playerName) successfully removed from room.")
-                    self.event = .leaveRoom
+                onCompleted: { [unowned self] in
+                    self.publish(.event(.leaveRoom))
                 },
-                onError: { error in
+                onError: { [unowned self] error in
                     self.handleError(error)
                 }
             )
             .disposed(by: disposeBag)
     }
-
 
     func startListeningToPlayerList() {
         guard let roomID = self.roomID else { return }
@@ -154,7 +147,7 @@ class RoomPrepare: ObservableObject {
             }
         )
     }
-    
+
     private func checkIfAllPlayersReadyAndAlive() {
         let allReady = players.allSatisfy { $0.isReady }
         let allAlive = players.allSatisfy {
@@ -165,7 +158,7 @@ class RoomPrepare: ObservableObject {
         canStartGame = allReady && allAlive
         print("Can start game: \(canStartGame)")
     }
-    
+
     func toggleReadyStatus() {
         guard let roomID = self.roomID else {
             print("Room ID not found.")
@@ -184,7 +177,7 @@ class RoomPrepare: ObservableObject {
             onCompleted: {
                 print("Player ready status updated successfully.")
             },
-            onError: { error in
+            onError: { [unowned self] error in
                 self.handleError(error)
             }
         )
@@ -210,9 +203,6 @@ class RoomPrepare: ObservableObject {
                 playerName: updatedPlayer.name,
                 lastHeartbeat: updatedPlayer.lastHeartbeat
             )
-            .do(onCompleted: {
-                  print("Heartbeat updated successfully at \(Date())")
-              })
         }
         .subscribe(
             onError: { [unowned self] error in
@@ -228,9 +218,20 @@ class RoomPrepare: ObservableObject {
 
     deinit {
         stopListeningToPlayerList()
+        stopHeartbeat()
     }
 
     func handleError(_ error: Error) {
-        print("An error occurred: \(error.localizedDescription)")
+        let appError: AppError
+
+        if let roomPrepareError = error as? RoomPrepareError {
+            let message = roomPrepareError.errorDescription ?? "An error occurred."
+            appError = AppError(message: message, underlyingError: error, navigateTo: nil)
+        } else {
+            let message = "An unexpected error occurred: \(error.localizedDescription)"
+            appError = AppError(message: message, underlyingError: error, navigateTo: nil)
+        }
+
+        publish(.error(appError))
     }
 }

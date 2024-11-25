@@ -38,6 +38,9 @@
 		DC5409142CF0BEE3004C53DC /* CodeAddingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409132CF0BED3004C53DC /* CodeAddingService.swift */; };
 		DC5409162CF0C406004C53DC /* FirebaseAuthAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409152CF0C3F1004C53DC /* FirebaseAuthAdapter.swift */; };
 		DC5409182CF0D022004C53DC /* RoomPrepareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409172CF0D006004C53DC /* RoomPrepareService.swift */; };
+		DC5409322CF1D35D004C53DC /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409312CF1D355004C53DC /* BaseViewModel.swift */; };
+		DC5409342CF1DB15004C53DC /* ComposeObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409332CF1DB13004C53DC /* ComposeObservableObject.swift */; };
+		DC5409362CF334E7004C53DC /* HandleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409352CF334DF004C53DC /* HandleError.swift */; };
 		DCE5E6082CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
 		DCE5E6092CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
 		DCE5E60A2CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
@@ -97,6 +100,9 @@
 		DC5409132CF0BED3004C53DC /* CodeAddingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeAddingService.swift; sourceTree = "<group>"; };
 		DC5409152CF0C3F1004C53DC /* FirebaseAuthAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthAdapter.swift; sourceTree = "<group>"; };
 		DC5409172CF0D006004C53DC /* RoomPrepareService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomPrepareService.swift; sourceTree = "<group>"; };
+		DC5409312CF1D355004C53DC /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		DC5409332CF1DB13004C53DC /* ComposeObservableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeObservableObject.swift; sourceTree = "<group>"; };
+		DC5409352CF334DF004C53DC /* HandleError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleError.swift; sourceTree = "<group>"; };
 		DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DCE5E60F2CDA149E00BBB7B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCE5E6112CDA3EBB00BBB7B0 /* FirestoreDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreDatabaseService.swift; sourceTree = "<group>"; };
@@ -280,8 +286,11 @@
 			isa = PBXGroup;
 			children = (
 				DCE5E6272CDA4DCC00BBB7B0 /* BaseView.swift */,
+				DC5409312CF1D355004C53DC /* BaseViewModel.swift */,
+				DC5409332CF1DB13004C53DC /* ComposeObservableObject.swift */,
 				DC1DD07E2CE226E600709199 /* LimitSpacer.swift */,
 				DC3B87AE2CEC699200C8B7F3 /* LoadingTracker.swift */,
+				DC5409352CF334DF004C53DC /* HandleError.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -466,6 +475,7 @@
 			files = (
 				DC5409182CF0D022004C53DC /* RoomPrepareService.swift in Sources */,
 				DC5409062CF08582004C53DC /* CreateRoomService.swift in Sources */,
+				DC5409362CF334E7004C53DC /* HandleError.swift in Sources */,
 				DC3B876B2CE9FC6600C8B7F3 /* CodeAddingView.swift in Sources */,
 				DCE5E6342CDE00BD00BBB7B0 /* UserDefaultsService.swift in Sources */,
 				DC1DD07D2CE2233E00709199 /* CreatedRoom.swift in Sources */,
@@ -477,6 +487,7 @@
 				DC5409142CF0BEE3004C53DC /* CodeAddingService.swift in Sources */,
 				DC5409042CF084A8004C53DC /* FirestoreAdapter.swift in Sources */,
 				DCE5E6302CDB5A4000BBB7B0 /* Login.swift in Sources */,
+				DC5409342CF1DB15004C53DC /* ComposeObservableObject.swift in Sources */,
 				DC3B87AF2CEC699B00C8B7F3 /* LoadingTracker.swift in Sources */,
 				DCE5E61F2CDA490600BBB7B0 /* Assembly.swift in Sources */,
 				DC5409162CF0C406004C53DC /* FirebaseAuthAdapter.swift in Sources */,
@@ -485,6 +496,7 @@
 				DC3B87B22CEC74D900C8B7F3 /* LoadingService.swift in Sources */,
 				DC1DD08D2CE4B2BE00709199 /* RoomPrepareView.swift in Sources */,
 				DCE5E6122CDA3ECC00BBB7B0 /* FirestoreDatabaseService.swift in Sources */,
+				DC5409322CF1D35D004C53DC /* BaseViewModel.swift in Sources */,
 				DC1DD08F2CE5CA9300709199 /* RoomPrepare.swift in Sources */,
 				DCE5E62B2CDA52A000BBB7B0 /* FirebaseAuthService.swift in Sources */,
 				DCE5E6232CDA49FC00BBB7B0 /* AppDelegate.swift in Sources */,

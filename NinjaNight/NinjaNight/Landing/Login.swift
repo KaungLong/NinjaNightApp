@@ -1,31 +1,29 @@
 import RxSwift
 import SwiftUI
 
-class Login: ObservableObject {
+class Login: ComposeObservableObject<Login.Event> {
     struct State {
         var userName: String = ""
         var userEmail: String = ""
         var connectionMessage: String = "Testing Firestore connection..."
         var isSignedIn: Bool = false
     }
-
+    
     enum Event {
         case signInSuccess
-        case signInFailure(String)
     }
-
+    
     @Published var state = State()
-    @Published var event: Event?
     private let loadingTracker = LoadingTracker()
     
     @Inject private var loadingManager: LoadingManager
     @Inject var authService: AuthServiceProtocol
     @Inject var userDefaultsService: UserDefaultsServiceProtocol
     private let disposeBag = DisposeBag()
-
+    
     func autoLogin() {
         if let loginstate = authService.getCurrentUserProfile() {
-            event = .signInSuccess
+            publish(.event(.signInSuccess))
             userDefaultsService.setLoginState(
                 PlayerLoginData(
                     userName: loginstate.name, userEmail: loginstate.email))
@@ -33,7 +31,7 @@ class Login: ObservableObject {
             userDefaultsService.clearLoginState()
         }
     }
-
+    
     func signInWithGoogle() {
         loadingManager.isLoading = true
         authService.signInWithGoogle()
@@ -43,13 +41,12 @@ class Login: ObservableObject {
                     state.userEmail = userProfile.email
                     state.isSignedIn = true
                     state.connectionMessage = "Successfully signed in!"
-                    event = .signInSuccess
+                    publish(.event(.signInSuccess))
                 },
                 onFailure: { [unowned self] error in
                     state.connectionMessage =
-                        "Sign-in failed: \(error.localizedDescription)"
+                    "Sign-in failed: \(error.localizedDescription)"
                     handleError(error)
-                    event = .signInFailure(error.localizedDescription)
                 },
                 onDisposed: { [unowned self] in
                     loadingManager.isLoading = false
@@ -57,9 +54,56 @@ class Login: ObservableObject {
             )
             .disposed(by: disposeBag)
     }
-
-    //TODO: 應該要有一個環境值統一處理error事件
+    
     func handleError(_ error: Error) {
-        print("An error occurred: \(error.localizedDescription)")
+        let appError: AppError
+        
+        if let authError = error as? AuthServiceError {
+            switch authError {
+            case .invalidCredential:
+                let message = "無效的憑證，需要重試"
+                state.connectionMessage = message
+                appError = AppError(message: message, underlyingError: error, navigateTo: nil)
+            case .userNotFound:
+                let message = "帳戶為找到，請確認該帳戶是否存在"
+                state.connectionMessage = message
+                appError = AppError(message: message, underlyingError: error, navigateTo: .login)
+            case .networkError:
+                let message = "網路連線錯誤，請確認網路是否正常"
+                state.connectionMessage = message
+                appError = AppError(message: message, underlyingError: error, navigateTo: nil)
+            case .missingClientID:
+                let message = "配置错误，缺少 Client ID。"
+                state.connectionMessage = message
+                appError = AppError(message: message, underlyingError: error, navigateTo: .login)
+            case .googleSignInFailed(let signInError):
+                let message = "Google登入失敗：\(signInError.localizedDescription)"
+                state.connectionMessage = message
+                appError = AppError(message: message, underlyingError: error, navigateTo: nil)
+            case .missingIDToken:
+                let message = "缺少 ID Token，請重新嘗試"
+                state.connectionMessage = message
+                appError = AppError(message: message, underlyingError: error, navigateTo: .login)
+            case .signOutFailed:
+                let message = "登出失敗，請重新嘗試"
+                state.connectionMessage = message
+                appError = AppError(message: message, underlyingError: error, navigateTo: .login)
+            case .firebaseError(let firebaseError):
+                let message = "認證錯誤：\(firebaseError.localizedDescription)"
+                state.connectionMessage = message
+                appError = AppError(message: message, underlyingError: error, navigateTo: .login)
+            case .unknownError:
+                let message = "發生未知錯誤，請稍後重新嘗試"
+                state.connectionMessage = message
+                appError = AppError(message: message, underlyingError: error, navigateTo: .login)
+            }
+        } else {
+            let message = "發生錯誤：\(error.localizedDescription)"
+            state.connectionMessage = message
+            appError = AppError(message: message, underlyingError: error, navigateTo: nil)
+        }
+        
+        publish(.error(appError))
     }
 }
+
