@@ -71,3 +71,15 @@ struct CodeAddingContentView: View {
         .padding()
     }
 }
+
+struct CodeAddingContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        CodeAddingContentView(
+            invitationCodeInput: .constant(""),
+            isPresented: .constant(true),
+            showAlert: .constant(true),
+            alertMessage: .constant("Test"),
+            checkIfRoomExists: {}
+        )
+    }
+}
