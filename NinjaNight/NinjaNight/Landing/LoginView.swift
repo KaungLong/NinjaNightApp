@@ -19,9 +19,7 @@ struct LoginView: View {
             .onConsume(handleError, viewModel) { event in
                 switch event {
                 case .signInSuccess:
-                    navigationPathManager.path.append(
-                        Pages.lobby
-                    )
+                    navigationPathManager.navigate(to: .lobby)
                 }
             }
         }

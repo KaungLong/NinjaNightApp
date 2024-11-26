@@ -3,17 +3,6 @@ import FirebaseFirestore
 import SwiftUI
 import Swinject
 
-enum Pages: Hashable {
-    case login
-    case lobby
-    case createdRoom
-    case prepareRoom(roomInvitationCode: String)
-}
-
-class NavigationPathManager: ObservableObject {
-    @Published var path = NavigationPath()
-}
-
 struct ContentView: View {
     @Inject private var authService: AuthServiceProtocol
     @Inject private var loadingManager: LoadingManager

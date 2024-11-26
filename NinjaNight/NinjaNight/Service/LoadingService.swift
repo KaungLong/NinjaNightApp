@@ -13,7 +13,7 @@ struct LoadingOverlay: View {
             ZStack {
                 Color.black.opacity(0.4)
                     .edgesIgnoringSafeArea(.all)
-                ProgressView("加载中...")
+                ProgressView("加載中...")
                     .padding(20)
                     .background(Color.white)
                     .cornerRadius(10)

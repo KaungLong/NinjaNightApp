@@ -15,7 +15,7 @@ struct LobbyView: View {
             LobbyContentView(
                 signOut: viewModel.signOut,
                 gotoSettingNewRoom: {
-                    navigationPathManager.path.append(Pages.createdRoom)
+                    navigationPathManager.navigate(to: .createdRoom)
                 },
                 codeAddingRomm: viewModel.codeAddingRoom
             )
@@ -23,7 +23,7 @@ struct LobbyView: View {
             .onConsume(handleError, viewModel) { event in
                 switch event {
                 case .signOutSuccess:
-                    navigationPathManager.path = NavigationPath()
+                    navigationPathManager.popToRoot()
                 }
             }
             .sheet(isPresented: $viewModel.isShowingJoinSheet) {

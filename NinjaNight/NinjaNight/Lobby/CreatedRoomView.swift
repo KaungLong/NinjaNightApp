@@ -14,9 +14,11 @@ struct CreatedRoomView: View {
             .onConsume(handleError, viewModel) { event in
                 switch event {
                 case .createdRoomSuccess:
-                    navigationPathManager.path.append(
-                        Pages.prepareRoom(
-                            roomInvitationCode: viewModel.roomInvitationCode))
+                    navigationPathManager.navigate(
+                        to: .prepareRoom(
+                            roomInvitationCode: viewModel.roomInvitationCode
+                        )
+                    )
                 }
             }
         }

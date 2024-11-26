@@ -26,7 +26,7 @@ struct RoomPrepareView: View {
             .onConsume(handleError, viewModel) { event in
                 switch event {
                 case .leaveRoom:
-                    navigationPathManager.path = NavigationPath()
+                    navigationPathManager.setRoot(to: .lobby)
                 case .gameStart:
                     print("gameStart")
                 }
