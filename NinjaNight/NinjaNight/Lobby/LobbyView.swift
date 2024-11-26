@@ -23,7 +23,7 @@ struct LobbyView: View {
             .onConsume(handleError, viewModel) { event in
                 switch event {
                 case .signOutSuccess:
-                    navigationPathManager.path = NavigationPath()
+                    navigationPathManager.popToRoot()
                 }
             }
             .sheet(isPresented: $viewModel.isShowingJoinSheet) {
