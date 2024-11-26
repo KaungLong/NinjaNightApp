@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct RoomPrepareView: View {
+    @Environment(\.handleError) var handleError
     @EnvironmentObject var navigationPathManager: NavigationPathManager
     @StateObject var viewModel: RoomPrepare
 
@@ -22,18 +23,14 @@ struct RoomPrepareView: View {
                 toggleReadyStatus: viewModel.toggleReadyStatus
             )
             .navigationBarHidden(true)
-            .onReceive(
-                viewModel.$event,
-                perform: { event in
-                    guard let event = event else { return }
-                    switch event {
-                    case .leaveRoom:
-                        navigationPathManager.path = NavigationPath()
-                    case .gameStart:
-                        print("gameStart")
-                    }
+            .onConsume(handleError, viewModel) { event in
+                switch event {
+                case .leaveRoom:
+                    navigationPathManager.path = NavigationPath()
+                case .gameStart:
+                    print("gameStart")
                 }
-            )
+            }
             .onAppear {
                 viewModel.joinRoomFlow()
             }

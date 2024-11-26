@@ -1,8 +1,15 @@
-import Foundation
 import GoogleSignIn
 import FirebaseAuth
 import Firebase
 import RxSwift
+
+enum AuthAdapterError: Error {
+    case unknownError
+    case firebaseError(Error)
+    case invalidCredential
+    case userNotFound
+    case networkError
+}
 
 protocol FirebaseAuthAdapterProtocol {
     func signInWithCredential(_ credential: AuthCredential) -> Single<AuthDataResult>
@@ -14,12 +21,21 @@ class FirebaseAuthAdapter: FirebaseAuthAdapterProtocol {
     func signInWithCredential(_ credential: AuthCredential) -> Single<AuthDataResult> {
         return Single.create { single in
             Auth.auth().signIn(with: credential) { authResult, error in
-                if let error = error {
-                    single(.failure(error))
+                if let error = error as NSError? {
+                    switch AuthErrorCode(rawValue: error.code) {
+                    case .invalidCredential:
+                        single(.failure(AuthAdapterError.invalidCredential))
+                    case .userNotFound:
+                        single(.failure(AuthAdapterError.userNotFound))
+                    case .networkError:
+                        single(.failure(AuthAdapterError.networkError))
+                    default:
+                        single(.failure(AuthAdapterError.firebaseError(error)))
+                    }
                 } else if let authResult = authResult {
                     single(.success(authResult))
                 } else {
-                    single(.failure(AuthServiceError.unknownError))
+                    single(.failure(AuthAdapterError.unknownError))
                 }
             }
             return Disposables.create()

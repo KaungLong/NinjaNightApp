@@ -10,27 +10,15 @@ struct UserProfile {
 }
 
 enum AuthServiceError: Error {
+    case unknownError
+    case invalidCredential
+    case userNotFound
+    case networkError
     case missingClientID
     case googleSignInFailed(Error)
     case missingIDToken
-    case firebaseAuthFailed(Error)
-    case unknownError
-
-    var localizedDescription: String {
-        switch self {
-        case .missingClientID:
-            return "Missing Google client ID"
-        case .googleSignInFailed(let error):
-            return "Google Sign-In failed: \(error.localizedDescription)"
-        case .missingIDToken:
-            return "Unable to retrieve Google ID token"
-        case .firebaseAuthFailed(let error):
-            return
-                "Firebase authentication failed: \(error.localizedDescription)"
-        case .unknownError:
-            return "An unknown error occurred"
-        }
-    }
+    case signOutFailed
+    case firebaseError(Error)
 }
 
 protocol AuthServiceProtocol {
@@ -75,6 +63,9 @@ class FirebaseAuthService: AuthServiceProtocol {
         return configureGoogleSignIn()
             .flatMap { credential in
                 self.authAdapter.signInWithCredential(credential)
+                    .catch { error in
+                        return Single.error(self.mapAuthAdapterError(error))
+                    }
             }
             .map { authResult in
                 let userProfile = UserProfile(
@@ -92,9 +83,12 @@ class FirebaseAuthService: AuthServiceProtocol {
                 self.userDefaultsService.setIsSignedIn(true)
             })
     }
-
+    
     func signOut() -> Completable {
         return authAdapter.signOut()
+            .catch { error in
+                return Completable.error(self.mapAuthAdapterError(error))
+            }
             .do(onCompleted: {
                 self.userDefaultsService.clearLoginState()
                 self.userDefaultsService.setIsSignedIn(false)
@@ -175,4 +169,23 @@ class FirebaseAuthService: AuthServiceProtocol {
         return GoogleAuthProvider.credential(
             withIDToken: idToken, accessToken: accessToken)
     }
+    
+    private func mapAuthAdapterError(_ error: Error) -> AuthServiceError {
+         if let adapterError = error as? AuthAdapterError {
+             switch adapterError {
+             case .invalidCredential:
+                 return .invalidCredential
+             case .userNotFound:
+                 return .userNotFound
+             case .networkError:
+                 return .networkError
+             case .unknownError:
+                 return .unknownError
+             case .firebaseError(let firebaseError):
+                 return .firebaseError(firebaseError)
+             }
+         } else {
+             return .unknownError
+         }
+     }
 }

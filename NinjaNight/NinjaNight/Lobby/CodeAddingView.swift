@@ -2,8 +2,9 @@ import SwiftUI
 
 struct CodeAddingView: View {
     @Environment(\.dismiss) var dismiss
+    @Environment(\.handleError) var handleError
     @EnvironmentObject var navigationPathManager: NavigationPathManager
-    @ObservedObject var viewModel: CodeAddingViewModel = .init()
+    @ObservedObject var viewModel: CodeAdding = .init()
 
     @Binding var isPresented: Bool
 
@@ -20,20 +21,15 @@ struct CodeAddingView: View {
             checkIfRoomExists: viewModel.checkIfRoomExists
         )
         .padding()
-        .onReceive(viewModel.$event) { event in
-            guard let event = event else { return }
+        .onConsume(handleError, viewModel) { event in
             switch event {
             case .roomExist:
                 isPresented = false
                 navigationPathManager.path.append(
                     Pages.prepareRoom(
                         roomInvitationCode: viewModel.invitationCodeInput))
-            case .failure(_):
-                print("failure")
             }
         }
-
- 
     }
 }
 
@@ -75,6 +71,3 @@ struct CodeAddingContentView: View {
         .padding()
     }
 }
-
-
-

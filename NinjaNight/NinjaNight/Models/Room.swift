@@ -33,7 +33,7 @@ struct Room: Decodable {
             let roomPassword = dictionary["roomPassword"] as? String,
             let rommHostID = dictionary["rommHostID"] as? String
         else {
-            throw DatabaseServiceError.noDataFound
+            throw DatabaseServiceError.documentNotFound
         }
 
         self.id = id

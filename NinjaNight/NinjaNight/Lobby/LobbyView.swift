@@ -6,6 +6,7 @@ import SwiftUI
 
 struct LobbyView: View {
     @EnvironmentObject var navigationPathManager: NavigationPathManager
+    @Environment(\.handleError) var handleError
     @StateObject var viewModel = LobbyViewModel()
     @Inject private var loadingManager: LoadingManager
 
@@ -19,13 +20,10 @@ struct LobbyView: View {
                 codeAddingRomm: viewModel.codeAddingRoom
             )
             .navigationBarHidden(true)
-            .onReceive(viewModel.$event) { event in
-                guard let event = event else { return }
+            .onConsume(handleError, viewModel) { event in
                 switch event {
                 case .signOutSuccess:
                     navigationPathManager.path = NavigationPath()
-                case .signOutFailure(let message):
-                    print("Sign-out failed: \(message)")
                 }
             }
             .sheet(isPresented: $viewModel.isShowingJoinSheet) {

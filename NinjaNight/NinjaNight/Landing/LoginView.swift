@@ -7,6 +7,7 @@ import SwiftUI
 struct LoginView: View {
     @StateObject var viewModel = Login()
     @EnvironmentObject var navigationPathManager: NavigationPathManager
+    @Environment(\.handleError) var handleError
 
     var body: some View {
         BaseView(title: "登入遊戲") {
@@ -15,15 +16,12 @@ struct LoginView: View {
                 autoLogin: viewModel.autoLogin,
                 signInWithGoogle: viewModel.signInWithGoogle
             )
-            //TODO: 可以優化成onConsume搭配viewModel
-            .onReceive(viewModel.$event) { event in
-                guard let event = event else { return }
+            .onConsume(handleError, viewModel) { event in
                 switch event {
                 case .signInSuccess:
-                    //TODO: 這裡優化成可以限定Pages
-                    navigationPathManager.path.append(Pages.lobby)
-                case .signInFailure(let message):
-                    print("Sign-in failed: \(message)")
+                    navigationPathManager.path.append(
+                        Pages.lobby
+                    )
                 }
             }
         }

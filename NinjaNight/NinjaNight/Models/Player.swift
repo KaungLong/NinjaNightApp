@@ -28,7 +28,7 @@ struct Player: Codable, Identifiable {
             let isOnline = dictionary["isOnline"] as? Bool,
             let lastHeartbeat = dictionary["lastHeartbeat"] as? Timestamp
         else {
-            throw DatabaseServiceError.noDataFound
+            throw DatabaseServiceError.documentNotFound
         }
 
         self.name = name

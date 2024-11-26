@@ -17,6 +17,8 @@ class NavigationPathManager: ObservableObject {
 struct ContentView: View {
     @Inject private var authService: AuthServiceProtocol
     @Inject private var loadingManager: LoadingManager
+    @State private var showingAlert = false
+    @State private var errorMessage = ""
 
     @StateObject private var navigationPathManager = NavigationPathManager()
 
@@ -37,10 +39,35 @@ struct ContentView: View {
                 }
         }
         .environmentObject(navigationPathManager)
+        .environment(\.handleError, handleError)
         .overlay(
                 LoadingOverlay()
                     .environmentObject(loadingManager)
             )
+        .alert("錯誤", isPresented: $showingAlert, actions: {
+            Button("OK") {
+                navigationPathManager.path = NavigationPath()
+            }
+        }, message: {
+            Text(errorMessage)
+        })
+    }
+    
+    func handleError(_ error: Error) {
+        if let appError = error as? AppError {
+            errorMessage = appError.message
+            showingAlert = true
+
+            if let page = appError.navigateTo {
+                navigationPathManager.path.append(page)
+            } else {
+                navigationPathManager.path = NavigationPath()
+            }
+        } else {
+            errorMessage = error.localizedDescription
+            showingAlert = true
+            navigationPathManager.path = NavigationPath()
+        }
     }
 }
 
