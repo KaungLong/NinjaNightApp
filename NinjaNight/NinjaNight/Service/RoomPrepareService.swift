@@ -171,7 +171,7 @@ class RoomPrepareService: RoomPrepareProtocol {
                 return RoomPrepareError.dataDecodingError(decodingError)
             case .documentNotFound:
                 return RoomPrepareError.roomNotFound
-            case .listenerFailed(let firebaseError):
+            case .listenerFailed(_):
                 return RoomPrepareError.unknownError
             default:
                 return RoomPrepareError.unknownError

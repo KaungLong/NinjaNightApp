@@ -25,8 +25,8 @@ struct CodeAddingView: View {
             switch event {
             case .roomExist:
                 isPresented = false
-                navigationPathManager.path.append(
-                    Pages.prepareRoom(
+                navigationPathManager.navigate(
+                    to: .prepareRoom(
                         roomInvitationCode: viewModel.invitationCodeInput))
             }
         }

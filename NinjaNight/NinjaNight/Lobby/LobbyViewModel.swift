@@ -16,7 +16,6 @@ class LobbyViewModel: ComposeObservableObject<LobbyViewModel.Event> {
             .subscribe(
                 onCompleted: { [unowned self] in
                     publish(.event(.signOutSuccess))
-
                 },
                 onError: { [unowned self] error in
                     handleError(error)

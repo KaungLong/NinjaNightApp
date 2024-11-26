@@ -15,7 +15,7 @@ struct LobbyView: View {
             LobbyContentView(
                 signOut: viewModel.signOut,
                 gotoSettingNewRoom: {
-                    navigationPathManager.path.append(Pages.createdRoom)
+                    navigationPathManager.navigate(to: .createdRoom)
                 },
                 codeAddingRomm: viewModel.codeAddingRoom
             )
