@@ -24,6 +24,8 @@ struct ContentView: View {
                         CreatedRoomView()
                     case .prepareRoom(let roomInvitationCode):
                         RoomPrepareView(roomInvitationCode: roomInvitationCode)
+                    case .roomList:
+                        RoomListView()
                     }
                 }
         }

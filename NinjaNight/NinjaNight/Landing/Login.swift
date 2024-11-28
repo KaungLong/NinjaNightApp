@@ -14,7 +14,6 @@ class Login: ComposeObservableObject<Login.Event> {
     }
     
     @Published var state = State()
-    private let loadingTracker = LoadingTracker()
     
     @Inject private var loadingManager: LoadingManager
     @Inject var authService: AuthServiceProtocol

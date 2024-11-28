@@ -69,7 +69,7 @@ struct RoomPrepareContentView: View {
             List(players, id: \.id) { player in
                 HStack {
                     Circle()
-                        .fill(colorForPlayer(player: player))
+                        .fill(pingColorForPlayer(player: player))
                         .frame(width: 10, height: 10)
                     Text(player.name)
                     Spacer()
@@ -108,7 +108,7 @@ struct RoomPrepareContentView: View {
         }
     }
 
-    func colorForPlayer(player: Player) -> Color {
+    func pingColorForPlayer(player: Player) -> Color {
         let currentTime = Date()
         let lastHeartbeatDate = player.lastHeartbeat.dateValue()
         let timeDifference = currentTime.timeIntervalSince(lastHeartbeatDate)

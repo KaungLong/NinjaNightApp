@@ -8,6 +8,8 @@ struct Room: Decodable {
     var isRoomPublic: Bool
     var roomPassword: String
     var rommHostID: String
+    var currentPlayerCount: Int?
+    var isFull: Bool?
     
     init(
         id: String? = nil,
@@ -15,7 +17,9 @@ struct Room: Decodable {
         roomCapacity: Int,
         isRoomPublic: Bool,
         roomPassword: String,
-        rommHostID: String
+        rommHostID: String,
+        currentPlayerCount: Int? = nil,
+        isFull: Bool? = nil
     ) {
         self.id = id
         self.roomInvitationCode = roomInvitationCode
@@ -42,6 +46,8 @@ struct Room: Decodable {
         self.isRoomPublic = isRoomPublic
         self.roomPassword = roomPassword
         self.rommHostID = rommHostID
+        self.currentPlayerCount = nil
+        self.isFull = nil
     }
 
     func toDictionary() -> [String: Any] {

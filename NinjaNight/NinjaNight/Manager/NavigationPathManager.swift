@@ -5,6 +5,7 @@ enum Pages: Hashable {
     case lobby
     case createdRoom
     case prepareRoom(roomInvitationCode: String)
+    case roomList
 }
 
 class NavigationPathManager: ObservableObject {
