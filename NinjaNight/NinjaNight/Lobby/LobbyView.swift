@@ -17,7 +17,11 @@ struct LobbyView: View {
                 gotoSettingNewRoom: {
                     navigationPathManager.navigate(to: .createdRoom)
                 },
-                codeAddingRomm: viewModel.codeAddingRoom
+                gotoCodeAddingRoom: viewModel.codeAddingRoom,
+                gotoRoomList: {
+                    navigationPathManager.navigate(to: .roomList)
+                }
+                
             )
             .navigationBarHidden(true)
             .onConsume(handleError, viewModel) { event in
@@ -37,7 +41,8 @@ struct LobbyView: View {
 struct LobbyContentView: View {
     var signOut: () -> Void
     var gotoSettingNewRoom: () -> Void
-    var codeAddingRomm: () -> Void
+    var gotoCodeAddingRoom: () -> Void
+    var gotoRoomList:() -> Void
 
     var body: some View {
         VStack {
@@ -49,12 +54,12 @@ struct LobbyContentView: View {
                 .background(Color.blue)
                 .foregroundColor(.white)
                 .cornerRadius(8)
-            Button("邀請碼加入", action: codeAddingRomm)
+            Button("邀請碼加入", action: gotoCodeAddingRoom)
                 .padding()
                 .background(Color.blue)
                 .foregroundColor(.white)
                 .cornerRadius(8)
-            Button("房間列表", action: {})
+            Button("房間列表", action: gotoRoomList)
                 .padding()
                 .background(Color.blue)
                 .foregroundColor(.white)
@@ -78,7 +83,8 @@ struct LobbyContentView_Previews: PreviewProvider {
         LobbyContentView(
             signOut: {},
             gotoSettingNewRoom: {},
-            codeAddingRomm: {}
+            gotoCodeAddingRoom: {},
+            gotoRoomList: {}
         )
     }
 }

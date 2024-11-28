@@ -9,6 +9,7 @@ class ServiceAssembly: Assembly {
         container.autoregister(CreateRoomProtocol.self, initializer: CreateRoomService.init)
         container.autoregister(CodeAddingProtocol.self, initializer: CodeAddingService.init)
         container.autoregister(RootViewControllerProvider.self, initializer: DefaultRootViewControllerProvider.init)
+        container.autoregister(RoomListServiceProtocol.self, initializer: RoomListService.init)
         container.autoregister(AuthServiceProtocol.self, initializer: FirebaseAuthService.init)
         container.autoregister(UserDefaultsServiceProtocol.self, initializer: UserDefaultsService.init)
         

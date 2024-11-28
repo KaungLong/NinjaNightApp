@@ -41,6 +41,9 @@
 		DC5409342CF1DB15004C53DC /* ComposeObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409332CF1DB13004C53DC /* ComposeObservableObject.swift */; };
 		DC5409362CF334E7004C53DC /* HandleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409352CF334DF004C53DC /* HandleError.swift */; };
 		DC5409382CF5AF57004C53DC /* NavigationPathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409372CF5AF4A004C53DC /* NavigationPathManager.swift */; };
+		DC54093B2CF6FA79004C53DC /* RoomListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC54093A2CF6FA71004C53DC /* RoomListView.swift */; };
+		DC54093D2CF6FD46004C53DC /* RoomList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC54093C2CF6FD41004C53DC /* RoomList.swift */; };
+		DC54093F2CF6FE2D004C53DC /* RoomListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC54093E2CF6FE26004C53DC /* RoomListService.swift */; };
 		DCE5E6082CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
 		DCE5E6092CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
 		DCE5E60A2CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
@@ -102,6 +105,9 @@
 		DC5409332CF1DB13004C53DC /* ComposeObservableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeObservableObject.swift; sourceTree = "<group>"; };
 		DC5409352CF334DF004C53DC /* HandleError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleError.swift; sourceTree = "<group>"; };
 		DC5409372CF5AF4A004C53DC /* NavigationPathManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationPathManager.swift; sourceTree = "<group>"; };
+		DC54093A2CF6FA71004C53DC /* RoomListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomListView.swift; sourceTree = "<group>"; };
+		DC54093C2CF6FD41004C53DC /* RoomList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomList.swift; sourceTree = "<group>"; };
+		DC54093E2CF6FE26004C53DC /* RoomListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomListService.swift; sourceTree = "<group>"; };
 		DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DCE5E60F2CDA149E00BBB7B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCE5E61E2CDA490000BBB7B0 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
@@ -271,6 +277,7 @@
 				DC5409052CF08576004C53DC /* CreateRoomService.swift */,
 				DC5409132CF0BED3004C53DC /* CodeAddingService.swift */,
 				DC5409172CF0D006004C53DC /* RoomPrepareService.swift */,
+				DC54093E2CF6FE26004C53DC /* RoomListService.swift */,
 				DCE5E6312CDDEC9B00BBB7B0 /* DefaultRootViewControllerProvider.swift */,
 				DCE5E62A2CDA528400BBB7B0 /* FirebaseAuthService.swift */,
 				DCE5E6332CDE00BB00BBB7B0 /* UserDefaultsService.swift */,
@@ -311,6 +318,8 @@
 				DC3B876C2CE9FC9400C8B7F3 /* CodeAdding.swift */,
 				DC1DD08C2CE4B2B100709199 /* RoomPrepareView.swift */,
 				DC1DD08E2CE5CA9000709199 /* RoomPrepare.swift */,
+				DC54093A2CF6FA71004C53DC /* RoomListView.swift */,
+				DC54093C2CF6FD41004C53DC /* RoomList.swift */,
 			);
 			path = Lobby;
 			sourceTree = "<group>";
@@ -487,6 +496,7 @@
 				DC1DD07D2CE2233E00709199 /* CreatedRoom.swift in Sources */,
 				DC1DD07B2CE21E0700709199 /* CreatedRoomView.swift in Sources */,
 				DC0042B42CD8C01C005D0336 /* LoginView.swift in Sources */,
+				DC54093B2CF6FA79004C53DC /* RoomListView.swift in Sources */,
 				DC1DD0D02CE5F63D00709199 /* Player.swift in Sources */,
 				DCE5E6392CDE0BA700BBB7B0 /* LobbyViewModel.swift in Sources */,
 				DC3B876D2CE9FC9A00C8B7F3 /* CodeAdding.swift in Sources */,
@@ -495,6 +505,7 @@
 				DCE5E6302CDB5A4000BBB7B0 /* Login.swift in Sources */,
 				DC5409342CF1DB15004C53DC /* ComposeObservableObject.swift in Sources */,
 				DC3B87AF2CEC699B00C8B7F3 /* LoadingTracker.swift in Sources */,
+				DC54093F2CF6FE2D004C53DC /* RoomListService.swift in Sources */,
 				DCE5E61F2CDA490600BBB7B0 /* Assembly.swift in Sources */,
 				DC5409162CF0C406004C53DC /* FirebaseAuthAdapter.swift in Sources */,
 				DCE5E6212CDA495100BBB7B0 /* InjectWrapper.swift in Sources */,
@@ -507,6 +518,7 @@
 				DC1DD0CE2CE5D8F000709199 /* Room.swift in Sources */,
 				DCE5E6322CDDECB200BBB7B0 /* DefaultRootViewControllerProvider.swift in Sources */,
 				DC0042B02CD8B526005D0336 /* ContentView.swift in Sources */,
+				DC54093D2CF6FD46004C53DC /* RoomList.swift in Sources */,
 				DCE5E6372CDE020C00BBB7B0 /* LobbyView.swift in Sources */,
 				DC0042B12CD8B526005D0336 /* NinjaNightApp.swift in Sources */,
 				DCE5E6282CDA4DD500BBB7B0 /* BaseView.swift in Sources */,
