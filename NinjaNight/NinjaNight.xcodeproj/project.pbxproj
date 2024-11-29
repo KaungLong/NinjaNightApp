@@ -44,6 +44,10 @@
 		DC54093B2CF6FA79004C53DC /* RoomListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC54093A2CF6FA71004C53DC /* RoomListView.swift */; };
 		DC54093D2CF6FD46004C53DC /* RoomList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC54093C2CF6FD41004C53DC /* RoomList.swift */; };
 		DC54093F2CF6FE2D004C53DC /* RoomListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC54093E2CF6FE26004C53DC /* RoomListService.swift */; };
+		DC5409452CF85CCD004C53DC /* PlayerDataEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409442CF85CC0004C53DC /* PlayerDataEditView.swift */; };
+		DC5409472CF86391004C53DC /* PlayerDataEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409462CF8638F004C53DC /* PlayerDataEdit.swift */; };
+		DC5409492CF865D0004C53DC /* PlayerDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409482CF865C3004C53DC /* PlayerDataService.swift */; };
+		DC54094D2CF99EC7004C53DC /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = DC54094C2CF99EC7004C53DC /* FirebaseStorage */; };
 		DCE5E6082CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
 		DCE5E6092CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
 		DCE5E60A2CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
@@ -108,6 +112,9 @@
 		DC54093A2CF6FA71004C53DC /* RoomListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomListView.swift; sourceTree = "<group>"; };
 		DC54093C2CF6FD41004C53DC /* RoomList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomList.swift; sourceTree = "<group>"; };
 		DC54093E2CF6FE26004C53DC /* RoomListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomListService.swift; sourceTree = "<group>"; };
+		DC5409442CF85CC0004C53DC /* PlayerDataEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDataEditView.swift; sourceTree = "<group>"; };
+		DC5409462CF8638F004C53DC /* PlayerDataEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDataEdit.swift; sourceTree = "<group>"; };
+		DC5409482CF865C3004C53DC /* PlayerDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDataService.swift; sourceTree = "<group>"; };
 		DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DCE5E60F2CDA149E00BBB7B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCE5E61E2CDA490000BBB7B0 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
@@ -143,6 +150,7 @@
 				DC1DD06D2CDE57A700709199 /* GoogleSignIn in Frameworks */,
 				DC1DD06F2CDE57A700709199 /* FirebaseAuth in Frameworks */,
 				DC1DD0672CDE57A700709199 /* RxSwift in Frameworks */,
+				DC54094D2CF99EC7004C53DC /* FirebaseStorage in Frameworks */,
 				DC3B87AD2CEC696E00C8B7F3 /* RxSwiftExt in Frameworks */,
 				DC1DD0652CDE57A700709199 /* RxCocoa in Frameworks */,
 				DC1DD0712CDE57A700709199 /* FirebaseCore in Frameworks */,
@@ -280,6 +288,7 @@
 				DC54093E2CF6FE26004C53DC /* RoomListService.swift */,
 				DCE5E6312CDDEC9B00BBB7B0 /* DefaultRootViewControllerProvider.swift */,
 				DCE5E62A2CDA528400BBB7B0 /* FirebaseAuthService.swift */,
+				DC5409482CF865C3004C53DC /* PlayerDataService.swift */,
 				DCE5E6332CDE00BB00BBB7B0 /* UserDefaultsService.swift */,
 				DC3B87B12CEC74C500C8B7F3 /* LoadingService.swift */,
 			);
@@ -320,6 +329,8 @@
 				DC1DD08E2CE5CA9000709199 /* RoomPrepare.swift */,
 				DC54093A2CF6FA71004C53DC /* RoomListView.swift */,
 				DC54093C2CF6FD41004C53DC /* RoomList.swift */,
+				DC5409442CF85CC0004C53DC /* PlayerDataEditView.swift */,
+				DC5409462CF8638F004C53DC /* PlayerDataEdit.swift */,
 			);
 			path = Lobby;
 			sourceTree = "<group>";
@@ -350,6 +361,7 @@
 				DC1DD0702CDE57A700709199 /* FirebaseCore */,
 				DC1DD0722CDE57A700709199 /* FirebaseFirestore */,
 				DC3B87AC2CEC696E00C8B7F3 /* RxSwiftExt */,
+				DC54094C2CF99EC7004C53DC /* FirebaseStorage */,
 			);
 			productName = NinjaNight;
 			productReference = DC00427B2CD8AC1C005D0336 /* NinjaNight.app */;
@@ -491,7 +503,9 @@
 				DC5409182CF0D022004C53DC /* RoomPrepareService.swift in Sources */,
 				DC5409062CF08582004C53DC /* CreateRoomService.swift in Sources */,
 				DC5409362CF334E7004C53DC /* HandleError.swift in Sources */,
+				DC5409492CF865D0004C53DC /* PlayerDataService.swift in Sources */,
 				DC3B876B2CE9FC6600C8B7F3 /* CodeAddingView.swift in Sources */,
+				DC5409452CF85CCD004C53DC /* PlayerDataEditView.swift in Sources */,
 				DCE5E6342CDE00BD00BBB7B0 /* UserDefaultsService.swift in Sources */,
 				DC1DD07D2CE2233E00709199 /* CreatedRoom.swift in Sources */,
 				DC1DD07B2CE21E0700709199 /* CreatedRoomView.swift in Sources */,
@@ -518,6 +532,7 @@
 				DC1DD0CE2CE5D8F000709199 /* Room.swift in Sources */,
 				DCE5E6322CDDECB200BBB7B0 /* DefaultRootViewControllerProvider.swift in Sources */,
 				DC0042B02CD8B526005D0336 /* ContentView.swift in Sources */,
+				DC5409472CF86391004C53DC /* PlayerDataEdit.swift in Sources */,
 				DC54093D2CF6FD46004C53DC /* RoomList.swift in Sources */,
 				DCE5E6372CDE020C00BBB7B0 /* LobbyView.swift in Sources */,
 				DC0042B12CD8B526005D0336 /* NinjaNightApp.swift in Sources */,
@@ -946,6 +961,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DC3B87AB2CEC694F00C8B7F3 /* XCRemoteSwiftPackageReference "RxSwiftExt" */;
 			productName = RxSwiftExt;
+		};
+		DC54094C2CF99EC7004C53DC /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC1DD0632CDE573A00709199 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

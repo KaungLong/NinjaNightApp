@@ -8,7 +8,6 @@ struct UserProfile {
     let name: String
     let email: String
 }
-
 enum AuthServiceError: Error {
     case unknownError
     case invalidCredential
