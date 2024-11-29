@@ -156,7 +156,6 @@ class RoomPrepare: ComposeObservableObject<RoomPrepare.Event> {
         }
 
         canStartGame = allReady && allAlive
-        print("Can start game: \(canStartGame)")
     }
 
     func toggleReadyStatus() {
