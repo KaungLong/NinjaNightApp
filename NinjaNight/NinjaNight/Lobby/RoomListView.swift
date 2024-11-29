@@ -4,6 +4,7 @@ import SwiftUI
 struct RoomListView: View {
     @StateObject private var viewModel: RoomList = .init()
     @EnvironmentObject var navigationPathManager: NavigationPathManager
+    @Environment(\.handleError) var handleError
 
     var body: some View {
         BaseView(title: "房間列表") {
@@ -16,6 +17,7 @@ struct RoomListView: View {
                 },
                 refreshAction: viewModel.fetchRooms
             )
+            .onConsume(handleError, viewModel) { event in }
             .onAppear {
                 viewModel.fetchRooms()
             }
