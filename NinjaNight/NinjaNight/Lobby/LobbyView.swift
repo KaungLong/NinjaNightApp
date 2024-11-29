@@ -20,6 +20,9 @@ struct LobbyView: View {
                 gotoCodeAddingRoom: viewModel.codeAddingRoom,
                 gotoRoomList: {
                     navigationPathManager.navigate(to: .roomList)
+                },
+                gotoPlayerDataEdit: {
+                    navigationPathManager.navigate(to: .playerDataEdit)
                 }
                 
             )
@@ -43,6 +46,7 @@ struct LobbyContentView: View {
     var gotoSettingNewRoom: () -> Void
     var gotoCodeAddingRoom: () -> Void
     var gotoRoomList:() -> Void
+    var gotoPlayerDataEdit: () -> Void
 
     var body: some View {
         VStack {
@@ -64,7 +68,7 @@ struct LobbyContentView: View {
                 .background(Color.blue)
                 .foregroundColor(.white)
                 .cornerRadius(8)
-            Button("玩家資料編輯", action: {})
+            Button("玩家資料編輯", action: gotoPlayerDataEdit)
                 .padding()
                 .background(Color.blue)
                 .foregroundColor(.white)
@@ -84,7 +88,8 @@ struct LobbyContentView_Previews: PreviewProvider {
             signOut: {},
             gotoSettingNewRoom: {},
             gotoCodeAddingRoom: {},
-            gotoRoomList: {}
+            gotoRoomList: {},
+            gotoPlayerDataEdit: {}
         )
     }
 }

@@ -6,10 +6,9 @@ import Swinject
 struct ContentView: View {
     @Inject private var authService: AuthServiceProtocol
     @Inject private var loadingManager: LoadingManager
-    @State private var showingAlert = false
-    @State private var errorMessage = ""
 
     @StateObject private var navigationPathManager = NavigationPathManager()
+    @StateObject private var alertManager = AlertManager()
 
     var body: some View {
         NavigationStack(path: $navigationPathManager.path) {
@@ -26,39 +25,99 @@ struct ContentView: View {
                         RoomPrepareView(roomInvitationCode: roomInvitationCode)
                     case .roomList:
                         RoomListView()
+                    case .playerDataEdit:
+                        PlayerDataEditView()
                     }
                 }
         }
         .environmentObject(navigationPathManager)
+        .environmentObject(alertManager)
         .environment(\.handleError, handleError)
         .overlay(
-                LoadingOverlay()
-                    .environmentObject(loadingManager)
-            )
-        .alert("錯誤", isPresented: $showingAlert, actions: {
-            Button("OK") {
-                navigationPathManager.path = NavigationPath()
-            }
-        }, message: {
-            Text(errorMessage)
-        })
+            LoadingOverlay()
+                .environmentObject(loadingManager)
+        )
+        .customAlert(
+             title: alertManager.title,
+             message: alertManager.message,
+             isPresented: $alertManager.isPresented
+         ) {
+             alertManager.dismiss()
+         }
     }
     
     func handleError(_ error: Error) {
         if let appError = error as? AppError {
-            errorMessage = appError.message
-            showingAlert = true
+            handleAppError(appError)
+        } else {
+            handleGenericError(error)
+        }
+    }
 
-            if let page = appError.navigateTo {
-                navigationPathManager.path.append(page)
-            } else {
+    private func handleAppError(_ appError: AppError) {
+        alertManager.showAlert(
+            title: "錯誤",
+            message: appError.message,
+            onDismiss: {
+                if let page = appError.navigateTo {
+                    navigationPathManager.path.append(page)
+                } else {
+                    navigationPathManager.path = NavigationPath()
+                }
+            }
+        )
+    }
+
+    private func handleGenericError(_ error: Error) {
+        alertManager.showAlert(
+            title: "未知錯誤",
+            message: error.localizedDescription,
+            onDismiss: {
                 navigationPathManager.path = NavigationPath()
             }
-        } else {
-            errorMessage = error.localizedDescription
-            showingAlert = true
-            navigationPathManager.path = NavigationPath()
-        }
+        )
     }
 }
 
+
+extension View {
+    func customAlert(
+        title: String,
+        message: String,
+        isPresented: Binding<Bool>,
+        onDismiss: (() -> Void)? = nil
+    ) -> some View {
+        self.alert(
+            title,
+            isPresented: isPresented,
+            actions: {
+                Button("OK", action: {
+                    isPresented.wrappedValue = false 
+                    onDismiss?()
+                })
+            },
+            message: {
+                Text(message)
+            }
+        )
+    }
+}
+
+class AlertManager: ObservableObject {
+    @Published var isPresented = false
+    var title = ""
+    var message = ""
+    var onDismiss: (() -> Void)?
+    
+    func showAlert(title: String, message: String, onDismiss: (() -> Void)? = nil) {
+        self.title = title
+        self.message = message
+        self.onDismiss = onDismiss
+        isPresented = true
+    }
+    
+    func dismiss() {
+        isPresented = false
+        onDismiss?()
+    }
+}
