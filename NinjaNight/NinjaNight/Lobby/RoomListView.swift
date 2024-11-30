@@ -57,7 +57,7 @@ struct RoomRowView: View {
                 Text(room.rommHostID)
                     .font(.headline)
                 Text(
-                    "Players: \(room.currentPlayerCount ?? 0)/\(room.roomCapacity)"
+                    "Players: \(room.currentPlayerCount ?? 0)/\(room.maximumCapacity)"
                 )
                 .font(.subheadline)
                 .foregroundColor(.gray)

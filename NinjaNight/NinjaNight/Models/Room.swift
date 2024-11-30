@@ -4,7 +4,8 @@ import FirebaseFirestore
 struct Room: Decodable {
     @DocumentID var id: String?
     var roomInvitationCode: String
-    var roomCapacity: Int
+    var minimumCapacity: Int
+    var maximumCapacity: Int
     var isRoomPublic: Bool
     var roomPassword: String
     var rommHostID: String
@@ -14,7 +15,8 @@ struct Room: Decodable {
     init(
         id: String? = nil,
         roomInvitationCode: String,
-        roomCapacity: Int,
+        minimumCapacity: Int = 1,
+        maximumCapacity: Int = 10, 
         isRoomPublic: Bool,
         roomPassword: String,
         rommHostID: String,
@@ -23,16 +25,20 @@ struct Room: Decodable {
     ) {
         self.id = id
         self.roomInvitationCode = roomInvitationCode
-        self.roomCapacity = roomCapacity
+        self.minimumCapacity = minimumCapacity
+        self.maximumCapacity = maximumCapacity
         self.isRoomPublic = isRoomPublic
         self.roomPassword = roomPassword
         self.rommHostID = rommHostID
+        self.currentPlayerCount = currentPlayerCount
+        self.isFull = isFull
     }
 
     init(dictionary: [String: Any], id: String? = nil) throws {
         guard
             let roomInvitationCode = dictionary["roomInvitationCode"] as? String,
-            let roomCapacity = dictionary["roomCapacity"] as? Int,
+            let minimumCapacity = dictionary["minimumCapacity"] as? Int,
+            let maximumCapacity = dictionary["maximumCapacity"] as? Int,
             let isRoomPublic = dictionary["isRoomPublic"] as? Bool,
             let roomPassword = dictionary["roomPassword"] as? String,
             let rommHostID = dictionary["rommHostID"] as? String
@@ -42,7 +48,8 @@ struct Room: Decodable {
 
         self.id = id
         self.roomInvitationCode = roomInvitationCode
-        self.roomCapacity = roomCapacity
+        self.minimumCapacity = minimumCapacity
+        self.maximumCapacity = maximumCapacity
         self.isRoomPublic = isRoomPublic
         self.roomPassword = roomPassword
         self.rommHostID = rommHostID
@@ -53,7 +60,8 @@ struct Room: Decodable {
     func toDictionary() -> [String: Any] {
         return [
             "roomInvitationCode": roomInvitationCode,
-            "roomCapacity": roomCapacity,
+            "minimumCapacity": minimumCapacity,
+            "maximumCapacity": maximumCapacity,
             "isRoomPublic": isRoomPublic,
             "roomPassword": roomPassword,
             "rommHostID": rommHostID

@@ -61,15 +61,15 @@ struct CreatedRoomContentView: View {
 
             capacityButton(
                 action: decreaseRoomCapacity,
-                isDisabled: state.roomCapacity <= 5, systemImage: "minus.circle"
+                isDisabled: state.maximumCapacity <= 5, systemImage: "minus.circle"
             )
-            Text("\(state.roomCapacity)")
+            Text("\(state.maximumCapacity)")
                 .font(.title)
                 .padding(.horizontal)
                 .frame(width: 80)
             capacityButton(
                 action: increaseRoomCapacity,
-                isDisabled: state.roomCapacity >= 10, systemImage: "plus.circle"
+                isDisabled: state.maximumCapacity >= 10, systemImage: "plus.circle"
             )
         }
         .padding()
@@ -115,14 +115,14 @@ struct CreatedRoomContentView: View {
     }
 
     private func decreaseRoomCapacity() {
-        if state.roomCapacity > 5 {
-            state.roomCapacity -= 1
+        if state.maximumCapacity > 5 {
+            state.maximumCapacity -= 1
         }
     }
 
     private func increaseRoomCapacity() {
-        if state.roomCapacity < 10 {
-            state.roomCapacity += 1
+        if state.maximumCapacity < 10 {
+            state.maximumCapacity += 1
         }
     }
 }
@@ -132,7 +132,7 @@ struct CreatedRoomContentView_Previews: PreviewProvider {
         CreatedRoomContentView(
             state: .constant(
                 CreatedRoom.Setting(
-                    roomCapacity: 5,
+                    maximumCapacity: 5,
                     isRoomPublic: true,
                     roomPassword: "")
             ),

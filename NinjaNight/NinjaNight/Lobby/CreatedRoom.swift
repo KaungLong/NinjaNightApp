@@ -7,7 +7,7 @@ class CreatedRoom: ComposeObservableObject<CreatedRoom.Event>  {
     }
 
     struct Setting {
-        var roomCapacity = 5
+        var maximumCapacity = 5
         var isRoomPublic = true
         var roomPassword = ""
     }
@@ -24,7 +24,7 @@ class CreatedRoom: ComposeObservableObject<CreatedRoom.Event>  {
         
         let room = Room(
             roomInvitationCode: roomInvitationCode,
-            roomCapacity: setting.roomCapacity,
+            maximumCapacity: setting.maximumCapacity,
             isRoomPublic: setting.isRoomPublic,
             roomPassword: setting.roomPassword,
             rommHostID: userDefaultsService.getLoginState()?.userName ?? ""

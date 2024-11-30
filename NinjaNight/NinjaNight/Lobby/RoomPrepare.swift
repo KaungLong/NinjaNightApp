@@ -12,6 +12,7 @@ class RoomPrepare: ComposeObservableObject<RoomPrepare.Event> {
     struct RoomInfo {
         var inviteCode: String = ""
         var currentPlayers: Int = 0
+        var minPlayers: Int = 0
         var maxPlayers: Int = 0
         var hostName: String = ""
         var isPublic: Bool = false
@@ -54,7 +55,8 @@ class RoomPrepare: ComposeObservableObject<RoomPrepare.Event> {
                     roomInfo.inviteCode = roomSetting.roomInvitationCode
                     roomInfo.hostName = roomSetting.rommHostID
                     roomInfo.isPublic = roomSetting.isRoomPublic
-                    roomInfo.maxPlayers = roomSetting.roomCapacity
+                    roomInfo.minPlayers = roomSetting.minimumCapacity
+                    roomInfo.maxPlayers = roomSetting.maximumCapacity
 
                     let currentUserName = userDefaultsService.getLoginState()?.userName ?? ""
                     isHost = (roomInfo.hostName == currentUserName)
@@ -154,8 +156,10 @@ class RoomPrepare: ComposeObservableObject<RoomPrepare.Event> {
             let lastHeartbeatDate = $0.lastHeartbeat.dateValue()
             return Date().timeIntervalSince(lastHeartbeatDate) < 30
         }
+        let withinPlayerLimits = (roomInfo.currentPlayers >= roomInfo.minPlayers &&
+                                  roomInfo.currentPlayers <= roomInfo.maxPlayers)
 
-        canStartGame = allReady && allAlive
+        canStartGame = allReady && allAlive && withinPlayerLimits
     }
 
     func toggleReadyStatus() {
