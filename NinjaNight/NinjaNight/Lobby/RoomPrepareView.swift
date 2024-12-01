@@ -54,7 +54,12 @@ struct RoomPrepareContentView: View {
 
     var body: some View {   
         VStack {
-            Text("Room: \(roomInfo.inviteCode)")
+            Text(roomInfo.roomName)
+                   .font(.largeTitle)
+                   .bold()
+                   .padding(.bottom)
+            
+            Text("InviteCode: \(roomInfo.inviteCode)")
                 .font(.title2)
                 .padding()
 

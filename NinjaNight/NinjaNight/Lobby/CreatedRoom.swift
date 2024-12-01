@@ -7,8 +7,9 @@ class CreatedRoom: ComposeObservableObject<CreatedRoom.Event>  {
     }
 
     struct Setting {
+        var roomName = ""
         var maximumCapacity = 5
-        var isRoomPublic = true
+        var isRoomPrivate = false
         var roomPassword = ""
     }
 
@@ -18,14 +19,19 @@ class CreatedRoom: ComposeObservableObject<CreatedRoom.Event>  {
 
     @Inject var createRoomService: CreateRoomProtocol
     @Inject var userDefaultsService: UserDefaultsServiceProtocol
-
+    
+    func initRoomName() {
+        setting.roomName = (userDefaultsService.getLoginState()?.userName ?? "") + "'s Room"
+    }
+    
     func createRoom() {
         roomInvitationCode = Room.generateRandomInvitationCode()
-        
+    
         let room = Room(
             roomInvitationCode: roomInvitationCode,
+            roomName: setting.roomName,
             maximumCapacity: setting.maximumCapacity,
-            isRoomPublic: setting.isRoomPublic,
+            isRoomPrivate: setting.isRoomPrivate,
             roomPassword: setting.roomPassword,
             rommHostID: userDefaultsService.getLoginState()?.userName ?? ""
         )

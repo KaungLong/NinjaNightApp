@@ -11,6 +11,9 @@ struct CreatedRoomView: View {
                 state: $viewModel.setting,
                 createdRoom: viewModel.createRoom
             )
+            .onAppear {
+                viewModel.initRoomName()
+            }
             .onConsume(handleError, viewModel) { event in
                 switch event {
                 case .createdRoomSuccess:
@@ -35,9 +38,12 @@ struct CreatedRoomContentView: View {
                 .font(.largeTitle)
                 .padding()
 
+            roomNameView
             roomCapacityView
             roomPublicView
-            roomPasswordView
+            if state.isRoomPrivate {
+                roomPasswordView
+            }
             LimitSpacer(size: 30, axis: .vertical)
 
             HStack {
@@ -54,6 +60,19 @@ struct CreatedRoomContentView: View {
     }
 
     @ViewBuilder
+    private var roomNameView: some View {
+        HStack(spacing: 0) {
+            Text("房間名稱")
+            LimitSpacer(size: 30, axis: .horizontal)
+            TextField("Room Name", text: $state.roomName)
+                .frame(height: 40)
+                .padding([.leading, .trailing], 10)
+                .border(Color.blue, width: 2)
+        }
+        .padding()
+    }
+
+    @ViewBuilder
     private var roomCapacityView: some View {
         HStack(spacing: 0) {
             Text("房間人數")
@@ -61,7 +80,8 @@ struct CreatedRoomContentView: View {
 
             capacityButton(
                 action: decreaseRoomCapacity,
-                isDisabled: state.maximumCapacity <= 5, systemImage: "minus.circle"
+                isDisabled: state.maximumCapacity <= 5,
+                systemImage: "minus.circle"
             )
             Text("\(state.maximumCapacity)")
                 .font(.title)
@@ -69,7 +89,8 @@ struct CreatedRoomContentView: View {
                 .frame(width: 80)
             capacityButton(
                 action: increaseRoomCapacity,
-                isDisabled: state.maximumCapacity >= 10, systemImage: "plus.circle"
+                isDisabled: state.maximumCapacity >= 10,
+                systemImage: "plus.circle"
             )
         }
         .padding()
@@ -92,7 +113,7 @@ struct CreatedRoomContentView: View {
         HStack(spacing: 0) {
             Text("是否公開房間")
             LimitSpacer(size: 30, axis: .horizontal)
-            Toggle("", isOn: $state.isRoomPublic)
+            Toggle("", isOn: $state.isRoomPrivate)
                 .frame(width: 60)
         }
         .padding()
@@ -133,7 +154,7 @@ struct CreatedRoomContentView_Previews: PreviewProvider {
             state: .constant(
                 CreatedRoom.Setting(
                     maximumCapacity: 5,
-                    isRoomPublic: true,
+                    isRoomPrivate: true,
                     roomPassword: "")
             ),
             createdRoom: {}

@@ -6,35 +6,63 @@ struct RoomListView: View {
     @EnvironmentObject var navigationPathManager: NavigationPathManager
     @Environment(\.handleError) var handleError
 
+    @State private var showPasswordAlert = false
+    @State private var passwordInput = ""
+    @State private var selectedRoom: Room?
+
     var body: some View {
         BaseView(title: "房間列表") {
             RoomListContentView(
                 rooms: $viewModel.rooms,
-                gotoSelectedRoom: { invitationCode in
+                gotoSelectedRoom: viewModel.tryToJoinRoom,
+                refreshAction: viewModel.fetchRooms
+            )
+            .onConsume(handleError, viewModel) { event in
+                switch event {
+                case .gotoSelectedRoom(let invitationCode):
                     navigationPathManager.navigate(
                         to: .prepareRoom(roomInvitationCode: invitationCode)
                     )
-                },
-                refreshAction: viewModel.fetchRooms
-            )
-            .onConsume(handleError, viewModel) { event in }
+                case .needPassword(let room):
+                    selectedRoom = room
+                    showPasswordAlert = true
+                }
+            }
             .onAppear {
                 viewModel.fetchRooms()
             }
+            .alert(
+                "Enter Room Password", isPresented: $showPasswordAlert,
+                actions: {
+                    SecureField("Password", text: $passwordInput)
+                    Button("Join", role: .none) {
+                        guard let room = selectedRoom else { return }
+                        viewModel.joinRoomWithPassword(
+                            room: room, password: passwordInput)
+                        passwordInput = ""
+                    }
+                    Button("Cancel", role: .cancel) {
+                        passwordInput = ""
+                    }
+                },
+                message: {
+                    Text("This room requires a password.")
+                }
+            )
         }
     }
 }
 
 struct RoomListContentView: View {
     @Binding var rooms: [Room]
-    let gotoSelectedRoom: (String) -> Void
+    let gotoSelectedRoom: (Room) -> Void
     let refreshAction: () -> Void
     var body: some View {
         NavigationView {
             List(rooms, id: \.id) { room in
                 RoomRowView(room: room) {
                     if !(room.isFull ?? false) {
-                        gotoSelectedRoom(room.roomInvitationCode)
+                        gotoSelectedRoom(room)
                     }
                 }
             }
@@ -54,6 +82,10 @@ struct RoomRowView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
+                Text(room.roomName)
+                    .font(.title3)
+                    .bold()
+                    .foregroundColor(.blue)
                 Text(room.rommHostID)
                     .font(.headline)
                 Text(

@@ -47,7 +47,7 @@ class RoomListService: RoomListServiceProtocol {
                         .map { players in
                             var updatedRoom = room
                             updatedRoom.currentPlayerCount = players.count
-                            updatedRoom.isFull = players.count == room.minimumCapacity
+                            updatedRoom.isFull = players.count == room.maximumCapacity
                             return updatedRoom
                         }
                 }

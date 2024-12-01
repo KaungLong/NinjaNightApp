@@ -61,9 +61,7 @@ struct ContentView: View {
             onDismiss: {
                 if let page = appError.navigateTo {
                     navigationPathManager.path.append(page)
-                } else {
-                    navigationPathManager.path = NavigationPath()
-                }
+                } 
             }
         )
     }

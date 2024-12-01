@@ -3,7 +3,8 @@ import RxSwift
 
 class RoomList: ComposeObservableObject<RoomList.Event> {
     enum Event {
- 
+        case gotoSelectedRoom(String)
+        case needPassword(Room)
     }
     
     private let disposeBag = DisposeBag()
@@ -12,6 +13,22 @@ class RoomList: ComposeObservableObject<RoomList.Event> {
     
     @Published var rooms: [Room] = []
     @Published var selectedRoomInvitationCode: String = ""
+    
+    func tryToJoinRoom(room: Room) {
+        if room.isRoomPrivate {
+            publish(.event(.needPassword(room)))
+        } else {
+            publish(.event(.gotoSelectedRoom(room.roomInvitationCode)))
+        }
+    }
+    
+    func joinRoomWithPassword(room: Room, password: String) {
+        if room.roomPassword == password {
+            publish(.event(.gotoSelectedRoom(room.roomInvitationCode)))
+        } else {
+            publish(.error(AppError(message: "Incorrect password.", underlyingError: nil, navigateTo: nil)))
+        }
+    }
     
     func fetchRooms() {
         loadingManager.isLoading = true

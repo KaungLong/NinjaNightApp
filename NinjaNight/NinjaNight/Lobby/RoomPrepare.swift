@@ -10,6 +10,7 @@ class RoomPrepare: ComposeObservableObject<RoomPrepare.Event> {
     }
 
     struct RoomInfo {
+        var roomName: String = ""
         var inviteCode: String = ""
         var currentPlayers: Int = 0
         var minPlayers: Int = 0
@@ -52,9 +53,10 @@ class RoomPrepare: ComposeObservableObject<RoomPrepare.Event> {
             .do(
                 onSuccess: { [unowned self] roomSetting in
                     roomID = roomSetting.id
+                    roomInfo.roomName = roomSetting.roomName
                     roomInfo.inviteCode = roomSetting.roomInvitationCode
                     roomInfo.hostName = roomSetting.rommHostID
-                    roomInfo.isPublic = roomSetting.isRoomPublic
+                    roomInfo.isPublic = roomSetting.isRoomPrivate
                     roomInfo.minPlayers = roomSetting.minimumCapacity
                     roomInfo.maxPlayers = roomSetting.maximumCapacity
 
