@@ -7,6 +7,7 @@ class RoomPrepare: ComposeObservableObject<RoomPrepare.Event> {
     enum Event {
         case leaveRoom
         case gameStart
+        case roomFull
     }
 
     struct RoomInfo {
@@ -227,16 +228,19 @@ class RoomPrepare: ComposeObservableObject<RoomPrepare.Event> {
     }
 
     func handleError(_ error: Error) {
-        let appError: AppError
-
         if let roomPrepareError = error as? RoomPrepareError {
-            let message = roomPrepareError.errorDescription ?? "An error occurred."
-            appError = AppError(message: message, underlyingError: error, navigateTo: nil)
+            switch roomPrepareError {
+            case .roomFull:
+                publish(.event(.roomFull))
+            default:
+                let message = roomPrepareError.errorDescription ?? "An error occurred."
+                let appError = AppError(message: message, underlyingError: error, navigateTo: nil)
+                publish(.error(appError))
+            }
         } else {
             let message = "An unexpected error occurred: \(error.localizedDescription)"
-            appError = AppError(message: message, underlyingError: error, navigateTo: nil)
+            let appError = AppError(message: message, underlyingError: error, navigateTo: nil)
+            publish(.error(appError))
         }
-
-        publish(.error(appError))
     }
 }

@@ -4,6 +4,7 @@ import RxSwift
 
 enum RoomPrepareError: LocalizedError {
     case unknownError
+    case roomFull
     case firebaseError(Error)
     case readFailed(Error)
     case writeFailed(Error)
@@ -18,6 +19,8 @@ enum RoomPrepareError: LocalizedError {
         switch self {
         case .unknownError:
             return "An unknown error occurred while preparing the room."
+        case .roomFull:
+            return "The room is full."
         case .firebaseError(let error):
             return "Firebase error: \(error.localizedDescription)"
         case .readFailed(let error):
@@ -65,12 +68,23 @@ class RoomPrepareService: RoomPrepareProtocol {
             field: "roomInvitationCode",
             value: invitationCode
         )
-        .flatMap { (rooms: [Room]) in
-            if let room = rooms.first {
-                return Single.just(room)
-            } else {
+        .flatMap { (rooms: [Room]) -> Single<Room> in
+            guard let room = rooms.first else {
                 return Single.error(RoomPrepareError.roomNotFound)
             }
+        
+            return self.fetchPlayerList(roomID: room.id ?? "")
+                .flatMap { players -> Single<Room> in
+                    var updatedRoom = room
+                    updatedRoom.currentPlayerCount = players.count
+                    updatedRoom.isFull = players.count >= room.maximumCapacity
+
+                    if updatedRoom.isFull ?? false {
+                        return Single.error(RoomPrepareError.roomFull)
+                    }
+
+                    return Single.just(updatedRoom)
+                }
         }
         .catch { error in
             return Single.error(self.mapDatabaseErrorToRoomPrepareError(error))

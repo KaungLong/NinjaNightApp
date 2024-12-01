@@ -3,6 +3,7 @@ import SwiftUI
 struct RoomPrepareView: View {
     @Environment(\.handleError) var handleError
     @EnvironmentObject var navigationPathManager: NavigationPathManager
+    @EnvironmentObject private var alertManager: AlertManager
     @StateObject var viewModel: RoomPrepare
 
     init(roomInvitationCode: String) {
@@ -29,6 +30,10 @@ struct RoomPrepareView: View {
                     navigationPathManager.setRoot(to: .lobby)
                 case .gameStart:
                     print("gameStart")
+                case .roomFull:
+                    alertManager.showAlert(title: "提示", message: "房間已滿員", onDismiss: {
+                        navigationPathManager.navigateBack()
+                    })
                 }
             }
             .onAppear {
