@@ -6,6 +6,7 @@ import SwiftUI
 class RoomPrepare: ComposeObservableObject<RoomPrepare.Event> {
     enum Event {
         case leaveRoom
+        case roomNotExist
         case gameStart
         case roomFull
     }
@@ -43,6 +44,7 @@ class RoomPrepare: ComposeObservableObject<RoomPrepare.Event> {
     @Inject var userDefaultsService: UserDefaultsServiceProtocol
     private var playerListDisposable: Disposable?
     private var heartbeatDisposable: Disposable?
+    private var roomExistenceDisposable: Disposable?
     private let disposeBag = DisposeBag()
 
     init(roomInvitationCode: String) {
@@ -81,6 +83,7 @@ class RoomPrepare: ComposeObservableObject<RoomPrepare.Event> {
                     self.players = players
                     self.startListeningToPlayerList()
                     self.startHeartbeat()
+                    self.startListeningToRoomExistence()
                 },
                 onFailure: { [unowned self] error in
                     self.handleError(error)
@@ -216,15 +219,41 @@ class RoomPrepare: ComposeObservableObject<RoomPrepare.Event> {
             }
         )
     }
-
+    
     func stopHeartbeat() {
         heartbeatDisposable?.dispose()
         heartbeatDisposable = nil
     }
 
+    func startListeningToRoomExistence() {
+        guard let roomID = self.roomID else {
+            print("Room ID not found.")
+            return
+        }
+
+        roomExistenceDisposable = roomPrepareService.listenToRoomUpdates(roomID: roomID)
+            .observe(on: MainScheduler.instance)
+            .subscribe(
+                onError: { [unowned self] error in
+                    if case RoomPrepareError.roomNotFound = error {
+                        publish(.event(.roomNotExist))
+                    } else {
+                        handleError(error)
+                    }
+                }
+            )
+    }
+    
+    func stopListeningToRoomExistence() {
+        roomExistenceDisposable?.dispose()
+        roomExistenceDisposable = nil
+    }
+
+
     deinit {
         stopListeningToPlayerList()
         stopHeartbeat()
+        stopListeningToRoomExistence()
     }
 
     func handleError(_ error: Error) {

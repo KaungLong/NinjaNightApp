@@ -31,9 +31,19 @@ struct RoomPrepareView: View {
                 case .gameStart:
                     print("gameStart")
                 case .roomFull:
-                    alertManager.showAlert(title: "提示", message: "房間已滿員", onDismiss: {
-                        navigationPathManager.navigateBack()
-                    })
+                    alertManager.showAlert(
+                        title: "提示",
+                        message: "房間已滿員",
+                        onDismiss: {
+                            navigationPathManager.navigateBack()
+                        }
+                    )
+                case .roomNotExist:
+                    alertManager.showAlert(
+                        title: "提示",
+                        message: "房間已關閉",
+                        onDismiss: viewModel.leaveRoom
+                    )
                 }
             }
             .onAppear {
@@ -57,13 +67,13 @@ struct RoomPrepareContentView: View {
     var startGame: () -> Void
     var toggleReadyStatus: () -> Void
 
-    var body: some View {   
+    var body: some View {
         VStack {
             Text(roomInfo.roomName)
-                   .font(.largeTitle)
-                   .bold()
-                   .padding(.bottom)
-            
+                .font(.largeTitle)
+                .bold()
+                .padding(.bottom)
+
             Text("InviteCode: \(roomInfo.inviteCode)")
                 .font(.title2)
                 .padding()
