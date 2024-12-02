@@ -7,37 +7,29 @@ import SwiftUI
 struct LoginView: View {
     @StateObject var viewModel = Login()
     @EnvironmentObject var navigationPathManager: NavigationPathManager
+    @Environment(\.handleError) var handleError
 
     var body: some View {
-        LoginView_ContentView(
-            state: $viewModel.state,
-            autoLogin: viewModel.autoLogin,
-            signInWithGoogle: viewModel.signInWithGoogle,
-            signOut: viewModel.signOut
-        )
-        //TODO: 可以優化成onConsume搭配viewModel
-        .onReceive(viewModel.$event) { event in
-            guard let event = event else { return }
-            switch event {
-            case .signInSuccess:
-                //TODO: 這裡優化成可以限定Pages
-                navigationPathManager.path.append(Pages.lobby)
-            case .signInFailure(let message):
-                print("Sign-in failed: \(message)")
-            case .signOutSuccess:
-                print("Signed out successfully.")
-            case .signOutFailure(let message):
-                print("Sign-out failed: \(message)")
+        BaseView(title: "登入遊戲") {
+            LoginContentView(
+                state: $viewModel.state,
+                autoLogin: viewModel.autoLogin,
+                signInWithGoogle: viewModel.signInWithGoogle
+            )
+            .onConsume(handleError, viewModel) { event in
+                switch event {
+                case .signInSuccess:
+                    navigationPathManager.navigate(to: .lobby)
+                }
             }
         }
     }
 }
 
-struct LoginView_ContentView: View {
+struct LoginContentView: View {
     @Binding var state: Login.State
     var autoLogin: () -> Void
     var signInWithGoogle: () -> Void
-    var signOut: () -> Void
 
     var body: some View {
         VStack {
@@ -54,19 +46,18 @@ struct LoginView_ContentView: View {
     }
 }
 
-struct LoginView_Previews: PreviewProvider {
+struct LoginContentView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView_ContentView(
+        LoginContentView(
             state: .constant(
                 Login.State(
                     userName: "Preview User",
                     userEmail: "preview@example.com",
-                    connectionMessage: "Testing connection...",
-                    isSignedIn: true
-                )),
+                    connectionMessage: "Testing connection..."
+                )
+            ),
             autoLogin: {},
-            signInWithGoogle: {},
-            signOut: {}
+            signInWithGoogle: {}
         )
     }
 }

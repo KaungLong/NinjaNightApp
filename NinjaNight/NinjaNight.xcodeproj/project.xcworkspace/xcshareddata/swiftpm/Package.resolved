@@ -1,6 +1,5 @@
 {
-  "originHash" : "c63c63846d9c539229e96de38d6af51417e28c0ee9a0bc48bd0f0f19d923c329",
-  "originHash" : "8c5fac4bcd441b5c41695f1fcc23c99a77a0e0665043506e541b56661a6c2ee7",
+  "originHash" : "19b16f700bc929f76557ec89345f173237245e4e31062eebd84e77d71ac94214",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -32,7 +31,7 @@
     {
       "identity" : "firebase-ios-sdk",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/firebase/firebase-ios-sdk",
+      "location" : "https://github.com/firebase/firebase-ios-sdk.git",
       "state" : {
         "revision" : "8328630971a8fdd8072b36bb22bef732eb15e1f0",
         "version" : "11.4.0"
@@ -59,7 +58,7 @@
     {
       "identity" : "googlesignin-ios",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/google/GoogleSignIn-iOS",
+      "location" : "https://github.com/google/GoogleSignIn-iOS.git",
       "state" : {
         "revision" : "65fb3f1aa6ffbfdc79c4e22178a55cd91561f5e9",
         "version" : "8.0.0"
@@ -90,8 +89,6 @@
       "state" : {
         "revision" : "a2ab612cb980066ee56d90d60d8462992c07f24b",
         "version" : "3.5.0"
-<<<<<<< HEAD
-=======
       }
     },
     {
@@ -101,7 +98,6 @@
       "state" : {
         "revision" : "5d7d66f647400952b1758b230e019b07c0b4b22a",
         "version" : "4.1.1"
->>>>>>> refactor-NN001
       }
     },
     {
@@ -143,10 +139,19 @@
     {
       "identity" : "rxswift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/ReactiveX/RxSwift",
+      "location" : "https://github.com/ReactiveX/RxSwift.git",
       "state" : {
         "revision" : "c7c7d2cf50a3211fe2843f76869c698e4e417930",
         "version" : "6.8.0"
+      }
+    },
+    {
+      "identity" : "rxswiftext",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/RxSwiftCommunity/RxSwiftExt",
+      "state" : {
+        "revision" : "eb4adf9f00a21b3efc3869a5218a6d7517e95222",
+        "version" : "6.2.1"
       }
     },
     {
@@ -161,7 +166,7 @@
     {
       "identity" : "swinject",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Swinject/Swinject",
+      "location" : "https://github.com/Swinject/Swinject.git",
       "state" : {
         "revision" : "be9dbcc7b86811bc131539a20c6f9c2d3e56919f",
         "version" : "2.9.1"
@@ -170,7 +175,7 @@
     {
       "identity" : "swinjectautoregistration",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Swinject/SwinjectAutoregistration",
+      "location" : "https://github.com/Swinject/SwinjectAutoregistration.git",
       "state" : {
         "revision" : "fd9ffae5f666d37b4b3c210af2e16a10598342e4",
         "version" : "2.9.1"

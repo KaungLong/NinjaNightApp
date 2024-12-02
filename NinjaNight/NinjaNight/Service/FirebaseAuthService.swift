@@ -8,29 +8,16 @@ struct UserProfile {
     let name: String
     let email: String
 }
-
 enum AuthServiceError: Error {
+    case unknownError
+    case invalidCredential
+    case userNotFound
+    case networkError
     case missingClientID
     case googleSignInFailed(Error)
     case missingIDToken
-    case firebaseAuthFailed(Error)
-    case unknownError
-
-    var localizedDescription: String {
-        switch self {
-        case .missingClientID:
-            return "Missing Google client ID"
-        case .googleSignInFailed(let error):
-            return "Google Sign-In failed: \(error.localizedDescription)"
-        case .missingIDToken:
-            return "Unable to retrieve Google ID token"
-        case .firebaseAuthFailed(let error):
-            return
-                "Firebase authentication failed: \(error.localizedDescription)"
-        case .unknownError:
-            return "An unknown error occurred"
-        }
-    }
+    case signOutFailed
+    case firebaseError(Error)
 }
 
 protocol AuthServiceProtocol {
@@ -38,24 +25,33 @@ protocol AuthServiceProtocol {
     func signInWithGoogle() -> Single<UserProfile>
     func signOut() -> Completable
     func getCurrentUserProfile() -> UserProfile?
+    func getCurrentUserID() -> Single<String>
 }
 
 class FirebaseAuthService: AuthServiceProtocol {
+    private let authAdapter: FirebaseAuthAdapterProtocol
     private let rootViewControllerProvider: RootViewControllerProvider
+    private let userDefaultsService: UserDefaultsServiceProtocol
 
-    init(rootViewControllerProvider: RootViewControllerProvider) {
+    init(
+        authAdapter: FirebaseAuthAdapterProtocol,
+        rootViewControllerProvider: RootViewControllerProvider,
+        userDefaultsService: UserDefaultsServiceProtocol
+    ) {
+        self.authAdapter = authAdapter
         self.rootViewControllerProvider = rootViewControllerProvider
+        self.userDefaultsService = userDefaultsService
     }
-    
+
     var isSignedIn: Bool {
-        return Auth.auth().currentUser != nil
+        return authAdapter.getCurrentUser() != nil
     }
-    
+
     func getCurrentUserProfile() -> UserProfile? {
-        guard let currentUser = Auth.auth().currentUser else {
+        guard let currentUser = authAdapter.getCurrentUser() else {
             return nil
         }
-        
+
         return UserProfile(
             name: currentUser.displayName ?? "No Name",
             email: currentUser.email ?? "No Email"
@@ -65,18 +61,45 @@ class FirebaseAuthService: AuthServiceProtocol {
     func signInWithGoogle() -> Single<UserProfile> {
         return configureGoogleSignIn()
             .flatMap { credential in
-                self.signInWithGoogleCredential(credential)
+                self.authAdapter.signInWithCredential(credential)
+                    .catch { error in
+                        return Single.error(self.mapAuthAdapterError(error))
+                    }
             }
+            .map { authResult in
+                let userProfile = UserProfile(
+                    name: authResult.user.displayName ?? "No Name",
+                    email: authResult.user.email ?? "No Email"
+                )
+                return userProfile
+            }
+            .do(onSuccess: { userProfile in
+                let playerLoginData = PlayerLoginData(
+                    userName: userProfile.name,
+                    userEmail: userProfile.email
+                )
+                self.userDefaultsService.setLoginState(playerLoginData)
+                self.userDefaultsService.setIsSignedIn(true)
+            })
+    }
+    
+    func signOut() -> Completable {
+        return authAdapter.signOut()
+            .catch { error in
+                return Completable.error(self.mapAuthAdapterError(error))
+            }
+            .do(onCompleted: {
+                self.userDefaultsService.clearLoginState()
+                self.userDefaultsService.setIsSignedIn(false)
+            })
     }
 
-    func signOut() -> Completable {
-        return Completable.create { completable in
-            do {
-                GIDSignIn.sharedInstance.signOut()
-                try Auth.auth().signOut()
-                completable(.completed)
-            } catch {
-                completable(.error(AuthServiceError.firebaseAuthFailed(error)))
+    func getCurrentUserID() -> Single<String> {
+        return Single.create { single in
+            if let uid = self.authAdapter.getCurrentUser()?.uid {
+                single(.success(uid))
+            } else {
+                single(.failure(AuthServiceError.unknownError))
             }
             return Disposables.create()
         }
@@ -116,7 +139,9 @@ class FirebaseAuthService: AuthServiceProtocol {
     private func performGoogleSignIn(
         completion: @escaping (Result<AuthCredential, AuthServiceError>) -> Void
     ) {
-        GIDSignIn.sharedInstance.signIn(withPresenting: rootViewControllerProvider.getRootViewController()) { result, error in
+        GIDSignIn.sharedInstance.signIn(
+            withPresenting: rootViewControllerProvider.getRootViewController()
+        ) { result, error in
             if let error = error {
                 completion(.failure(.googleSignInFailed(error)))
                 return
@@ -143,28 +168,23 @@ class FirebaseAuthService: AuthServiceProtocol {
         return GoogleAuthProvider.credential(
             withIDToken: idToken, accessToken: accessToken)
     }
-
-    private func signInWithGoogleCredential(_ credential: AuthCredential)
-        -> Single<UserProfile>
-    {
-        return Single.create { single in
-            Auth.auth().signIn(with: credential) { authResult, error in
-                if let error = error {
-                    single(.failure(AuthServiceError.firebaseAuthFailed(error)))
-                    return
-                }
-                
-                let userProfile = UserProfile(
-                    name: authResult?.user.displayName ?? "No Name",
-                    email: authResult?.user.email ?? "No Email"
-                )
-                
-//                userDefaultsService.setLoginState(PlayerLoginData(userName: loginstate.name, userEmail: loginstate.email))
-                
-                single(.success(userProfile))
-            }
-
-            return Disposables.create()
-        }
-    }
+    
+    private func mapAuthAdapterError(_ error: Error) -> AuthServiceError {
+         if let adapterError = error as? AuthAdapterError {
+             switch adapterError {
+             case .invalidCredential:
+                 return .invalidCredential
+             case .userNotFound:
+                 return .userNotFound
+             case .networkError:
+                 return .networkError
+             case .unknownError:
+                 return .unknownError
+             case .firebaseError(let firebaseError):
+                 return .firebaseError(firebaseError)
+             }
+         } else {
+             return .unknownError
+         }
+     }
 }

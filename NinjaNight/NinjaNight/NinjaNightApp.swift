@@ -16,6 +16,7 @@ struct NinjaNightApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+            
         }
     }
 }
