@@ -53,6 +53,7 @@ protocol RoomPrepareProtocol {
     func updatePlayerHeartbeat(roomID: String, playerName: String, lastHeartbeat: Timestamp) -> Completable
     func removePlayer(roomID: String, playerName: String) -> Completable
     func deleteRoom(roomID: String) -> Completable
+    func updateIsGameStarted(roomID: String, isGameStarted: Bool) -> Completable 
 }
 
 class RoomPrepareService: RoomPrepareProtocol {
@@ -164,6 +165,21 @@ class RoomPrepareService: RoomPrepareProtocol {
         return adapter.deleteDocument(
             collection: "RoomList",
             documentID: roomID
+        )
+        .catch { error in
+            return Completable.error(self.mapDatabaseErrorToRoomPrepareError(error))
+        }
+    }
+    
+    func updateIsGameStarted(roomID: String, isGameStarted: Bool) -> Completable {
+        let updateData: [String: Any] = [
+            "isGameStarted": isGameStarted
+        ]
+        
+        return adapter.updateDocument(
+            collection: "RoomList",
+            documentID: roomID,
+            data: updateData
         )
         .catch { error in
             return Completable.error(self.mapDatabaseErrorToRoomPrepareError(error))

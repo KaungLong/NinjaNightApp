@@ -12,7 +12,10 @@ struct Room: Decodable {
     var rommHostID: String
     var currentPlayerCount: Int?
     var isFull: Bool?
-    
+    var currentSettingProgress: Double = 0.0
+    var loadingMessage: String = ""
+    var isGameStarted: Bool = false
+
     init(
         id: String? = nil,
         roomInvitationCode: String,
@@ -23,7 +26,10 @@ struct Room: Decodable {
         roomPassword: String,
         rommHostID: String,
         currentPlayerCount: Int? = nil,
-        isFull: Bool? = nil
+        isFull: Bool? = nil,
+        currentSettingProgress: Double = 0.0,
+        loadingMessage: String = "",
+        isGameStarted: Bool = false
     ) {
         self.id = id
         self.roomInvitationCode = roomInvitationCode
@@ -35,6 +41,9 @@ struct Room: Decodable {
         self.rommHostID = rommHostID
         self.currentPlayerCount = currentPlayerCount
         self.isFull = isFull
+        self.currentSettingProgress = currentSettingProgress
+        self.loadingMessage = loadingMessage
+        self.isGameStarted = isGameStarted
     }
 
     init(dictionary: [String: Any], id: String? = nil) throws {
@@ -58,8 +67,11 @@ struct Room: Decodable {
         self.isRoomPrivate = isRoomPrivate
         self.roomPassword = roomPassword
         self.rommHostID = rommHostID
-        self.currentPlayerCount = nil
-        self.isFull = nil
+        self.currentPlayerCount = dictionary["currentPlayerCount"] as? Int
+        self.isFull = dictionary["isFull"] as? Bool
+        self.currentSettingProgress = dictionary["currentSettingProgress"] as? Double ?? 0.0
+        self.loadingMessage = dictionary["loadingMessage"] as? String ?? ""
+        self.isGameStarted = dictionary["isGameStarted"] as? Bool ?? false
     }
 
     func toDictionary() -> [String: Any] {
@@ -70,7 +82,10 @@ struct Room: Decodable {
             "maximumCapacity": maximumCapacity,
             "isRoomPrivate": isRoomPrivate,
             "roomPassword": roomPassword,
-            "rommHostID": rommHostID
+            "rommHostID": rommHostID,
+            "currentSettingProgress": currentSettingProgress,
+            "loadingMessage": loadingMessage,
+            "isGameStarted": isGameStarted
         ]
     }
 }

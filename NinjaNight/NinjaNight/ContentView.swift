@@ -27,6 +27,8 @@ struct ContentView: View {
                         RoomListView()
                     case .playerDataEdit:
                         PlayerDataEditView()
+                    case .gameLoading(roomID: let roomID):
+                        GameLoadingView(roomID: roomID)
                     }
                 }
         }
