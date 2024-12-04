@@ -29,7 +29,7 @@ struct RoomPrepareView: View {
                 case .leaveRoom:
                     navigationPathManager.setRoot(to: .lobby)
                 case .gameStart:
-                    print("gameStart")
+                    navigationPathManager.navigate(to: .gameLoading(roomID: viewModel.roomID ?? ""))
                 case .roomFull:
                     alertManager.showAlert(
                         title: "提示",
@@ -52,6 +52,7 @@ struct RoomPrepareView: View {
             .onDisappear {
                 viewModel.stopListeningToPlayerList()
                 viewModel.stopHeartbeat()
+                viewModel.stopListeningToRoomExistence()
             }
         }
     }

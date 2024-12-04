@@ -6,19 +6,22 @@ struct Player: Codable, Identifiable {
     var isReady: Bool
     var isOnline: Bool
     var lastHeartbeat: Timestamp
-    
+    var score: Int
+
     init(
         id: String? = nil,
         name: String,
         isReady: Bool,
         isOnline: Bool,
-        lastHeartbeat: Timestamp
+        lastHeartbeat: Timestamp,
+        score: Int = 0
     ) {
         self.id = id
         self.name = name
         self.isReady = isReady
         self.isOnline = isOnline
         self.lastHeartbeat = lastHeartbeat
+        self.score = score
     }
 
     init(dictionary: [String: Any]) throws {
@@ -26,7 +29,8 @@ struct Player: Codable, Identifiable {
             let name = dictionary["name"] as? String,
             let isReady = dictionary["isReady"] as? Bool,
             let isOnline = dictionary["isOnline"] as? Bool,
-            let lastHeartbeat = dictionary["lastHeartbeat"] as? Timestamp
+            let lastHeartbeat = dictionary["lastHeartbeat"] as? Timestamp,
+            let score = dictionary["score"] as? Int
         else {
             throw DatabaseServiceError.documentNotFound
         }
@@ -35,6 +39,7 @@ struct Player: Codable, Identifiable {
         self.isReady = isReady
         self.isOnline = isOnline
         self.lastHeartbeat = lastHeartbeat
+        self.score = score
     }
 
     func toDictionary() -> [String: Any] {
@@ -42,7 +47,8 @@ struct Player: Codable, Identifiable {
             "name": name,
             "isReady": isReady,
             "isOnline": isOnline,
-            "lastHeartbeat": lastHeartbeat
+            "lastHeartbeat": lastHeartbeat,
+            "score": score,
         ]
     }
 }

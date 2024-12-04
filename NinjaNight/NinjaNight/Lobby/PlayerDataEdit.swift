@@ -42,7 +42,8 @@ class PlayerDataEdit: ComposeObservableObject<PlayerDataEdit.Event> {
     private func loadAvatar(from url: URL) {
         DispatchQueue.global().async {
             if let data = try? Data(contentsOf: url),
-               let image = UIImage(data: data) {
+                let image = UIImage(data: data)
+            {
                 DispatchQueue.main.async {
                     self.playerAvatar = image
                 }
@@ -52,7 +53,9 @@ class PlayerDataEdit: ComposeObservableObject<PlayerDataEdit.Event> {
 
     func savePlayerName() {
         guard !playerName.isEmpty else {
-            let error = AppError(message: "Name cannot be empty", underlyingError: nil, navigateTo: nil)
+            let error = AppError(
+                message: "Name cannot be empty", underlyingError: nil,
+                navigateTo: nil)
             handleError(error)
             return
         }
@@ -79,19 +82,30 @@ class PlayerDataEdit: ComposeObservableObject<PlayerDataEdit.Event> {
         if let serviceError = error as? PlayerDataServiceError {
             switch serviceError {
             case .userNotFound:
-                appError = AppError(message: "User not found.", underlyingError: error, navigateTo: nil)
+                appError = AppError(
+                    message: "User not found.", underlyingError: error,
+                    navigateTo: nil)
             case .invalidData:
-                appError = AppError(message: "Invalid data provided.", underlyingError: error, navigateTo: nil)
+                appError = AppError(
+                    message: "Invalid data provided.", underlyingError: error,
+                    navigateTo: nil)
             case .authError(let authError):
-                appError = AppError(message: "Authentication error: \(authError.localizedDescription)", underlyingError: error, navigateTo: nil)
+                appError = AppError(
+                    message:
+                        "Authentication error: \(authError.localizedDescription)",
+                    underlyingError: error, navigateTo: nil)
             case .unknown:
-                appError = AppError(message: "An unknown error occurred.", underlyingError: error, navigateTo: nil)
+                appError = AppError(
+                    message: "An unknown error occurred.",
+                    underlyingError: error, navigateTo: nil)
             }
         } else {
-            appError = AppError(message: "An unexpected error occurred: \(error.localizedDescription)", underlyingError: error, navigateTo: nil)
+            appError = AppError(
+                message:
+                    "An unexpected error occurred: \(error.localizedDescription)",
+                underlyingError: error, navigateTo: nil)
         }
 
         publish(.error(appError))
     }
 }
-

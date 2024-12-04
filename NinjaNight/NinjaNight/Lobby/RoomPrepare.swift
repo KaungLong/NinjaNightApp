@@ -42,6 +42,7 @@ class RoomPrepare: ComposeObservableObject<RoomPrepare.Event> {
 
     @Inject var roomPrepareService: RoomPrepareProtocol
     @Inject var userDefaultsService: UserDefaultsServiceProtocol
+    @Inject private var loadingManager: LoadingManager
     private var playerListDisposable: Disposable?
     private var heartbeatDisposable: Disposable?
     private var roomExistenceDisposable: Disposable?
@@ -52,6 +53,7 @@ class RoomPrepare: ComposeObservableObject<RoomPrepare.Event> {
     }
 
     func joinRoomFlow() {
+        loadingManager.isLoading = true
         roomPrepareService.fetchRoom(invitationCode: roomInvitationCode)
             .do(
                 onSuccess: { [unowned self] roomSetting in
@@ -63,7 +65,8 @@ class RoomPrepare: ComposeObservableObject<RoomPrepare.Event> {
                     roomInfo.minPlayers = roomSetting.minimumCapacity
                     roomInfo.maxPlayers = roomSetting.maximumCapacity
 
-                    let currentUserName = userDefaultsService.getLoginState()?.userName ?? ""
+                    let currentUserName =
+                        userDefaultsService.getLoginState()?.userName ?? ""
                     isHost = (roomInfo.hostName == currentUserName)
                 }
             )
@@ -83,10 +86,13 @@ class RoomPrepare: ComposeObservableObject<RoomPrepare.Event> {
                     self.players = players
                     self.startListeningToPlayerList()
                     self.startHeartbeat()
-                    self.startListeningToRoomExistence()
+                    self.startListeningToRoomStart()
                 },
                 onFailure: { [unowned self] error in
                     self.handleError(error)
+                },
+                onDisposed: { [unowned self] in
+                    loadingManager.isLoading = false
                 }
             )
             .disposed(by: disposeBag)
@@ -94,6 +100,18 @@ class RoomPrepare: ComposeObservableObject<RoomPrepare.Event> {
 
     func startGame() {
         publish(.event(.gameStart))
+        roomPrepareService.updateIsGameStarted(
+            roomID: roomID ?? "", isGameStarted: true
+        )
+        .subscribe(
+            onCompleted: {
+                print("已通知其他玩家開始")
+            },
+            onError: { [unowned self] error in
+                self.handleError(error)
+            }
+        )
+        .disposed(by: disposeBag)
     }
 
     func leaveRoom() {
@@ -110,14 +128,13 @@ class RoomPrepare: ComposeObservableObject<RoomPrepare.Event> {
         } else {
             removePlayer(roomID: roomID, playerName: myPlayerData.name)
         }
+        
+        self.publish(.event(.leaveRoom))
     }
 
     private func deleteRoom(roomID: String) {
         roomPrepareService.deleteRoom(roomID: roomID)
             .subscribe(
-                onCompleted: { [unowned self] in
-                    self.publish(.event(.leaveRoom))
-                },
                 onError: { [unowned self] error in
                     self.handleError(error)
                 }
@@ -162,8 +179,9 @@ class RoomPrepare: ComposeObservableObject<RoomPrepare.Event> {
             let lastHeartbeatDate = $0.lastHeartbeat.dateValue()
             return Date().timeIntervalSince(lastHeartbeatDate) < 30
         }
-        let withinPlayerLimits = (roomInfo.currentPlayers >= roomInfo.minPlayers &&
-                                  roomInfo.currentPlayers <= roomInfo.maxPlayers)
+        let withinPlayerLimits =
+            (roomInfo.currentPlayers >= roomInfo.minPlayers
+                && roomInfo.currentPlayers <= roomInfo.maxPlayers)
 
         canStartGame = allReady && allAlive && withinPlayerLimits
     }
@@ -219,36 +237,43 @@ class RoomPrepare: ComposeObservableObject<RoomPrepare.Event> {
             }
         )
     }
-    
+
     func stopHeartbeat() {
         heartbeatDisposable?.dispose()
         heartbeatDisposable = nil
     }
 
-    func startListeningToRoomExistence() {
+    func startListeningToRoomStart() {
         guard let roomID = self.roomID else {
             print("Room ID not found.")
             return
         }
 
-        roomExistenceDisposable = roomPrepareService.listenToRoomUpdates(roomID: roomID)
-            .observe(on: MainScheduler.instance)
-            .subscribe(
-                onError: { [unowned self] error in
-                    if case RoomPrepareError.roomNotFound = error {
-                        publish(.event(.roomNotExist))
-                    } else {
-                        handleError(error)
-                    }
+        roomExistenceDisposable = roomPrepareService.listenToRoomUpdates(
+            roomID: roomID
+        )
+        .observe(on: MainScheduler.instance)
+        .subscribe(
+            onNext: { room in
+                if room.isGameStarted && !self.isHost {
+                    self.publish(.event(.gameStart))
+                    self.stopListeningToRoomExistence()
                 }
-            )
+            },
+            onError: { [unowned self] error in
+                if case RoomPrepareError.roomNotFound = error {
+                    publish(.event(.roomNotExist))
+                } else {
+                    handleError(error)
+                }
+            }
+        )
     }
-    
+
     func stopListeningToRoomExistence() {
         roomExistenceDisposable?.dispose()
         roomExistenceDisposable = nil
     }
-
 
     deinit {
         stopListeningToPlayerList()
@@ -262,13 +287,17 @@ class RoomPrepare: ComposeObservableObject<RoomPrepare.Event> {
             case .roomFull:
                 publish(.event(.roomFull))
             default:
-                let message = roomPrepareError.errorDescription ?? "An error occurred."
-                let appError = AppError(message: message, underlyingError: error, navigateTo: nil)
+                let message =
+                    roomPrepareError.errorDescription ?? "An error occurred."
+                let appError = AppError(
+                    message: message, underlyingError: error, navigateTo: nil)
                 publish(.error(appError))
             }
         } else {
-            let message = "An unexpected error occurred: \(error.localizedDescription)"
-            let appError = AppError(message: message, underlyingError: error, navigateTo: nil)
+            let message =
+                "An unexpected error occurred: \(error.localizedDescription)"
+            let appError = AppError(
+                message: message, underlyingError: error, navigateTo: nil)
             publish(.error(appError))
         }
     }
