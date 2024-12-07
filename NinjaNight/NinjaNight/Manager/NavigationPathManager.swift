@@ -8,6 +8,7 @@ enum Pages: Hashable {
     case roomList
     case playerDataEdit
     case gameLoading(roomID: String)
+    case game
 }
 
 class NavigationPathManager: ObservableObject {
