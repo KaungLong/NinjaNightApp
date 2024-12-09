@@ -36,7 +36,7 @@ enum GameLoadingError: LocalizedError {
 protocol GameLoadingServiceProtocol {
     func fetchRoom(roomID: String) -> Single<Room> 
     func addPlayerRoundState(
-        roomID: String, playerName: String, playerRoundState: RoundState
+        roomID: String, documentID: String, playerName: String, playerRoundState: RoundState
     ) -> Completable
     func fetchPlayers(roomID: String) -> Single<[Player]>
     func createRoundDeck(numberOfPlayers: Int, initialHandCards: Int) -> Single<[Card]>
@@ -44,6 +44,7 @@ protocol GameLoadingServiceProtocol {
     func createHonerMarkDeck() -> Single<[HonerMark]>
     func updateProgress(roomID: String, progress: Double, message: String) -> Completable
     func listenToRoom(roomID: String) -> Observable<Room>
+    func updateGameStageAndGameRound(roomID: String, currentGameRound: Int, gameStage: GameStage) -> Completable
 }
 
 class GameLoadingService: GameLoadingServiceProtocol {
@@ -64,13 +65,14 @@ class GameLoadingService: GameLoadingServiceProtocol {
     }
 
     func addPlayerRoundState(
-        roomID: String, playerName: String, playerRoundState: RoundState
+        roomID: String, documentID: String, playerName: String, playerRoundState: RoundState
     ) -> Completable {
         do {
             let data = try Firestore.Encoder().encode(playerRoundState)
             return adapter.addDocument(
                 collection:
                     "RoomList/\(roomID)/RoomPlayerList/\(playerName)/PlayerRoundStateList",
+                documentID: documentID,
                 data: data
             )
             .catch { error in
@@ -195,6 +197,22 @@ class GameLoadingService: GameLoadingServiceProtocol {
         let updateData: [String: Any] = [
             "currentSettingProgress": progress,
             "loadingMessage": message
+        ]
+        
+        return adapter.updateDocument(
+            collection: "RoomList",
+            documentID: roomID,
+            data: updateData
+        )
+        .catch { error in
+            return Completable.error(self.mapDatabaseErrorGameLoadingError(error))
+        }
+    }
+    
+    func updateGameStageAndGameRound(roomID: String, currentGameRound: Int, gameStage: GameStage) -> Completable {
+        let updateData: [String: Any] = [
+            "gameRound": currentGameRound,
+            "currentPhase": gameStage.rawValue
         ]
         
         return adapter.updateDocument(

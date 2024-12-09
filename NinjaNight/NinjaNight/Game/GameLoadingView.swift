@@ -21,7 +21,7 @@ struct GameLoadingView: View {
             .onConsume(handleError, viewModel) { event in
                 switch event {
                 case .loadingDone(let message):
-                    navigationPathManager.navigate(to: .game)
+                    navigationPathManager.navigate(to: .game(roomID: viewModel.roomID))
                 }
             }
             .onAppear {
