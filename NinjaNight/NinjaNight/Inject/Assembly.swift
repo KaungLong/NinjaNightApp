@@ -15,6 +15,7 @@ class ServiceAssembly: Assembly {
         container.autoregister(UserDefaultsServiceProtocol.self, initializer: UserDefaultsService.init)
         container.autoregister(CardCreateServiceProtocol.self, initializer: CardCreateService.init)
         container.autoregister(GameLoadingServiceProtocol.self, initializer: GameLoadingService.init)
+        container.autoregister(GameServiceProtocol.self, initializer: GameService.init)
         container.register(LoadingManager.self) { _ in LoadingManager() }
                .inObjectScope(.container)
     }

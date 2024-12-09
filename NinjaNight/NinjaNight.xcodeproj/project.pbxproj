@@ -54,6 +54,9 @@
 		DCBA11092CFEA9C500979532 /* RoundState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA11082CFEA9C300979532 /* RoundState.swift */; };
 		DCBA110B2CFEB76100979532 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA110A2CFEB75B00979532 /* Card.swift */; };
 		DCBA110E2CFEB7B600979532 /* CardCreateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA110D2CFEB7A100979532 /* CardCreateService.swift */; };
+		DCBA11102D00A91500979532 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA110F2D00A90100979532 /* GameView.swift */; };
+		DCBA11122D01558C00979532 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA11112D01558900979532 /* Game.swift */; };
+		DCBA11172D046FE900979532 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA11162D046FE400979532 /* GameService.swift */; };
 		DCE5E6082CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
 		DCE5E6092CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
 		DCE5E60A2CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
@@ -127,6 +130,9 @@
 		DCBA11082CFEA9C300979532 /* RoundState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundState.swift; sourceTree = "<group>"; };
 		DCBA110A2CFEB75B00979532 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		DCBA110D2CFEB7A100979532 /* CardCreateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCreateService.swift; sourceTree = "<group>"; };
+		DCBA110F2D00A90100979532 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		DCBA11112D01558900979532 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		DCBA11162D046FE400979532 /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
 		DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DCE5E60F2CDA149E00BBB7B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCE5E61E2CDA490000BBB7B0 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
@@ -299,6 +305,8 @@
 			children = (
 				DCBA10F52CFE9D5C00979532 /* GameLoadingView.swift */,
 				DCBA10F72CFE9F1100979532 /* GameLoading.swift */,
+				DCBA110F2D00A90100979532 /* GameView.swift */,
+				DCBA11112D01558900979532 /* Game.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -311,20 +319,37 @@
 			path = Creator;
 			sourceTree = "<group>";
 		};
+		DCBA11132D046F9200979532 /* Landing */ = {
+			isa = PBXGroup;
+			children = (
+				DC5409052CF08576004C53DC /* CreateRoomService.swift */,
+				DC5409172CF0D006004C53DC /* RoomPrepareService.swift */,
+				DC5409132CF0BED3004C53DC /* CodeAddingService.swift */,
+				DC54093E2CF6FE26004C53DC /* RoomListService.swift */,
+				DC5409482CF865C3004C53DC /* PlayerDataService.swift */,
+			);
+			path = Landing;
+			sourceTree = "<group>";
+		};
+		DCBA11142D046FCF00979532 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				DCBA10FA2CFE9FBD00979532 /* GameLoadingService.swift */,
+				DCBA11162D046FE400979532 /* GameService.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
 		DCE5E6102CDA3EB100BBB7B0 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				DCBA11142D046FCF00979532 /* Game */,
 				DCBA110C2CFEB79800979532 /* Creator */,
-				DC5409052CF08576004C53DC /* CreateRoomService.swift */,
-				DC5409132CF0BED3004C53DC /* CodeAddingService.swift */,
-				DC5409172CF0D006004C53DC /* RoomPrepareService.swift */,
-				DC54093E2CF6FE26004C53DC /* RoomListService.swift */,
+				DCBA11132D046F9200979532 /* Landing */,
 				DCE5E6312CDDEC9B00BBB7B0 /* DefaultRootViewControllerProvider.swift */,
 				DCE5E62A2CDA528400BBB7B0 /* FirebaseAuthService.swift */,
-				DC5409482CF865C3004C53DC /* PlayerDataService.swift */,
 				DCE5E6332CDE00BB00BBB7B0 /* UserDefaultsService.swift */,
 				DC3B87B12CEC74C500C8B7F3 /* LoadingManager.swift */,
-				DCBA10FA2CFE9FBD00979532 /* GameLoadingService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -545,6 +570,7 @@
 				DC5409452CF85CCD004C53DC /* PlayerDataEditView.swift in Sources */,
 				DCE5E6342CDE00BD00BBB7B0 /* UserDefaultsService.swift in Sources */,
 				DC1DD07D2CE2233E00709199 /* CreatedRoom.swift in Sources */,
+				DCBA11102D00A91500979532 /* GameView.swift in Sources */,
 				DC1DD07B2CE21E0700709199 /* CreatedRoomView.swift in Sources */,
 				DC0042B42CD8C01C005D0336 /* LoginView.swift in Sources */,
 				DC54093B2CF6FA79004C53DC /* RoomListView.swift in Sources */,
@@ -571,10 +597,12 @@
 				DCE5E6322CDDECB200BBB7B0 /* DefaultRootViewControllerProvider.swift in Sources */,
 				DC0042B02CD8B526005D0336 /* ContentView.swift in Sources */,
 				DC5409472CF86391004C53DC /* PlayerDataEdit.swift in Sources */,
+				DCBA11172D046FE900979532 /* GameService.swift in Sources */,
 				DC54093D2CF6FD46004C53DC /* RoomList.swift in Sources */,
 				DCE5E6372CDE020C00BBB7B0 /* LobbyView.swift in Sources */,
 				DC0042B12CD8B526005D0336 /* NinjaNightApp.swift in Sources */,
 				DCE5E6282CDA4DD500BBB7B0 /* BaseView.swift in Sources */,
+				DCBA11122D01558C00979532 /* Game.swift in Sources */,
 				DCBA10FB2CFE9FCB00979532 /* GameLoadingService.swift in Sources */,
 				DC3B87B52CEDCA1400C8B7F3 /* Single+Extension.swift in Sources */,
 				DCBA110B2CFEB76100979532 /* Card.swift in Sources */,

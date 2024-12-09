@@ -27,8 +27,10 @@ struct ContentView: View {
                         RoomListView()
                     case .playerDataEdit:
                         PlayerDataEditView()
-                    case .gameLoading(roomID: let roomID):
+                    case .gameLoading(let roomID):
                         GameLoadingView(roomID: roomID)
+                    case .game(let roomID):
+                        GameView(roomID: roomID)
                     }
                 }
         }
@@ -40,14 +42,14 @@ struct ContentView: View {
                 .environmentObject(loadingManager)
         )
         .customAlert(
-             title: alertManager.title,
-             message: alertManager.message,
-             isPresented: $alertManager.isPresented
-         ) {
-             alertManager.dismiss()
-         }
+            title: alertManager.title,
+            message: alertManager.message,
+            isPresented: $alertManager.isPresented
+        ) {
+            alertManager.dismiss()
+        }
     }
-    
+
     func handleError(_ error: Error) {
         if let appError = error as? AppError {
             handleAppError(appError)
@@ -63,7 +65,7 @@ struct ContentView: View {
             onDismiss: {
                 if let page = appError.navigateTo {
                     navigationPathManager.path.append(page)
-                } 
+                }
             }
         )
     }
@@ -79,7 +81,6 @@ struct ContentView: View {
     }
 }
 
-
 extension View {
     func customAlert(
         title: String,
@@ -91,10 +92,12 @@ extension View {
             title,
             isPresented: isPresented,
             actions: {
-                Button("OK", action: {
-                    isPresented.wrappedValue = false 
-                    onDismiss?()
-                })
+                Button(
+                    "OK",
+                    action: {
+                        isPresented.wrappedValue = false
+                        onDismiss?()
+                    })
             },
             message: {
                 Text(message)
@@ -108,14 +111,16 @@ class AlertManager: ObservableObject {
     var title = ""
     var message = ""
     var onDismiss: (() -> Void)?
-    
-    func showAlert(title: String, message: String, onDismiss: (() -> Void)? = nil) {
+
+    func showAlert(
+        title: String, message: String, onDismiss: (() -> Void)? = nil
+    ) {
         self.title = title
         self.message = message
         self.onDismiss = onDismiss
         isPresented = true
     }
-    
+
     func dismiss() {
         isPresented = false
         onDismiss?()

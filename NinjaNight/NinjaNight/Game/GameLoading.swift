@@ -15,6 +15,7 @@ class GameLoading: ComposeObservableObject<GameLoading.Event> {
     @Published var currentSettingProgress: Double = 0.0
     @Published var loadingMessage: String = ""
     @Published var isHost: Bool = false
+    @Published var currentGameRound: Int = 0
 
     init(roomID: String) {
         self.roomID = roomID
@@ -32,7 +33,8 @@ class GameLoading: ComposeObservableObject<GameLoading.Event> {
                 let currentUserName =
                     self.userDefaultsService.getLoginState()?.userName ?? ""
                 let isHost = currentUserName == room.rommHostID
-
+                currentGameRound = room.gameRound + 1
+                
                 DispatchQueue.main.async {
                     self.isHost = isHost
                 }
@@ -66,6 +68,7 @@ class GameLoading: ComposeObservableObject<GameLoading.Event> {
                                 .andThen(self.configureHonerMarks())
                                 .andThen(
                                     self.playerRoundStateInitial(players: players))
+                                .andThen(self.updateGameStageAndGameRound())
                         }
                 } else {
                     self.startListeningToRoomUpdates()
@@ -201,7 +204,7 @@ class GameLoading: ComposeObservableObject<GameLoading.Event> {
                     self.factionCards = factions
                     self.updateProgress(
                         message: "Faction deck configured successfully.",
-                        progress: 0.6)
+                        progress: 0.5)
                     completable(.completed)
                 },
                 onFailure: { error in
@@ -228,10 +231,36 @@ class GameLoading: ComposeObservableObject<GameLoading.Event> {
                         self.honerMarks = honerMarks
                         self.updateProgress(
                             message: "Honer marks configured successfully.",
-                            progress: 0.9)
+                            progress: 0.8)
                         completable(.completed)
                     },
                     onFailure: { error in
+                        self.handleError(error)
+                        completable(.error(error))
+                    }
+                )
+                .disposed(by: self.disposeBag)
+
+            return Disposables.create()
+        }
+    }
+    
+    private func updateGameStageAndGameRound() -> Completable {
+        Completable.create { [weak self] completable in
+            guard let self = self else {
+                completable(.error(GameLoadingError.unknownError))
+                return Disposables.create()
+            }
+            
+            self.gameLoadingService.updateGameStageAndGameRound(roomID: roomID, currentGameRound: currentGameRound, gameStage: .draft)
+                .subscribe(
+                    onCompleted: {
+                        self.updateProgress(
+                            message: "Update gameStage & gameRound successfully.",
+                            progress: 0.9)
+                        completable(.completed)
+                    },
+                    onError: { error in
                         self.handleError(error)
                         completable(.error(error))
                     }
@@ -345,7 +374,9 @@ class GameLoading: ComposeObservableObject<GameLoading.Event> {
             )
 
             self.gameLoadingService.addPlayerRoundState(
-                roomID: roomID, playerName: player.name,
+                roomID: roomID,
+                documentID: "Round_\(currentGameRound)",
+                playerName: player.name,
                 playerRoundState: roundState
             )
             .subscribe(

@@ -15,6 +15,8 @@ struct Room: Decodable {
     var currentSettingProgress: Double = 0.0
     var loadingMessage: String = ""
     var isGameStarted: Bool = false
+    var currentPhase: GameStage = .draft
+    var gameRound: Int = 0
 
     init(
         id: String? = nil,
@@ -29,7 +31,9 @@ struct Room: Decodable {
         isFull: Bool? = nil,
         currentSettingProgress: Double = 0.0,
         loadingMessage: String = "",
-        isGameStarted: Bool = false
+        isGameStarted: Bool = false,
+        currentPhase: GameStage = .draft,
+        gameRound: Int = 0
     ) {
         self.id = id
         self.roomInvitationCode = roomInvitationCode
@@ -44,6 +48,8 @@ struct Room: Decodable {
         self.currentSettingProgress = currentSettingProgress
         self.loadingMessage = loadingMessage
         self.isGameStarted = isGameStarted
+        self.currentPhase = currentPhase
+        self.gameRound = gameRound
     }
 
     init(dictionary: [String: Any], id: String? = nil) throws {
@@ -54,7 +60,9 @@ struct Room: Decodable {
             let maximumCapacity = dictionary["maximumCapacity"] as? Int,
             let isRoomPrivate = dictionary["isRoomPrivate"] as? Bool,
             let roomPassword = dictionary["roomPassword"] as? String,
-            let rommHostID = dictionary["rommHostID"] as? String
+            let rommHostID = dictionary["rommHostID"] as? String,
+            let currentPhaseRaw = dictionary["currentPhase"] as? String,
+            let currentPhase = GameStage(rawValue: currentPhaseRaw)
         else {
             throw DatabaseServiceError.documentNotFound
         }
@@ -72,6 +80,8 @@ struct Room: Decodable {
         self.currentSettingProgress = dictionary["currentSettingProgress"] as? Double ?? 0.0
         self.loadingMessage = dictionary["loadingMessage"] as? String ?? ""
         self.isGameStarted = dictionary["isGameStarted"] as? Bool ?? false
+        self.currentPhase = currentPhase
+        self.gameRound = dictionary["gameRound"] as? Int ?? 0
     }
 
     func toDictionary() -> [String: Any] {
@@ -85,7 +95,9 @@ struct Room: Decodable {
             "rommHostID": rommHostID,
             "currentSettingProgress": currentSettingProgress,
             "loadingMessage": loadingMessage,
-            "isGameStarted": isGameStarted
+            "isGameStarted": isGameStarted,
+            "currentPhase": currentPhase.rawValue,
+            "gameRound": gameRound
         ]
     }
 }
