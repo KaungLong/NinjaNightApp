@@ -2,7 +2,7 @@ import RxSwift
 import SwiftUI
 
 class Game: ComposeObservableObject<Game.Event> {
-
+    @Published var gameMainActionState: GameMainActionState = .showFaction
     @Published var currentPhase: GameStage = .draft
     @Published var gameRound: Int = 0
     @Published var playerFaction: String = ""

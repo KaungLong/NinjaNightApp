@@ -57,6 +57,12 @@
 		DCBA11102D00A91500979532 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA110F2D00A90100979532 /* GameView.swift */; };
 		DCBA11122D01558C00979532 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA11112D01558900979532 /* Game.swift */; };
 		DCBA11172D046FE900979532 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA11162D046FE400979532 /* GameService.swift */; };
+		DCD4F4A32D08352100CFF1BF /* GamePhaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD4F4A22D08351F00CFF1BF /* GamePhaseView.swift */; };
+		DCD4F4A52D08356200CFF1BF /* GameMainActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD4F4A42D08355F00CFF1BF /* GameMainActionView.swift */; };
+		DCD4F4A72D08365900CFF1BF /* ShowFactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD4F4A62D08364E00CFF1BF /* ShowFactionView.swift */; };
+		DCD4F4A92D08368A00CFF1BF /* UpcomingActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD4F4A82D08367E00CFF1BF /* UpcomingActionsView.swift */; };
+		DCD4F4AB2D08376900CFF1BF /* PlayerAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD4F4AA2D08376600CFF1BF /* PlayerAreaView.swift */; };
+		DCD4F4AD2D0837C600CFF1BF /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD4F4AC2D0837BC00CFF1BF /* Array+Extension.swift */; };
 		DCE5E6082CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
 		DCE5E6092CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
 		DCE5E60A2CDA11D100BBB7B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */; };
@@ -133,6 +139,12 @@
 		DCBA110F2D00A90100979532 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		DCBA11112D01558900979532 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		DCBA11162D046FE400979532 /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
+		DCD4F4A22D08351F00CFF1BF /* GamePhaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePhaseView.swift; sourceTree = "<group>"; };
+		DCD4F4A42D08355F00CFF1BF /* GameMainActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMainActionView.swift; sourceTree = "<group>"; };
+		DCD4F4A62D08364E00CFF1BF /* ShowFactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowFactionView.swift; sourceTree = "<group>"; };
+		DCD4F4A82D08367E00CFF1BF /* UpcomingActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingActionsView.swift; sourceTree = "<group>"; };
+		DCD4F4AA2D08376600CFF1BF /* PlayerAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAreaView.swift; sourceTree = "<group>"; };
+		DCD4F4AC2D0837BC00CFF1BF /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DCE5E60F2CDA149E00BBB7B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCE5E61E2CDA490000BBB7B0 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
@@ -279,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				DC3B87B42CEDCA0700C8B7F3 /* Single+Extension.swift */,
+				DCD4F4AC2D0837BC00CFF1BF /* Array+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -303,6 +316,7 @@
 		DCBA10F42CFE9D2800979532 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				DCD4F49F2D082F2500CFF1BF /* ComponentView */,
 				DCBA10F52CFE9D5C00979532 /* GameLoadingView.swift */,
 				DCBA10F72CFE9F1100979532 /* GameLoading.swift */,
 				DCBA110F2D00A90100979532 /* GameView.swift */,
@@ -338,6 +352,18 @@
 				DCBA11162D046FE400979532 /* GameService.swift */,
 			);
 			path = Game;
+			sourceTree = "<group>";
+		};
+		DCD4F49F2D082F2500CFF1BF /* ComponentView */ = {
+			isa = PBXGroup;
+			children = (
+				DCD4F4A42D08355F00CFF1BF /* GameMainActionView.swift */,
+				DCD4F4A22D08351F00CFF1BF /* GamePhaseView.swift */,
+				DCD4F4A62D08364E00CFF1BF /* ShowFactionView.swift */,
+				DCD4F4A82D08367E00CFF1BF /* UpcomingActionsView.swift */,
+				DCD4F4AA2D08376600CFF1BF /* PlayerAreaView.swift */,
+			);
+			path = ComponentView;
 			sourceTree = "<group>";
 		};
 		DCE5E6102CDA3EB100BBB7B0 /* Service */ = {
@@ -561,20 +587,25 @@
 				DC5409382CF5AF57004C53DC /* NavigationPathManager.swift in Sources */,
 				DC5409182CF0D022004C53DC /* RoomPrepareService.swift in Sources */,
 				DC5409062CF08582004C53DC /* CreateRoomService.swift in Sources */,
+				DCD4F4A52D08356200CFF1BF /* GameMainActionView.swift in Sources */,
 				DCBA10F82CFE9F1800979532 /* GameLoading.swift in Sources */,
 				DCBA10F62CFE9D7000979532 /* GameLoadingView.swift in Sources */,
 				DC5409362CF334E7004C53DC /* HandleError.swift in Sources */,
 				DC5409492CF865D0004C53DC /* PlayerDataService.swift in Sources */,
+				DCD4F4A32D08352100CFF1BF /* GamePhaseView.swift in Sources */,
 				DCBA110E2CFEB7B600979532 /* CardCreateService.swift in Sources */,
 				DC3B876B2CE9FC6600C8B7F3 /* CodeAddingView.swift in Sources */,
 				DC5409452CF85CCD004C53DC /* PlayerDataEditView.swift in Sources */,
 				DCE5E6342CDE00BD00BBB7B0 /* UserDefaultsService.swift in Sources */,
 				DC1DD07D2CE2233E00709199 /* CreatedRoom.swift in Sources */,
+				DCD4F4A92D08368A00CFF1BF /* UpcomingActionsView.swift in Sources */,
+				DCD4F4A72D08365900CFF1BF /* ShowFactionView.swift in Sources */,
 				DCBA11102D00A91500979532 /* GameView.swift in Sources */,
 				DC1DD07B2CE21E0700709199 /* CreatedRoomView.swift in Sources */,
 				DC0042B42CD8C01C005D0336 /* LoginView.swift in Sources */,
 				DC54093B2CF6FA79004C53DC /* RoomListView.swift in Sources */,
 				DC1DD0D02CE5F63D00709199 /* Player.swift in Sources */,
+				DCD4F4AD2D0837C600CFF1BF /* Array+Extension.swift in Sources */,
 				DCE5E6392CDE0BA700BBB7B0 /* LobbyViewModel.swift in Sources */,
 				DC3B876D2CE9FC9A00C8B7F3 /* CodeAdding.swift in Sources */,
 				DC5409142CF0BEE3004C53DC /* CodeAddingService.swift in Sources */,
@@ -597,6 +628,7 @@
 				DCE5E6322CDDECB200BBB7B0 /* DefaultRootViewControllerProvider.swift in Sources */,
 				DC0042B02CD8B526005D0336 /* ContentView.swift in Sources */,
 				DC5409472CF86391004C53DC /* PlayerDataEdit.swift in Sources */,
+				DCD4F4AB2D08376900CFF1BF /* PlayerAreaView.swift in Sources */,
 				DCBA11172D046FE900979532 /* GameService.swift in Sources */,
 				DC54093D2CF6FD46004C53DC /* RoomList.swift in Sources */,
 				DCE5E6372CDE020C00BBB7B0 /* LobbyView.swift in Sources */,

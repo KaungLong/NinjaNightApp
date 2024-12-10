@@ -1,5 +1,10 @@
 import FirebaseFirestore
 
+struct CardUI {
+    var card: Card
+    var offset: CGSize = .zero
+}
+
 struct Card: Codable, Identifiable {
     @DocumentID var id: String?
     let cardName: String
