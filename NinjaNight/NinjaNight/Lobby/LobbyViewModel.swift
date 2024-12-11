@@ -5,9 +5,9 @@ class LobbyViewModel: ComposeObservableObject<LobbyViewModel.Event> {
     enum Event {
         case signOutSuccess
     }
-
+    @Inject private var loadingManager: LoadingManager
     @Inject var authService: AuthServiceProtocol
-    @Inject var cardCreateService: CardCreateServiceProtocol
+    @Inject var cardService: CardServiceProtocol
     private let disposeBag = DisposeBag()
     
     @Published var isShowingJoinSheet = false
@@ -25,8 +25,25 @@ class LobbyViewModel: ComposeObservableObject<LobbyViewModel.Event> {
             .disposed(by: disposeBag)
     }
     
-    func codeAddingRoom () {
+    func codeAddingRoom() {
         isShowingJoinSheet = true
+    }
+    
+    func fetchCards() {
+        loadingManager.isLoading = true
+        cardService.fetchCards()
+            .subscribe(
+                onSuccess: { cards in
+                    print("加載\(cards.count)張卡牌") 
+                },
+                onFailure: { error in
+                    self.handleError(error)
+                },
+                onDisposed: { [self] in
+                    loadingManager.isLoading = false
+                }
+            )
+            .disposed(by: disposeBag)
     }
     
     func handleError(_ error: Error) {
@@ -83,7 +100,7 @@ class LobbyViewModel: ComposeObservableObject<LobbyViewModel.Event> {
                 
                 let cardID = "\(cardType)_\(level)"
                 
-                cardCreateService.createCard(cardID: cardID, card: card)
+                cardService.createCard(cardID: cardID, card: card)
                     .subscribe(
                         onCompleted: {
                             print("Successfully created card: \(card.cardName) Lv.\(card.cardLevel)")
@@ -107,7 +124,7 @@ class LobbyViewModel: ComposeObservableObject<LobbyViewModel.Event> {
             
             let cardID = "liar_\(level)"
             
-            cardCreateService.createCard(cardID: cardID, card: card)
+            cardService.createCard(cardID: cardID, card: card)
                 .subscribe(
                     onCompleted: {
                         print("Successfully created card: \(card.cardName) Lv.\(card.cardLevel)")
@@ -132,7 +149,7 @@ class LobbyViewModel: ComposeObservableObject<LobbyViewModel.Event> {
                 cardDetail: detail
             )
             
-            cardCreateService.createCard(cardID: cardID, card: card)
+            cardService.createCard(cardID: cardID, card: card)
                 .subscribe(
                     onCompleted: {
                         print("Successfully created card: \(card.cardName)")
@@ -152,7 +169,7 @@ class LobbyViewModel: ComposeObservableObject<LobbyViewModel.Event> {
                   cardDetail: "揭示階段若你還存活，可以揭示此牌讓你的流派直接獲勝。"
               )
               
-              cardCreateService.createCard(cardID: specialCardID, card: specialCard)
+            cardService.createCard(cardID: specialCardID, card: specialCard)
                   .subscribe(
                       onCompleted: {
                           print("Successfully created card: \(specialCard.cardName)")

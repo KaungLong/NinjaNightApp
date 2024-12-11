@@ -33,6 +33,10 @@
 		DC3B87AF2CEC699B00C8B7F3 /* LoadingTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B87AE2CEC699200C8B7F3 /* LoadingTracker.swift */; };
 		DC3B87B22CEC74D900C8B7F3 /* LoadingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B87B12CEC74C500C8B7F3 /* LoadingManager.swift */; };
 		DC3B87B52CEDCA1400C8B7F3 /* Single+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B87B42CEDCA0700C8B7F3 /* Single+Extension.swift */; };
+		DC497D952D0994910067889A /* CardModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC497D932D0994910067889A /* CardModel.xcdatamodeld */; };
+		DC497D962D0994910067889A /* CardModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC497D932D0994910067889A /* CardModel.xcdatamodeld */; };
+		DC497D972D0994910067889A /* CardModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC497D932D0994910067889A /* CardModel.xcdatamodeld */; };
+		DC497D992D0994DC0067889A /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC497D982D0994DA0067889A /* PersistenceController.swift */; };
 		DC5409042CF084A8004C53DC /* FirestoreAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409032CF0849C004C53DC /* FirestoreAdapter.swift */; };
 		DC5409062CF08582004C53DC /* CreateRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409052CF08576004C53DC /* CreateRoomService.swift */; };
 		DC5409142CF0BEE3004C53DC /* CodeAddingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409132CF0BED3004C53DC /* CodeAddingService.swift */; };
@@ -53,7 +57,7 @@
 		DCBA10FB2CFE9FCB00979532 /* GameLoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA10FA2CFE9FBD00979532 /* GameLoadingService.swift */; };
 		DCBA11092CFEA9C500979532 /* RoundState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA11082CFEA9C300979532 /* RoundState.swift */; };
 		DCBA110B2CFEB76100979532 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA110A2CFEB75B00979532 /* Card.swift */; };
-		DCBA110E2CFEB7B600979532 /* CardCreateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA110D2CFEB7A100979532 /* CardCreateService.swift */; };
+		DCBA110E2CFEB7B600979532 /* CardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA110D2CFEB7A100979532 /* CardService.swift */; };
 		DCBA11102D00A91500979532 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA110F2D00A90100979532 /* GameView.swift */; };
 		DCBA11122D01558C00979532 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA11112D01558900979532 /* Game.swift */; };
 		DCBA11172D046FE900979532 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA11162D046FE400979532 /* GameService.swift */; };
@@ -116,6 +120,8 @@
 		DC3B87AE2CEC699200C8B7F3 /* LoadingTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTracker.swift; sourceTree = "<group>"; };
 		DC3B87B12CEC74C500C8B7F3 /* LoadingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingManager.swift; sourceTree = "<group>"; };
 		DC3B87B42CEDCA0700C8B7F3 /* Single+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Single+Extension.swift"; sourceTree = "<group>"; };
+		DC497D942D0994910067889A /* CardModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CardModel.xcdatamodel; sourceTree = "<group>"; };
+		DC497D982D0994DA0067889A /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		DC5409032CF0849C004C53DC /* FirestoreAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreAdapter.swift; sourceTree = "<group>"; };
 		DC5409052CF08576004C53DC /* CreateRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomService.swift; sourceTree = "<group>"; };
 		DC5409132CF0BED3004C53DC /* CodeAddingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeAddingService.swift; sourceTree = "<group>"; };
@@ -135,7 +141,7 @@
 		DCBA10FA2CFE9FBD00979532 /* GameLoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLoadingService.swift; sourceTree = "<group>"; };
 		DCBA11082CFEA9C300979532 /* RoundState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundState.swift; sourceTree = "<group>"; };
 		DCBA110A2CFEB75B00979532 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		DCBA110D2CFEB7A100979532 /* CardCreateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCreateService.swift; sourceTree = "<group>"; };
+		DCBA110D2CFEB7A100979532 /* CardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardService.swift; sourceTree = "<group>"; };
 		DCBA110F2D00A90100979532 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		DCBA11112D01558900979532 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		DCBA11162D046FE400979532 /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
@@ -242,10 +248,12 @@
 				DC0042AA2CD8B526005D0336 /* Assets.xcassets */,
 				DCE5E6072CDA11D100BBB7B0 /* GoogleService-Info.plist */,
 				DCE5E60F2CDA149E00BBB7B0 /* Info.plist */,
+				DC497D932D0994910067889A /* CardModel.xcdatamodeld */,
 				DC3B87B32CEDC9F900C8B7F3 /* Extension */,
 				DCE5E6222CDA49EE00BBB7B0 /* AppDelegate.swift */,
 				DC0042AC2CD8B526005D0336 /* NinjaNightApp.swift */,
 				DC0042AB2CD8B526005D0336 /* ContentView.swift */,
+				DC497D982D0994DA0067889A /* PersistenceController.swift */,
 				DC5409392CF5B2B1004C53DC /* Manager */,
 				DCE5E61D2CDA48E800BBB7B0 /* Inject */,
 				DC1DD0CC2CE5D84900709199 /* Models */,
@@ -325,12 +333,12 @@
 			path = Game;
 			sourceTree = "<group>";
 		};
-		DCBA110C2CFEB79800979532 /* Creator */ = {
+		DCBA110C2CFEB79800979532 /* Card */ = {
 			isa = PBXGroup;
 			children = (
-				DCBA110D2CFEB7A100979532 /* CardCreateService.swift */,
+				DCBA110D2CFEB7A100979532 /* CardService.swift */,
 			);
-			path = Creator;
+			path = Card;
 			sourceTree = "<group>";
 		};
 		DCBA11132D046F9200979532 /* Landing */ = {
@@ -370,7 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				DCBA11142D046FCF00979532 /* Game */,
-				DCBA110C2CFEB79800979532 /* Creator */,
+				DCBA110C2CFEB79800979532 /* Card */,
 				DCBA11132D046F9200979532 /* Landing */,
 				DCE5E6312CDDEC9B00BBB7B0 /* DefaultRootViewControllerProvider.swift */,
 				DCE5E62A2CDA528400BBB7B0 /* FirebaseAuthService.swift */,
@@ -593,12 +601,13 @@
 				DC5409362CF334E7004C53DC /* HandleError.swift in Sources */,
 				DC5409492CF865D0004C53DC /* PlayerDataService.swift in Sources */,
 				DCD4F4A32D08352100CFF1BF /* GamePhaseView.swift in Sources */,
-				DCBA110E2CFEB7B600979532 /* CardCreateService.swift in Sources */,
+				DCBA110E2CFEB7B600979532 /* CardService.swift in Sources */,
 				DC3B876B2CE9FC6600C8B7F3 /* CodeAddingView.swift in Sources */,
 				DC5409452CF85CCD004C53DC /* PlayerDataEditView.swift in Sources */,
 				DCE5E6342CDE00BD00BBB7B0 /* UserDefaultsService.swift in Sources */,
 				DC1DD07D2CE2233E00709199 /* CreatedRoom.swift in Sources */,
 				DCD4F4A92D08368A00CFF1BF /* UpcomingActionsView.swift in Sources */,
+				DC497D992D0994DC0067889A /* PersistenceController.swift in Sources */,
 				DCD4F4A72D08365900CFF1BF /* ShowFactionView.swift in Sources */,
 				DCBA11102D00A91500979532 /* GameView.swift in Sources */,
 				DC1DD07B2CE21E0700709199 /* CreatedRoomView.swift in Sources */,
@@ -612,6 +621,7 @@
 				DC5409042CF084A8004C53DC /* FirestoreAdapter.swift in Sources */,
 				DCE5E6302CDB5A4000BBB7B0 /* Login.swift in Sources */,
 				DC5409342CF1DB15004C53DC /* ComposeObservableObject.swift in Sources */,
+				DC497D952D0994910067889A /* CardModel.xcdatamodeld in Sources */,
 				DC3B87AF2CEC699B00C8B7F3 /* LoadingTracker.swift in Sources */,
 				DC54093F2CF6FE2D004C53DC /* RoomListService.swift in Sources */,
 				DCE5E61F2CDA490600BBB7B0 /* Assembly.swift in Sources */,
@@ -645,6 +655,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC497D962D0994910067889A /* CardModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,6 +663,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC497D972D0994910067889A /* CardModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1068,6 +1080,19 @@
 			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		DC497D932D0994910067889A /* CardModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DC497D942D0994910067889A /* CardModel.xcdatamodel */,
+			);
+			currentVersion = DC497D942D0994910067889A /* CardModel.xcdatamodel */;
+			path = CardModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = DC0042732CD8AC1C005D0336 /* Project object */;
 }

@@ -37,9 +37,11 @@ struct LobbyView: View {
                 CodeAddingView(isPresented: $viewModel.isShowingJoinSheet)
                     .presentationDetents([.height(200)])
             }
-//            .onAppear {
+            
+            .onAppear {
 //                viewModel.createCardsForDeck()
-//            }
+                viewModel.fetchCards()
+            }
             //TODO: 等之後做環境分離後移除
         }
     }
