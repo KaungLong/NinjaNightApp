@@ -6,8 +6,8 @@ import Swinject
 @main
 struct NinjaNightApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-
-    static let container = Container() 
+    let persistenceController = PersistenceController.shared
+    static let container = Container()
 
     init() {
         let assembler = Assembler([ServiceAssembly()], container: NinjaNightApp.container)
@@ -16,7 +16,7 @@ struct NinjaNightApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-            
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }
