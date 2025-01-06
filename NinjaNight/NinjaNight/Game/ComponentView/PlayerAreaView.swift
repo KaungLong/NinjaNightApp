@@ -3,7 +3,7 @@ import SwiftUI
 struct PlayerAreaView: View {
     let player: Player
     let roundState: RoundState
-    @State var cardUIs: [CardUI]
+    @Binding var cardUIs: [CardUI]
     @State var honorTokens: [Int]
 
     var body: some View {
@@ -16,18 +16,18 @@ struct PlayerAreaView: View {
                     .font(.subheadline)
                 HonorTokenGrid(tokens: honorTokens)
             }
+            .frame(height: 180)
             .padding()
             .background(Color.green.opacity(0.2))
             .cornerRadius(8)
-            .frame(width: UIScreen.main.bounds.width / 4)
 
             HStack(spacing: 16) {
                 ForEach($cardUIs.indices, id: \.self) { index in
                     CardView(cardUI: $cardUIs[index])
                 }
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .padding(.horizontal)
     }
 }
 
@@ -71,19 +71,16 @@ struct CardView: View {
 
     var body: some View {
         VStack(spacing: 8) {
-            Image(systemName: "rectangle.portrait")
+            Image("spy_1")
                 .resizable()
                 .scaledToFit()
-                .frame(height: 80)
+                .frame(width: 90, height: 120)
                 .background(Color.gray.opacity(0.2))
                 .cornerRadius(8)
 
             VStack(spacing: 4) {
-                Text(cardUI.card.cardName)
-                    .font(.headline)
-                Text("Level \(cardUI.card.cardLevel)")
+                Text(cardUI.card.cardName + " \(cardUI.card.cardLevel)")
                     .font(.subheadline)
-                    .foregroundColor(.secondary)
             }
 
             Text(cardUI.card.cardDetail)
@@ -93,8 +90,7 @@ struct CardView: View {
                 .lineLimit(2)
                 .frame(maxWidth: .infinity)
         }
-        .padding()
-        .frame(width: 120, height: 200)
+        .frame(width: 110, height: 176)
         .background(Color.white)
         .cornerRadius(12)
         .shadow(radius: 4)

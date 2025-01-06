@@ -27,6 +27,7 @@ protocol CardServiceProtocol {
     func fetchCards() -> Single<[Card]>
     func fetchCardByName(_ name: String) -> Single<Card>
     func fetchAllCards() -> Single<[Card]>
+    func fetchCardByID(_ id: String) -> Single<Card>
 }
 
 class CardService: CardServiceProtocol {
@@ -111,6 +112,33 @@ class CardService: CardServiceProtocol {
                     single(.success(card))
                 } else {
                     single(.failure(CardError.cardNotFound(name)))
+                }
+            } catch {
+                single(.failure(error))
+            }
+
+            return Disposables.create()
+        }
+    }
+    
+    func fetchCardByID(_ id: String) -> Single<Card> {
+        return Single.create { single in
+            let fetchRequest: NSFetchRequest<CardEntity> = CardEntity.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+            fetchRequest.fetchLimit = 1
+
+            do {
+                if let cardEntity = try self.viewContext.fetch(fetchRequest).first {
+                    let card = Card(
+                        id: cardEntity.id,
+                        cardName: cardEntity.cardName ?? "",
+                        cardLevel: Int(cardEntity.cardLevel),
+                        cardType: CardType(rawValue: cardEntity.cardType ?? "") ?? .special,
+                        cardDetail: cardEntity.cardDetail ?? ""
+                    )
+                    single(.success(card))
+                } else {
+                    single(.failure(CardError.cardNotFound(id)))
                 }
             } catch {
                 single(.failure(error))

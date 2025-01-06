@@ -52,6 +52,8 @@
 		DC5409472CF86391004C53DC /* PlayerDataEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409462CF8638F004C53DC /* PlayerDataEdit.swift */; };
 		DC5409492CF865D0004C53DC /* PlayerDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409482CF865C3004C53DC /* PlayerDataService.swift */; };
 		DC54094D2CF99EC7004C53DC /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = DC54094C2CF99EC7004C53DC /* FirebaseStorage */; };
+		DC5525002D1AAC390028B156 /* ChooseCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5524FF2D1AAC370028B156 /* ChooseCardView.swift */; };
+		DC7720DE2D1987AD009604D0 /* CountdownProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7720DD2D1987A8009604D0 /* CountdownProgressView.swift */; };
 		DCBA10F62CFE9D7000979532 /* GameLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA10F52CFE9D5C00979532 /* GameLoadingView.swift */; };
 		DCBA10F82CFE9F1800979532 /* GameLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA10F72CFE9F1100979532 /* GameLoading.swift */; };
 		DCBA10FB2CFE9FCB00979532 /* GameLoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA10FA2CFE9FBD00979532 /* GameLoadingService.swift */; };
@@ -61,6 +63,7 @@
 		DCBA11102D00A91500979532 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA110F2D00A90100979532 /* GameView.swift */; };
 		DCBA11122D01558C00979532 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA11112D01558900979532 /* Game.swift */; };
 		DCBA11172D046FE900979532 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA11162D046FE400979532 /* GameService.swift */; };
+		DCC563632D2A82C200154F8A /* RxCombine in Frameworks */ = {isa = PBXBuildFile; productRef = DCC563622D2A82C200154F8A /* RxCombine */; };
 		DCD4F4A32D08352100CFF1BF /* GamePhaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD4F4A22D08351F00CFF1BF /* GamePhaseView.swift */; };
 		DCD4F4A52D08356200CFF1BF /* GameMainActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD4F4A42D08355F00CFF1BF /* GameMainActionView.swift */; };
 		DCD4F4A72D08365900CFF1BF /* ShowFactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD4F4A62D08364E00CFF1BF /* ShowFactionView.swift */; };
@@ -136,6 +139,8 @@
 		DC5409442CF85CC0004C53DC /* PlayerDataEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDataEditView.swift; sourceTree = "<group>"; };
 		DC5409462CF8638F004C53DC /* PlayerDataEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDataEdit.swift; sourceTree = "<group>"; };
 		DC5409482CF865C3004C53DC /* PlayerDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDataService.swift; sourceTree = "<group>"; };
+		DC5524FF2D1AAC370028B156 /* ChooseCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCardView.swift; sourceTree = "<group>"; };
+		DC7720DD2D1987A8009604D0 /* CountdownProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownProgressView.swift; sourceTree = "<group>"; };
 		DCBA10F52CFE9D5C00979532 /* GameLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLoadingView.swift; sourceTree = "<group>"; };
 		DCBA10F72CFE9F1100979532 /* GameLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLoading.swift; sourceTree = "<group>"; };
 		DCBA10FA2CFE9FBD00979532 /* GameLoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLoadingService.swift; sourceTree = "<group>"; };
@@ -184,6 +189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC1DD06D2CDE57A700709199 /* GoogleSignIn in Frameworks */,
+				DCC563632D2A82C200154F8A /* RxCombine in Frameworks */,
 				DC1DD06F2CDE57A700709199 /* FirebaseAuth in Frameworks */,
 				DC1DD0672CDE57A700709199 /* RxSwift in Frameworks */,
 				DC54094D2CF99EC7004C53DC /* FirebaseStorage in Frameworks */,
@@ -321,6 +327,15 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
+		DC5525012D1AAC490028B156 /* MainAction */ = {
+			isa = PBXGroup;
+			children = (
+				DCD4F4A62D08364E00CFF1BF /* ShowFactionView.swift */,
+				DC5524FF2D1AAC370028B156 /* ChooseCardView.swift */,
+			);
+			path = MainAction;
+			sourceTree = "<group>";
+		};
 		DCBA10F42CFE9D2800979532 /* Game */ = {
 			isa = PBXGroup;
 			children = (
@@ -366,8 +381,9 @@
 			isa = PBXGroup;
 			children = (
 				DCD4F4A42D08355F00CFF1BF /* GameMainActionView.swift */,
+				DC5525012D1AAC490028B156 /* MainAction */,
+				DC7720DD2D1987A8009604D0 /* CountdownProgressView.swift */,
 				DCD4F4A22D08351F00CFF1BF /* GamePhaseView.swift */,
-				DCD4F4A62D08364E00CFF1BF /* ShowFactionView.swift */,
 				DCD4F4A82D08367E00CFF1BF /* UpcomingActionsView.swift */,
 				DCD4F4AA2D08376600CFF1BF /* PlayerAreaView.swift */,
 			);
@@ -455,6 +471,7 @@
 				DC1DD0722CDE57A700709199 /* FirebaseFirestore */,
 				DC3B87AC2CEC696E00C8B7F3 /* RxSwiftExt */,
 				DC54094C2CF99EC7004C53DC /* FirebaseStorage */,
+				DCC563622D2A82C200154F8A /* RxCombine */,
 			);
 			productName = NinjaNight;
 			productReference = DC00427B2CD8AC1C005D0336 /* NinjaNight.app */;
@@ -545,6 +562,7 @@
 				DC1DD0622CDE570A00709199 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				DC1DD0632CDE573A00709199 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				DC3B87AB2CEC694F00C8B7F3 /* XCRemoteSwiftPackageReference "RxSwiftExt" */,
+				DCC563612D2A82B000154F8A /* XCRemoteSwiftPackageReference "RxCombine" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DC00427C2CD8AC1C005D0336 /* Products */;
@@ -629,6 +647,7 @@
 				DCE5E6212CDA495100BBB7B0 /* InjectWrapper.swift in Sources */,
 				DC1DD07F2CE226ED00709199 /* LimitSpacer.swift in Sources */,
 				DC3B87B22CEC74D900C8B7F3 /* LoadingManager.swift in Sources */,
+				DC5525002D1AAC390028B156 /* ChooseCardView.swift in Sources */,
 				DC1DD08D2CE4B2BE00709199 /* RoomPrepareView.swift in Sources */,
 				DC1DD08F2CE5CA9300709199 /* RoomPrepare.swift in Sources */,
 				DCE5E62B2CDA52A000BBB7B0 /* FirebaseAuthService.swift in Sources */,
@@ -640,6 +659,7 @@
 				DC5409472CF86391004C53DC /* PlayerDataEdit.swift in Sources */,
 				DCD4F4AB2D08376900CFF1BF /* PlayerAreaView.swift in Sources */,
 				DCBA11172D046FE900979532 /* GameService.swift in Sources */,
+				DC7720DE2D1987AD009604D0 /* CountdownProgressView.swift in Sources */,
 				DC54093D2CF6FD46004C53DC /* RoomList.swift in Sources */,
 				DCE5E6372CDE020C00BBB7B0 /* LobbyView.swift in Sources */,
 				DC0042B12CD8B526005D0336 /* NinjaNightApp.swift in Sources */,
@@ -1026,6 +1046,14 @@
 				minimumVersion = 6.2.1;
 			};
 		};
+		DCC563612D2A82B000154F8A /* XCRemoteSwiftPackageReference "RxCombine" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CombineCommunity/RxCombine.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1078,6 +1106,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DC1DD0632CDE573A00709199 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		DCC563622D2A82C200154F8A /* RxCombine */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DCC563612D2A82B000154F8A /* XCRemoteSwiftPackageReference "RxCombine" */;
+			productName = RxCombine;
 		};
 /* End XCSwiftPackageProductDependency section */
 

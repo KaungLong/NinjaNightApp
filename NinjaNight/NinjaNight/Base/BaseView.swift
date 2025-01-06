@@ -49,7 +49,7 @@ struct BaseView<Content: View>: View {
             Spacer()
         }
         .padding()
-        .background(Color.gray.opacity(0.1))
+        .background(Color.gray.opacity(0.5))
         .edgesIgnoringSafeArea(.bottom)
     }
 }

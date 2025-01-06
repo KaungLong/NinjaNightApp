@@ -1,5 +1,5 @@
 {
-  "originHash" : "19b16f700bc929f76557ec89345f173237245e4e31062eebd84e77d71ac94214",
+  "originHash" : "36c55ec91e2ba75efdcd67acc4df5682ef1f75746eb006aa21a888f1ddf1b5c8",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -134,6 +134,15 @@
       "state" : {
         "revision" : "540318ecedd63d883069ae7f1ed811a2df00b6ac",
         "version" : "2.4.0"
+      }
+    },
+    {
+      "identity" : "rxcombine",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/CombineCommunity/RxCombine.git",
+      "state" : {
+        "revision" : "19474c2ac9fde613bba8513bf98990e1aa9831cd",
+        "version" : "2.0.1"
       }
     },
     {
