@@ -120,7 +120,7 @@ class CardService: CardServiceProtocol {
             return Disposables.create()
         }
     }
-    
+
     func fetchCardByID(_ id: String) -> Single<Card> {
         return Single.create { single in
             let fetchRequest: NSFetchRequest<CardEntity> = CardEntity.fetchRequest()

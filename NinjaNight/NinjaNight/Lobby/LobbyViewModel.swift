@@ -5,7 +5,8 @@ class LobbyViewModel: ComposeObservableObject<LobbyViewModel.Event> {
     enum Event {
         case signOutSuccess
     }
-    
+
+    @Inject private var loadingManager: LoadingManager
     @Inject private var loadingManager: LoadingManager
     @Inject var authService: AuthServiceProtocol
     @Inject var cardService: CardServiceProtocol
@@ -25,7 +26,7 @@ class LobbyViewModel: ComposeObservableObject<LobbyViewModel.Event> {
             )
             .disposed(by: disposeBag)
     }
-    
+
     func signOut() {
         authService.signOut()
             .subscribe(
@@ -48,7 +49,7 @@ class LobbyViewModel: ComposeObservableObject<LobbyViewModel.Event> {
         cardService.fetchCards()
             .subscribe(
                 onSuccess: { cards in
-                    print("加載\(cards.count)張卡牌") 
+                    print("加載\(cards.count)張卡牌")
                 },
                 onFailure: { error in
                     self.handleError(error)
@@ -59,7 +60,7 @@ class LobbyViewModel: ComposeObservableObject<LobbyViewModel.Event> {
             )
             .disposed(by: disposeBag)
     }
-    
+
     func handleError(_ error: Error) {
         let appError: AppError
 
@@ -114,9 +115,9 @@ class LobbyViewModel: ComposeObservableObject<LobbyViewModel.Event> {
 //                cardType: cardType,
 //                cardDetail: cardDetail
 //            )
-//            
+//
 //            let cardID = "\(cardType)_\(level)"
-//            
+//
 //            cardService.createCard(cardID: cardID, card: card)
 //                .subscribe(
 //                    onCompleted: {
@@ -138,9 +139,9 @@ class LobbyViewModel: ComposeObservableObject<LobbyViewModel.Event> {
 //            cardType: .liar,
 //            cardDetail: detail
 //        )
-//        
+//
 //        let cardID = "liar_\(level)"
-//        
+//
 //        cardService.createCard(cardID: cardID, card: card)
 //            .subscribe(
 //                onCompleted: {
@@ -157,7 +158,7 @@ class LobbyViewModel: ComposeObservableObject<LobbyViewModel.Event> {
 //        ("counterattack_martyr", "殉道者", "當你被盲眼刺客或上忍擊殺時，可以獲得一個榮譽標記。"),
 //        ("counterattack_monk", "屍還僧", "當你被盲眼刺客或上忍攻擊時，可以揭示此牌反殺對方。")
 //    ]
-//    
+//
 //    for (cardID, name, detail) in counterattackCards {
 //        let card = Card(
 //            cardName: name,
@@ -165,7 +166,7 @@ class LobbyViewModel: ComposeObservableObject<LobbyViewModel.Event> {
 //            cardType: .counterattack,
 //            cardDetail: detail
 //        )
-//        
+//
 //        cardService.createCard(cardID: cardID, card: card)
 //            .subscribe(
 //                onCompleted: {
@@ -176,7 +177,7 @@ class LobbyViewModel: ComposeObservableObject<LobbyViewModel.Event> {
 //                }
 //            )
 //            .disposed(by: disposeBag)
-//        
+//
 //          let specialCardID = "special_summit"
 //          let specialCard = Card(
 //              cardName: "首腦",
@@ -184,7 +185,7 @@ class LobbyViewModel: ComposeObservableObject<LobbyViewModel.Event> {
 //              cardType: .special,
 //              cardDetail: "揭示階段若你還存活，可以揭示此牌讓你的流派直接獲勝。"
 //          )
-//          
+//
 //        cardService.createCard(cardID: specialCardID, card: specialCard)
 //              .subscribe(
 //                  onCompleted: {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB71DEA52DA41DD300F538CC /* CreateRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB71DEA42DA41DCE00F538CC /* CreateRoomService.swift */; };
 		DC0042AE2CD8B526005D0336 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC0042A82CD8B526005D0336 /* Preview Assets.xcassets */; };
 		DC0042AF2CD8B526005D0336 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC0042AA2CD8B526005D0336 /* Assets.xcassets */; };
 		DC0042B02CD8B526005D0336 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0042AB2CD8B526005D0336 /* ContentView.swift */; };
@@ -38,7 +39,6 @@
 		DC497D972D0994910067889A /* CardModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC497D932D0994910067889A /* CardModel.xcdatamodeld */; };
 		DC497D992D0994DC0067889A /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC497D982D0994DA0067889A /* PersistenceController.swift */; };
 		DC5409042CF084A8004C53DC /* FirestoreAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409032CF0849C004C53DC /* FirestoreAdapter.swift */; };
-		DC5409062CF08582004C53DC /* CreateRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409052CF08576004C53DC /* CreateRoomService.swift */; };
 		DC5409142CF0BEE3004C53DC /* CodeAddingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409132CF0BED3004C53DC /* CodeAddingService.swift */; };
 		DC5409162CF0C406004C53DC /* FirebaseAuthAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409152CF0C3F1004C53DC /* FirebaseAuthAdapter.swift */; };
 		DC5409182CF0D022004C53DC /* RoomPrepareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5409172CF0D006004C53DC /* RoomPrepareService.swift */; };
@@ -103,6 +103,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB71DEA42DA41DCE00F538CC /* CreateRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomService.swift; sourceTree = "<group>"; };
 		DC00427B2CD8AC1C005D0336 /* NinjaNight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NinjaNight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC00428B2CD8AC1F005D0336 /* NinjaNightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NinjaNightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0042952CD8AC1F005D0336 /* NinjaNightUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NinjaNightUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,7 +127,6 @@
 		DC497D942D0994910067889A /* CardModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CardModel.xcdatamodel; sourceTree = "<group>"; };
 		DC497D982D0994DA0067889A /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		DC5409032CF0849C004C53DC /* FirestoreAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreAdapter.swift; sourceTree = "<group>"; };
-		DC5409052CF08576004C53DC /* CreateRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomService.swift; sourceTree = "<group>"; };
 		DC5409132CF0BED3004C53DC /* CodeAddingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeAddingService.swift; sourceTree = "<group>"; };
 		DC5409152CF0C3F1004C53DC /* FirebaseAuthAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthAdapter.swift; sourceTree = "<group>"; };
 		DC5409172CF0D006004C53DC /* RoomPrepareService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomPrepareService.swift; sourceTree = "<group>"; };
@@ -359,7 +359,7 @@
 		DCBA11132D046F9200979532 /* Landing */ = {
 			isa = PBXGroup;
 			children = (
-				DC5409052CF08576004C53DC /* CreateRoomService.swift */,
+				BB71DEA42DA41DCE00F538CC /* CreateRoomService.swift */,
 				DC5409172CF0D006004C53DC /* RoomPrepareService.swift */,
 				DC5409132CF0BED3004C53DC /* CodeAddingService.swift */,
 				DC54093E2CF6FE26004C53DC /* RoomListService.swift */,
@@ -612,11 +612,11 @@
 			files = (
 				DC5409382CF5AF57004C53DC /* NavigationPathManager.swift in Sources */,
 				DC5409182CF0D022004C53DC /* RoomPrepareService.swift in Sources */,
-				DC5409062CF08582004C53DC /* CreateRoomService.swift in Sources */,
 				DCD4F4A52D08356200CFF1BF /* GameMainActionView.swift in Sources */,
 				DCBA10F82CFE9F1800979532 /* GameLoading.swift in Sources */,
 				DCBA10F62CFE9D7000979532 /* GameLoadingView.swift in Sources */,
 				DC5409362CF334E7004C53DC /* HandleError.swift in Sources */,
+				BB71DEA52DA41DD300F538CC /* CreateRoomService.swift in Sources */,
 				DC5409492CF865D0004C53DC /* PlayerDataService.swift in Sources */,
 				DCD4F4A32D08352100CFF1BF /* GamePhaseView.swift in Sources */,
 				DCBA110E2CFEB7B600979532 /* CardService.swift in Sources */,
