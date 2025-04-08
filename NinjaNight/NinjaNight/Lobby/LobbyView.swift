@@ -39,7 +39,7 @@ struct LobbyView: View {
             }
             
             .onAppear {
-//                viewModel.createCardsForDeck()
+                viewModel.createCardsForDeck()
                 viewModel.fetchCards()
             }
             //TODO: 等之後做環境分離後移除
